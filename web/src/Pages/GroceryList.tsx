@@ -1,3 +1,10 @@
+/**
+ * GroceryList.tsx
+ * -
+ * This file will contain the frontend code to handle users creating their grocery list
+ */
+
+
 import React from 'react';
 
 export default function GroceryList() {

@@ -1,3 +1,10 @@
+/**
+ * index.tsx
+ * -
+ * This is the entry file to the whole webapp. This file uses a BrowserRouter component from the
+ * router library to handle navigation between various pages.
+ */
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -15,7 +22,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <>
+    {/* Set up browser router */}
     <BrowserRouter>
+      {/* Establish routes (these will be the directories accessible in the browser) */}
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/create" element={<GroceryList />} />
