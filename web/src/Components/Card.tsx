@@ -1,6 +1,12 @@
 import React from 'react';
 import '../Static/Styles/Card.css'
 
+/**
+ * Function - DesktopCard
+ * 
+ * Will return a card component given props suited for desktop displays
+ * 
+ */
 export function DesktopCard(props: any) {
     return (
         <div className='CardContainer'>
@@ -17,6 +23,12 @@ export function DesktopCard(props: any) {
     )
 }
 
+/**
+ * Function - MobileCard
+ * 
+ * Will return a card component given props for mobile displays
+ * 
+ */
 export function MobileCard(props: any) {
     return (
         <div className='MobileCardContainer'>
