@@ -8,6 +8,7 @@ import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
 import { Navbar, Container, Nav } from 'react-bootstrap';
+import '../Static/Styles/Navigation.css';
 
 /**
  * Function - Navigation
@@ -35,29 +36,68 @@ export default function Navigation() {
     const navStart = () => { return navigate('/create') }
 
     return (
-        <>
-        
-        </>
+        <div>
+            { isDesktop && <NavigateDesktop navHome={navHome} navAbout={navAbout} /> }
+            { isMobile && <NavigateMobile navHome={navHome} navAbout={navAbout} /> }
+        </div>
     )
 }
 
 /**
- * Function - navigateDesktop
+ * Function - NavigateDesktop
  * 
  * Will return navigation bar component designed for desktop displays
  * 
  */
-function navigateDesktop() {
+function NavigateDesktop(props: { 
+    navHome: () => void; 
+    navAbout: () => void; 
+}) {
     return (
-        <div>
+        <div className='NavContainer'>
             <Navbar>
                 <Navbar.Brand>
-                    <h1>SmartSave</h1>
+                    <h1 className='SmartSave'>Smart<span style={{ color: '#1DA1F2' }}>Save</span></h1>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        <Nav.Link onClick={() => props.navHome() }>Home</Nav.Link>
+                        <Nav.Link onClick={() => props.navAbout()}>About</Nav.Link>
+                    </Nav>
                     <Nav className="ms-auto">
-                        
+                        <Nav.Link className='StartButton' onClick={() => props.navHome() }>Get Started</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+        </div>
+    )
+}
+
+/**
+ * Function - NavigateMobile
+ * 
+ * Will return navigation bar component designed for mobile/tablet displays
+ * 
+ */
+function NavigateMobile(props: { 
+    navHome: () => void; 
+    navAbout: () => void; 
+}) {
+    return (
+        <div className='NavContainer'>
+            <Navbar>
+                <Navbar.Brand>
+                    <h1 className='SmartSave'>Smart<span style={{ color: '#1DA1F2' }}>Save</span></h1>
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        <Nav.Link onClick={() => props.navHome() }>Home</Nav.Link>
+                        <Nav.Link onClick={() => props.navAbout()}>About</Nav.Link>
+                    </Nav>
+                    <Nav className="ms-auto">
+                        <Nav.Link className='StartButton' onClick={() => props.navHome() }>Get Started</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

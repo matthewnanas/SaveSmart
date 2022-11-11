@@ -6,10 +6,12 @@
  */
 
 import React from 'react';
+import Navigation from '../Components/Navigation';
 
 export default function Landing() {
     return (
         <div>
+            <Navigation />
             <h1>This is the Landing page</h1>
         </div>
     )
