@@ -44,8 +44,8 @@ export function MobileCard(props: {
         <div className='MobileCardContainer'>
             <div className='StepDot' style={{
                 backgroundColor: props.color,
-                width: 100,
-                height: 100,
+                width: 75,
+                height: 75,
             }}>
                 <h1>{props.step}</h1>
             </div>

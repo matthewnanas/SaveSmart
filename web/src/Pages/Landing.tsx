@@ -42,6 +42,7 @@ export default function Landing() {
                 <div>
                     <MobileHeading />
                     <MobileSteps />
+                    <About />
                 </div>
             }
         </div>
@@ -160,7 +161,7 @@ function About() {
                     ) => {
                         return (
                             <Accordion.Item eventKey={i}>
-                                <Accordion.Header><span className='AboutText'>{item.question}</span></Accordion.Header>
+                                <Accordion.Header>{item.question}</Accordion.Header>
                                 <Accordion.Body>{item.content}</Accordion.Body>
                             </Accordion.Item>
                         )
