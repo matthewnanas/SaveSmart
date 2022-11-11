@@ -7,7 +7,12 @@ import '../Static/Styles/Card.css'
  * Will return a card component given props suited for desktop displays
  * 
  */
-export function DesktopCard(props: any) {
+export function DesktopCard(props: { 
+    color: string, 
+    step: string,
+    description: string, 
+    emoji: string
+}) {
     return (
         <div className='CardContainer'>
             <div className='StepDot' style={{
@@ -29,7 +34,12 @@ export function DesktopCard(props: any) {
  * Will return a card component given props for mobile displays
  * 
  */
-export function MobileCard(props: any) {
+export function MobileCard(props: { 
+    color: string, 
+    step: string,
+    description: string, 
+    emoji: string
+}) {
     return (
         <div className='MobileCardContainer'>
             <div className='StepDot' style={{
