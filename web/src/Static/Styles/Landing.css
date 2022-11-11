@@ -41,3 +41,17 @@
     right: 0px;
     margin-top: -20%;
 }
+
+.MobileGreenBlob {
+    position: absolute;
+    z-index: -1;
+    margin-left: -50%;
+    margin-top: 0%;
+}
+
+.MobileBlueBlob {
+    position: absolute;
+    z-index: -1;
+    right: 0px;
+    margin-top: -20%;
+}
