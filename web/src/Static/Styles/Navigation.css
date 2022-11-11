@@ -28,3 +28,9 @@
     text-align: center;
     font-family: Inter-Bold;
 }
+
+.NavContainerMobile {
+    font-family: Inter-Bold;
+    margin: 10px 5px 0px 5px;
+    border-bottom: 1px solid rgba(39, 64, 96, 0.5);
+}

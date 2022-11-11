@@ -117,7 +117,7 @@ function MobileSteps() {
         <div>
             <div className='StepContainer'>
                 <h1>How <span style={{ color: '#1DA1F2' }}>we</span> work</h1>
-                <img src={GreenBlob} className='MobileGreenBlob' alt='Green Blob' />
+                <img src={GreenBlob} className='MobileGreenBlob' alt='Green Blob' width='350' />
                 <MobileCard color='#335C81' step='1' description='Plan your grocery trip by creating your shopping list with us' emoji='🔎' />
                 <MobileCard color='#5899E2' step='2' description='Our programs work some magic (just sit back and relax)' emoji='✨' />
                 <MobileCard color='#65AFFF' step='3' description='Browse the most affordable options catered to your list' emoji='✅' />

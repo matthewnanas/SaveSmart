@@ -85,19 +85,16 @@ function NavigateMobile(props: {
     navAbout: () => void; 
 }) {
     return (
-        <div className='NavContainer'>
+        <div className='NavContainerMobile'>
             <Navbar>
                 <Navbar.Brand>
                     <h1 className='SmartSave'>Smart<span style={{ color: '#1DA1F2' }}>Save</span></h1>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
+                    <Nav className="ms-auto">
                         <Nav.Link onClick={() => props.navHome() }>Home</Nav.Link>
                         <Nav.Link onClick={() => props.navAbout()}>About</Nav.Link>
-                    </Nav>
-                    <Nav className="ms-auto">
-                        <Nav.Link className='StartButton' onClick={() => props.navHome() }>Get Started</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
