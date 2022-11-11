@@ -12,6 +12,7 @@ import '../Static/Styles/Landing.css';
 import GreenBlob from '../Static/Assets/GreenBlob.svg';
 import BlueBlob from '../Static/Assets/BlueBlob.svg';
 import { DesktopCard, MobileCard } from '../Components/Card';
+import Accordion from 'react-bootstrap/Accordion';
 
 /**
  * Function - Landing
@@ -34,6 +35,7 @@ export default function Landing() {
                 <div>
                     <DesktopHeading /> 
                     <DesktopSteps />
+                    <About />
                 </div>
             }
             { isMobile && 
@@ -120,6 +122,51 @@ function MobileSteps() {
                 <MobileCard color='#65AFFF' step='3' description='Browse the most affordable options catered to your list' emoji='✅' />
             </div>
             <img src={BlueBlob} className='MobileBlueBlob' alt='Blue Blob' />
+        </div>
+    )
+}
+
+function About() {
+    const content = [
+        { 
+            question: "What retailers do you support?",
+            content: "At the moment we current support: Aldi, Costco, Giant, Kroger, Whole Foods Market, Trader Joes, Target, Walmart"
+        },
+        { 
+            question: "How does this work?",
+            content: "TBA"
+        },
+        { 
+            question: "What is the catch?",
+            content: "There's no catch, we don't sell you data, a broke college student made this and is operating the website at a loss T_T"
+        },
+        { 
+            question: "How can I support the project?",
+            content: "Just share it around :)"
+        }
+    ];
+
+    return (
+        <div className='About'>
+            <h1>About this project</h1>
+            <Accordion>
+                {
+                    content.map((
+                        item: {
+                            question: string,
+                            content: string
+                        },
+                        i: any,
+                    ) => {
+                        return (
+                            <Accordion.Item eventKey={i}>
+                                <Accordion.Header><span className='AboutText'>{item.question}</span></Accordion.Header>
+                                <Accordion.Body>{item.content}</Accordion.Body>
+                            </Accordion.Item>
+                        )
+                    })
+                }
+            </Accordion>
         </div>
     )
 }
