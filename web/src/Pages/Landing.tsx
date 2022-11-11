@@ -10,6 +10,8 @@ import { useMediaQuery } from 'react-responsive';
 import Card from '../Components/Card';
 import Navigation from '../Components/Navigation';
 import '../Static/Styles/Landing.css';
+import GreenBlob from '../Static/Assets/GreenBlob.svg';
+import BlueBlob from '../Static/Assets/BlueBlob.svg';
 
 /**
  * Function - Landing
@@ -56,15 +58,25 @@ function DesktopHeading() {
     )
 }
 
+/**
+ * Function - Desktop Steps
+ * 
+ * Will return appropriate step content for desktop devices
+ * 
+ */
 function DesktopSteps() {
     return (
         <div>
-            <h1>How we work</h1>
-            <div className='DesktopCards'>
-                <Card color='#335C81' step='1' description='Plan your grocery trip by creating your shopping list with us' emoji='🔎' />
-                <Card color='#5899E2' step='2' description='Our programs work some magic (just sit back and relax)' emoji='✨' />
-                <Card color='#65AFFF' step='3' description='Browse the most affordable options catered to your list' emoji='✅' />
+            <div className='StepContainer'>
+                <h1>How <span style={{ color: '#1DA1F2' }}>we</span> work</h1>
+                <div className='DesktopCards'>
+                    <Card color='#335C81' step='1' description='Plan your grocery trip by creating your shopping list with us' emoji='🔎' />
+                    <Card color='#5899E2' step='2' description='Our programs work some magic (just sit back and relax)' emoji='✨' />
+                    <Card color='#65AFFF' step='3' description='Browse the most affordable options catered to your list' emoji='✅' />
+                </div>
             </div>
+            <img src={GreenBlob} className='GreenBlob' alt='Green Blob' />
+            <img src={BlueBlob} className='BlueBlob' alt='Blue Blob' />
         </div>
     )
 }
