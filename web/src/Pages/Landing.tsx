@@ -61,13 +61,14 @@ function DesktopHeading() {
             <div className='Heading'>
                 <h1>Saving on grocery trips<br />has never been <span style={{ color: '#1DA1F2' }}>easier</span></h1>
                 <h4>It’s as easy as 123!</h4>
+                <button className='GetStarted'>Get Started</button>
             </div>
         </div>
     )
 }
 
 /**
- * Function - Desktop Steps
+ * Function - DesktopSteps
  * 
  * Will return appropriate step content for desktop devices
  * 
@@ -101,15 +102,16 @@ function MobileHeading() {
             <div className='Heading'>
                 <h1>Saving on grocery trips<br />has never been <span style={{ color: '#1DA1F2' }}>easier</span></h1>
                 <h4>It’s as easy as 123!</h4>
+                <button className='GetStarted'>Get Started</button>
             </div>
         </div>
     )
 }
 
 /**
- * Function - Desktop Steps
+ * Function - MobileSteps
  * 
- * Will return appropriate step content for desktop devices
+ * Will return appropriate step content for mobile devices
  * 
  */
 function MobileSteps() {
@@ -127,6 +129,12 @@ function MobileSteps() {
     )
 }
 
+/**
+ * Function - About
+ * 
+ * Returns an accordion covering content about the project
+ * 
+ */
 function About() {
     const content = [
         { 

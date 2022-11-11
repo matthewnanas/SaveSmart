@@ -1,5 +1,5 @@
 .Heading {
-    margin-top: 20px;
+    margin-top: 200px;
     text-align: center;
 }
 
@@ -14,7 +14,7 @@
 .StepContainer {
     text-align: center;
     bottom: 0px;
-    margin-top: 100px;
+    margin-top: 250px;
 }
 
 .StepContainer h1 {
@@ -65,5 +65,27 @@
 }
 
 .About h1 {
+    font-family: Inter-Bold;
+}
+
+.GetStarted {
+    background-color: #1DA1F2;
+    color: #ffffff;
+    padding: 10px 10px 10px 10px;
+    width: 150px;
+    border-radius: 100px;
+    text-align: center;
+    font-family: Inter-Bold;
+    border: none;
+    margin-top: 50px;
+}
+
+.GetStarted:hover {
+    background-color: #0a88d6;
+    color: #eeeeee;
+    padding: 10px 10px 10px 10px;
+    width: 150px;
+    border-radius: 100px;
+    text-align: center;
     font-family: Inter-Bold;
 }
