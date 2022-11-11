@@ -8,6 +8,11 @@
   src: local('Inter-Bold'), url(./Static/Fonts/Inter/Inter-Bold.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: 'Inter-Medium';
+  src: local('Inter-Medium'), url(./Static/Fonts/Inter/Inter-Medium.ttf) format('truetype');
+}
+
 body {
   margin: 0;
   font-family: Inter, sans-serif;
