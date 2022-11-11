@@ -7,11 +7,11 @@
 
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
-import Card from '../Components/Card';
 import Navigation from '../Components/Navigation';
 import '../Static/Styles/Landing.css';
 import GreenBlob from '../Static/Assets/GreenBlob.svg';
 import BlueBlob from '../Static/Assets/BlueBlob.svg';
+import { DesktopCard, MobileCard } from '../Components/Card';
 
 /**
  * Function - Landing
@@ -24,8 +24,8 @@ export default function Landing() {
      * Create two variables that will be used to distinguish whether or not
      * a visitor is on desktop or mobile/tablet by width dimension
      */
-    const isDesktop = useMediaQuery({ query: '(min-width: 1224px)' });
-    const isMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+    const isDesktop = useMediaQuery({ query: '(min-width: 1000px)' });
+    const isMobile = useMediaQuery({ query: '(max-width: 1000px)' });
 
     return (
         <div>
@@ -36,7 +36,12 @@ export default function Landing() {
                     <DesktopSteps />
                 </div>
             }
-            { isMobile && <MobileHeading /> }
+            { isMobile && 
+                <div>
+                    <MobileHeading />
+                    <MobileSteps />
+                </div>
+            }
         </div>
     )
 }
@@ -70,9 +75,9 @@ function DesktopSteps() {
             <div className='StepContainer'>
                 <h1>How <span style={{ color: '#1DA1F2' }}>we</span> work</h1>
                 <div className='DesktopCards'>
-                    <Card color='#335C81' step='1' description='Plan your grocery trip by creating your shopping list with us' emoji='🔎' />
-                    <Card color='#5899E2' step='2' description='Our programs work some magic (just sit back and relax)' emoji='✨' />
-                    <Card color='#65AFFF' step='3' description='Browse the most affordable options catered to your list' emoji='✅' />
+                    <DesktopCard color='#335C81' step='1' description='Plan your grocery trip by creating your shopping list with us' emoji='🔎' />
+                    <DesktopCard color='#5899E2' step='2' description='Our programs work some magic (just sit back and relax)' emoji='✨' />
+                    <DesktopCard color='#65AFFF' step='3' description='Browse the most affordable options catered to your list' emoji='✅' />
                 </div>
             </div>
             <img src={GreenBlob} className='GreenBlob' alt='Green Blob' />
@@ -94,6 +99,27 @@ function MobileHeading() {
                 <h1>Saving on grocery trips<br />has never been <span style={{ color: '#1DA1F2' }}>easier</span></h1>
                 <h4>It’s as easy as 123!</h4>
             </div>
+        </div>
+    )
+}
+
+/**
+ * Function - Desktop Steps
+ * 
+ * Will return appropriate step content for desktop devices
+ * 
+ */
+function MobileSteps() {
+    return (
+        <div>
+            <div className='StepContainer'>
+                <h1>How <span style={{ color: '#1DA1F2' }}>we</span> work</h1>
+                <MobileCard color='#335C81' step='1' description='Plan your grocery trip by creating your shopping list with us' emoji='🔎' />
+                <MobileCard color='#5899E2' step='2' description='Our programs work some magic (just sit back and relax)' emoji='✨' />
+                <MobileCard color='#65AFFF' step='3' description='Browse the most affordable options catered to your list' emoji='✅' />
+            </div>
+            <img src={GreenBlob} className='GreenBlob' alt='Green Blob' />
+            <img src={BlueBlob} className='BlueBlob' alt='Blue Blob' />
         </div>
     )
 }

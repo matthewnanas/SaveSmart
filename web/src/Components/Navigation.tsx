@@ -21,8 +21,8 @@ export default function Navigation() {
      * Create two variables that will be used to distinguish whether or not
      * a visitor is on desktop or mobile/tablet by width dimension
      */
-    const isDesktop = useMediaQuery({ query: '(min-width: 1224px)' });
-    const isMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+    const isDesktop = useMediaQuery({ query: '(min-width: 1000px)' });
+    const isMobile = useMediaQuery({ query: '(max-width: 1000px)' });
 
     /**
      * Navigation handling
