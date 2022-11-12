@@ -11,6 +11,7 @@ import { useMediaQuery } from 'react-responsive';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
+import { BsTrashFill } from 'react-icons/bs';
 import '../Static/Styles/GroceryList.css'
 
 /**
@@ -57,6 +58,21 @@ function DesktopList() {
         }]);
     }
 
+    // Handle editing a quantity in the table
+    const editQuantity = (newValue: string, element: number) => {
+        let temp = items;
+        temp[element]['quantity'] = newValue;
+        setItems(temp);
+    }
+
+    // Handle deleting an element from the table
+    const deleteItem = (element: number) => {
+        let temp = items;
+        temp.splice(element, 1);
+        console.log(temp);
+        setItems([...temp]);
+    }
+
     return (
         <div>
             <div className='ListHeading'>
@@ -68,6 +84,9 @@ function DesktopList() {
                         </Form.Group>
                         <Button className='SubmitButton' variant='primary' type='submit'>
                             Submit
+                        </Button>
+                        <Button className='SubmitButton' variant='primary' style={{marginLeft: 5}}>
+                            Compare Stores
                         </Button>
                     </Form>
                 </div>
@@ -98,17 +117,22 @@ function DesktopList() {
                                     <tr key={i}>
                                         <td>{i}</td>
                                         <td>{item.item}</td>
-                                        <td>{item.quantity}</td>
+                                        <td>
+                                            <input type='text' name='quantity' defaultValue={item.quantity} onChange={(e) => {
+                                                editQuantity(e.target.value, i)
+                                            }} />
+                                        </td>
+                                        <td>
+                                            <Button className='EditButton' onClick={() => deleteItem(i)}>
+                                                <h5 style={{marginTop: 2}}>
+                                                    <BsTrashFill />
+                                                </h5>
+                                            </Button>
+                                        </td>
                                     </tr>
                                 )
                             })
                         }
-                        <tr>
-                            <td>1</td>
-                            <td>Bananas</td>
-                            <td>put textbox here</td>
-                            <td>put buttons</td>
-                        </tr>
                     </tbody>
                 </Table>
             </div>
@@ -134,6 +158,13 @@ function MobileList() {
             'item': search,
             'quantity': 1,
         }]);
+    }
+
+    // Handle editing a quantity in the table
+    const editQuantity = (newValue: string, element: number) => {
+        let temp = items;
+        temp[element]['quantity'] = newValue;
+        setItems(temp);
     }
 
     return (
@@ -178,7 +209,12 @@ function MobileList() {
                                     <tr key={i}>
                                         <td>{i}</td>
                                         <td>{item.item}</td>
-                                        <td>{item.quantity}</td>
+                                        <td>
+                                            <input type='text' name='quantity' defaultValue={item.quantity} onChange={(e) => {
+                                                editQuantity(e.target.value, i)
+                                            }} />
+                                        </td>
+                                        <td>put buttons</td>
                                     </tr>
                                 )
                             })

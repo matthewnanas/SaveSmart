@@ -23,3 +23,23 @@
 .MobileTable {
     margin: 10px 5px 0px 5px;
 }
+
+.EditButton {
+    padding: 5px;
+    width: 50px;
+    color: white;
+    border-radius: 100px;
+    background-color: #e92a6c;
+    text-align: center;
+    border: none;
+}
+
+.EditButton:hover {
+    padding: 5px;
+    width: 50px;
+    color: white;
+    border-radius: 100px;
+    background-color: #ff0059;
+    text-align: center;
+    border: none;
+}

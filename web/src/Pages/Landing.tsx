@@ -160,7 +160,7 @@ function About() {
         },
         { 
             question: "What is the catch?",
-            content: "There's no catch, we don't sell you data, a broke college student made this and is operating the website at a loss T_T"
+            content: "There's no catch, your data is not shared with 3rd parties, this is just a project made in one's freetime that may not operate forever"
         },
         { 
             question: "How can I support the project?",
