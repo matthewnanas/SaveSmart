@@ -20,3 +20,9 @@ web/npm-debug.log*
 web/yarn-debug.log*
 web/yarn-error.log*
 web/yarn.lock
+
+# Server dependencies
+server/node_modules
+server/.pnp
+server/.pnp.js
+server/package-lock.json
