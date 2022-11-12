@@ -170,7 +170,7 @@ function About() {
 
     return (
         <div className='About'>
-            <h1>About this project</h1>
+            <h1 style={{marginBottom: '35px'}}>About this project</h1>
             <Accordion>
                 {
                     content.map((

@@ -26,6 +26,7 @@
 .DesktopCards {
     display: flex;
     justify-content: center;
+    margin-top: 35px;
 }
 
 .GreenBlob {
@@ -72,7 +73,7 @@
     background-color: #1DA1F2;
     color: #ffffff;
     padding: 10px 10px 10px 10px;
-    width: 150px;
+    width: 200px;
     border-radius: 100px;
     text-align: center;
     font-family: Inter-Bold;

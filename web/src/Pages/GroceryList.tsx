@@ -50,12 +50,15 @@ function DesktopList() {
     
     // Handle adding new items to the list
     const addItem = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        setItems([...items, {
-            'item': search,
-            'size': 'N/A',
-            'quantity': 1,
-        }]);
+        if (search === '') {
+            alert('Please enter a valid item name!');
+        } else {
+            e.preventDefault()
+            setItems([...items, {
+                'item': search,
+                'quantity': 1,
+            }]);
+        }
     }
 
     // Handle editing a quantity in the table
@@ -153,11 +156,15 @@ function MobileList() {
     
     // Handle adding new items to the list
     const addItem = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        setItems([...items, {
-            'item': search,
-            'quantity': 1,
-        }]);
+        if (search === '') {
+            alert('Please enter a valid item name!');
+        } else {
+            e.preventDefault()
+            setItems([...items, {
+                'item': search,
+                'quantity': 1,
+            }]);
+        }
     }
 
     // Handle editing a quantity in the table
@@ -167,17 +174,28 @@ function MobileList() {
         setItems(temp);
     }
 
+    // Handle deleting an element from the table
+    const deleteItem = (element: number) => {
+        let temp = items;
+        temp.splice(element, 1);
+        console.log(temp);
+        setItems([...temp]);
+    }
+
     return (
         <div>
             <div className='ListHeading'>
                 <h1>My Search List</h1>
                 <div className='ListSearch'>
                     <Form onSubmit={(e) => addItem(e)}>
-                        <Form.Group className="mb-3" controlId='searchQuery' style={{height: 40}}>
+                        <Form.Group className="mb-3" controlId='searchQuery'>
                             <Form.Control type="text" placeholder='Search for...' value={search} onChange={(e) => setSearch(e.target.value)} />
                         </Form.Group>
                         <Button className='SubmitButton' variant='primary' type='submit'>
                             Submit
+                        </Button>
+                        <Button className='SubmitButton' variant='primary' style={{marginLeft: 5}}>
+                            Compare Stores
                         </Button>
                     </Form>
                 </div>
@@ -210,21 +228,21 @@ function MobileList() {
                                         <td>{i}</td>
                                         <td>{item.item}</td>
                                         <td>
-                                            <input type='text' name='quantity' defaultValue={item.quantity} onChange={(e) => {
+                                            <input type='text' className='w-25' name='quantity' defaultValue={item.quantity} width={10} onChange={(e) => {
                                                 editQuantity(e.target.value, i)
                                             }} />
                                         </td>
-                                        <td>put buttons</td>
+                                        <td>
+                                            <Button className='EditButton' onClick={() => deleteItem(i)}>
+                                                <h5 style={{marginTop: 2}}>
+                                                    <BsTrashFill />
+                                                </h5>
+                                            </Button>
+                                        </td>
                                     </tr>
                                 )
                             })
                         }
-                        <tr>
-                            <td>1</td>
-                            <td>Bananas</td>
-                            <td>put entry & dropdown here</td>
-                            <td>put buttons</td>
-                        </tr>
                     </tbody>
                 </Table>
             </div>
