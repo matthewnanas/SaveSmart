@@ -15,3 +15,7 @@
     float: left;
     position: static;
 }
+
+.DesktopTable {
+    margin: 10px 50px 0px 50px;
+}
