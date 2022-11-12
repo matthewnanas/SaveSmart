@@ -71,7 +71,7 @@ function DesktopList() {
                             <th>Item</th>
                             <th>Size</th>
                             <th>Quantity</th>
-                            <th>m</th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
