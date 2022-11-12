@@ -37,7 +37,7 @@ export default function Navigation() {
 
     return (
         <div>
-            { isDesktop && <NavigateDesktop navHome={navHome} navAbout={navAbout} /> }
+            { isDesktop && <NavigateDesktop navHome={navHome} navAbout={navAbout} navStart={navStart} /> }
             { isMobile && <NavigateMobile navHome={navHome} navAbout={navAbout} /> }
         </div>
     )
@@ -52,6 +52,7 @@ export default function Navigation() {
 function NavigateDesktop(props: { 
     navHome: () => void; 
     navAbout: () => void; 
+    navStart: () => void;
 }) {
     return (
         <div className='NavContainer'>
@@ -63,10 +64,9 @@ function NavigateDesktop(props: {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link onClick={() => props.navHome() }>Home</Nav.Link>
-                        <Nav.Link onClick={() => props.navAbout()}>About</Nav.Link>
                     </Nav>
                     <Nav className="ms-auto">
-                        <Nav.Link className='StartButton' onClick={() => props.navHome() }>Get Started</Nav.Link>
+                        <Nav.Link className='StartButton' onClick={() => props.navStart() }>Get Started</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -94,7 +94,6 @@ function NavigateMobile(props: {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
                         <Nav.Link onClick={() => props.navHome() }>Home</Nav.Link>
-                        <Nav.Link onClick={() => props.navAbout()}>About</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

@@ -13,6 +13,7 @@ import GreenBlob from '../Static/Assets/GreenBlob.svg';
 import BlueBlob from '../Static/Assets/BlueBlob.svg';
 import { DesktopCard, MobileCard } from '../Components/Card';
 import Accordion from 'react-bootstrap/Accordion';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * Function - Landing
@@ -56,12 +57,18 @@ export default function Landing() {
  * 
  */
 function DesktopHeading() {
+    /**
+     * Navigation function for the get started button
+     */
+    const navigate = useNavigate();
+    const navStart = () => { return navigate('/create') }
+    
     return (
         <div>
             <div className='Heading'>
                 <h1>Saving on grocery trips<br />has never been <span style={{ color: '#1DA1F2' }}>easier</span></h1>
-                <h4>It’s as easy as 123!</h4>
-                <button className='GetStarted'>Get Started</button>
+                <h4>It’s as easy as 1, 2, 3!</h4>
+                <button className='GetStarted' onClick={() => navStart()}>Get Started</button>
             </div>
         </div>
     )
@@ -97,12 +104,18 @@ function DesktopSteps() {
  * 
  */
 function MobileHeading() {
+    /**
+     * Navigation function for the get started button
+     */
+    const navigate = useNavigate();
+    const navStart = () => { return navigate('/create') }
+
     return (
         <div>
             <div className='Heading'>
                 <h1>Saving on grocery trips<br />has never been <span style={{ color: '#1DA1F2' }}>easier</span></h1>
-                <h4>It’s as easy as 123!</h4>
-                <button className='GetStarted'>Get Started</button>
+                <h4>It’s as easy as 1, 2, 3!</h4>
+                <button className='GetStarted' onClick={() => navStart()}>Get Started</button>
             </div>
         </div>
     )
