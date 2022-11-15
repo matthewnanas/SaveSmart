@@ -94,10 +94,11 @@ class GiantFood {
                 'product_size': relevant.size,
                 'brand': relevant.brandName,
                 'price': response.data['data']['itemPrices'][0]['viewSection']['itemDetails']['priceString'],
-                'unit_price': response.data['data']['itemPrices'][0]['viewSection']['itemDetails']['pricePerUnitString']
+                'unit_price': response.data['data']['itemPrices'][0]['viewSection']['itemDetails']['pricePerUnitString'],
+                'image': relevant['viewSection']['itemImage']['url'],
             }
 
-            console.log(item);
+            return item;
         } catch (err) {
             console.log(err);
             console.log('Error sending price request');
