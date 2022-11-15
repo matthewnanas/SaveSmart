@@ -70,7 +70,7 @@ class GiantFood {
     async getRelevantPrice(firstTen, relevant) {
         try {
             // Get price endpoint
-            const response = await axios.get(`https://www.instacart.com/graphql?operationName=ItemPricesQuery&variables=${encodeURIComponent(JSON.stringify({"ids":["items_3810-37225","items_3810-34771","items_3810-25704257","items_3810-19342098","items_3810-19465374","items_3810-19341977","items_3810-88952","items_3810-19342019","items_3810-19342040","items_3810-16409146"],"shopId":"4192","zoneId":"37","postalCode":"20902"}))}&extensions=${encodeURIComponent(JSON.stringify({"persistedQuery":{"version":1,"sha256Hash":"6bc7919897d4104897f991ab9e6f544aa2157e60781606871bf236f30e50243f"}}))}`, {
+            const response = await axios.get(`https://www.instacart.com/graphql?operationName=ItemPricesQuery&variables=${encodeURIComponent(JSON.stringify({"ids":firstTen,"shopId":"4192","zoneId":"37","postalCode":"20902"}))}&extensions=${encodeURIComponent(JSON.stringify({"persistedQuery":{"version":1,"sha256Hash":"6bc7919897d4104897f991ab9e6f544aa2157e60781606871bf236f30e50243f"}}))}`, {
                 headers: {
                     'sec-ch-device-memory': '8',
                     'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
