@@ -1,4 +1,6 @@
-const axios = require("axios");
+const axios = require('axios');
+const CookieJar = require('tough-cookie');
+const wrapper = require('axios-cookiejar-support');
 
 /**
  * Conduct item search
@@ -18,6 +20,8 @@ class GiantFood {
     constructor(info) {
         this.zip = info.zipCode;
         this.item = info.item;
+        this.jar = new CookieJar.CookieJar();
+        this.client = wrapper.wrapper(axios.create({ jar: this.jar }));
     }
 
     async start() {
@@ -32,7 +36,7 @@ class GiantFood {
     async getRelevant() {
         try {
             // Get item endpoint
-            const response = await axios.get(`https://www.instacart.com/graphql?operationName=SearchWithClustering&variables={%22filters%22:[],%22disableReformulation%22:false,%22retailerInventorySessionToken%22:%22v1.bab5661.2860219233-20906-03908x17705-1-159-5229-0%22,%22orderBy%22:%22default%22,%22query%22:%22${this.item.replace(' ', '%20')}%22,%22pageViewId%22:%2202390ea6-023a-5b3c-9f2c-bd5c9b04e306%22,%22includeDebugInfo%22:false,%22elevatedProductId%22:null}&extensions={%22persistedQuery%22:{%22version%22:1,%22sha256Hash%22:%223a191ccb71dba998291ee4452457cbba4655dcc15c2f440d0bad7f80d540d548%22}}`, {
+            const response = await this.client.get(`https://www.instacart.com/graphql?operationName=SearchResultsPlacements&variables={"filters":[],"action":null,"query":"${this.item.replace(' ', '%20')}","pageViewId":"0b1bc757-ca2a-554c-93a1-895bebc7dd82","retailerInventorySessionToken":"v1.d143ebf.2862331018-20902-03904x17703-1-159-3810-0","elevatedProductId":null,"searchSource":"search","disableReformulation":false,"orderBy":"default","clusterId":null,"includeDebugInfo":false,"clusteringStrategy":null,"contentManagementSearchParams":{"itemGridColumnCount":2},"shopId":"4192"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"a6a067507df765e653439f50b15e819d665f53ccc9e4bfde78f53fe1f5233f5a"}}`, {
                 headers: {
                     'sec-ch-device-memory': '8',
                     'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
@@ -49,12 +53,11 @@ class GiantFood {
             });
 
             // Check to see if any items exist
-            if (response.data['data']['searchResults']['primaryItemResultList']['items'].length == 0) {
+            if (response.data['data']['searchResultsPlacements']['placements'].length < 3) {
                 console.log('No items found');
             } else {
-                const firstTen = response.data['data']['searchResults']['primaryItemResultList']['itemIds'].slice(0, 10);
-                const relevant = response.data['data']['searchResults']['primaryItemResultList']['items'][0];
-                this.getRelevantPrice(firstTen, relevant);
+                const relevant = response.data['data']['searchResultsPlacements']['placements'][2]['content']['items'][0];
+                this.getRelevantPrice(relevant);
             }
         } catch (err) {
             console.log(err);
@@ -67,10 +70,10 @@ class GiantFood {
      * 
      * Use instacart endpoint to get the price of the most relevant price
      */
-    async getRelevantPrice(firstTen, relevant) {
+    async getRelevantPrice(relevant) {
         try {
             // Get price endpoint
-            const response = await axios.get(`https://www.instacart.com/graphql?operationName=ItemPricesQuery&variables=${encodeURIComponent(JSON.stringify({"ids":firstTen,"shopId":"4192","zoneId":"37","postalCode":"20902"}))}&extensions=${encodeURIComponent(JSON.stringify({"persistedQuery":{"version":1,"sha256Hash":"6bc7919897d4104897f991ab9e6f544aa2157e60781606871bf236f30e50243f"}}))}`, {
+            const response = await this.client.get(`https://www.instacart.com/graphql?operationName=ItemPricesQuery&variables={"ids":["${relevant['id']}"],"shopId":"4192","zoneId":"37","postalCode":"20902"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"6bc7919897d4104897f991ab9e6f544aa2157e60781606871bf236f30e50243f"}}`, {
                 headers: {
                     'sec-ch-device-memory': '8',
                     'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
@@ -86,12 +89,15 @@ class GiantFood {
                 },
             });
 
-            // Check to see if any items exist
-            if (response.data['data']['itemPrices'].length == 0) {
-                console.log('No prices found');
-            } else {
-                console.log(response.data['data']);
+            const item = {
+                'product_name': relevant.name,
+                'product_size': relevant.size,
+                'brand': relevant.brandName,
+                'price': response.data['data']['itemPrices'][0]['viewSection']['itemDetails']['priceString'],
+                'unit_price': response.data['data']['itemPrices'][0]['viewSection']['itemDetails']['pricePerUnitString']
             }
+
+            console.log(item);
         } catch (err) {
             console.log(err);
             console.log('Error sending price request');
