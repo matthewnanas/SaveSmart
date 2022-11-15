@@ -48,15 +48,13 @@ class GiantFood {
                 },
             });
 
-            //console.log(response.data['data']['searchResults']['primaryItemResultList']['items'][0]);
-
             // Check to see if any items exist
             if (response.data['data']['searchResults']['primaryItemResultList']['items'].length == 0) {
                 console.log('No items found');
             } else {
-                const firstTen = JSON.stringify(response.data['data']['searchResults']['primaryItemResultList']['itemIds'].slice(0, 10));
+                const firstTen = response.data['data']['searchResults']['primaryItemResultList']['itemIds'].slice(0, 10);
                 const relevant = response.data['data']['searchResults']['primaryItemResultList']['items'][0];
-                return this.getRelevant(`https://www.instacart.com/graphql?operationName=ItemPricesQuery&variables={"ids":${firstTen},"shopId":"4192","zoneId":"37","postalCode":"20902"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"6bc7919897d4104897f991ab9e6f544aa2157e60781606871bf236f30e50243f"}}`, relevant);
+                this.getRelevantPrice(firstTen, relevant);
             }
         } catch (err) {
             console.log(err);
@@ -69,11 +67,10 @@ class GiantFood {
      * 
      * Use instacart endpoint to get the price of the most relevant price
      */
-    async getRelevantPrice(url, relevant) {
+    async getRelevantPrice(firstTen, relevant) {
         try {
-            console.log(url);
             // Get price endpoint
-            const response = await axios.get(url, {
+            const response = await axios.get(`https://www.instacart.com/graphql?operationName=ItemPricesQuery&variables={"ids":["items_3810-37225","items_3810-34771","items_3810-25704257","items_3810-19342098","items_3810-19465374","items_3810-19341977","items_3810-88952","items_3810-19342019","items_3810-19342040","items_3810-16409146"],"shopId":"4192","zoneId":"37","postalCode":"20902"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"6bc7919897d4104897f991ab9e6f544aa2157e60781606871bf236f30e50243f"}}`, {
                 headers: {
                     'sec-ch-device-memory': '8',
                     'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
@@ -93,13 +90,11 @@ class GiantFood {
             if (response.data['data']['itemPrices'].length == 0) {
                 console.log('No prices found');
             } else {
-                /*for (let x = 0; x < response.data['data']['itemPrices']; x++) {
-                    if (response.data['data']['itemPrices'][x]['id'] == )
-                }*/
+                console.log(response.data['data']);
             }
         } catch (err) {
             console.log(err);
-            console.log('Error sending instacart request');
+            console.log('Error sending price request');
         }
     }
 }
