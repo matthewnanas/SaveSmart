@@ -1,32 +1,37 @@
+/**
+ * 
+ * GiantFood.js
+ * 
+ * This file will mimic a module that grabs the relevant items from the list array and return a structured array of the items
+ * 
+ * Flow:
+ * 1. Conduct item search
+ * 2. Conduct price search
+ * 
+ */
+
 const axios = require('axios');
 const CookieJar = require('tough-cookie');
 const wrapper = require('axios-cookiejar-support');
 
-/**
- * Conduct item search
- * 
- * Conduct price search
- * 
- * Match prices to items via id
- * 
- * Things needed to query:
- *  1. query
- *  2. retailerInventorySessionToken
- *  3. pageViewId
- *  4. sha256hash
- */
-
 class GiantFood {
     constructor(info) {
         this.zip = info.zipCode;
-        this.item = info.item;
+        this.items = info.items;
         this.jar = new CookieJar.CookieJar();
         this.client = wrapper.wrapper(axios.create({ jar: this.jar }));
     }
 
-    async start() {
-        const item = await this.getRelevant();
-        console.log(item);
+    async compileList() {
+        const items = [];
+
+        // Search for item in items list
+        for (let x = 0; x < this.items.length; x++) {
+            const result = await this.getRelevant(this.items[x]);
+            items.push(result);
+        }
+
+        console.log(items);
     }
 
     /**
@@ -34,10 +39,10 @@ class GiantFood {
      * 
      * Use instacart endpoint and filter to find the most relevant item to the search
      */
-    async getRelevant() {
+    async getRelevant(item) {
         try {
             // Get item endpoint
-            const response = await this.client.get(`https://www.instacart.com/graphql?operationName=SearchResultsPlacements&variables={"filters":[],"action":null,"query":"${this.item.replace(' ', '%20')}","pageViewId":"0b1bc757-ca2a-554c-93a1-895bebc7dd82","retailerInventorySessionToken":"v1.d143ebf.2862331018-20902-03904x17703-1-159-3810-0","elevatedProductId":null,"searchSource":"search","disableReformulation":false,"orderBy":"default","clusterId":null,"includeDebugInfo":false,"clusteringStrategy":null,"contentManagementSearchParams":{"itemGridColumnCount":2},"shopId":"4192"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"a6a067507df765e653439f50b15e819d665f53ccc9e4bfde78f53fe1f5233f5a"}}`, {
+            const response = await this.client.get(`https://www.instacart.com/graphql?operationName=SearchResultsPlacements&variables={"filters":[],"action":null,"query":"${item.replace(' ', '%20')}","pageViewId":"0b1bc757-ca2a-554c-93a1-895bebc7dd82","retailerInventorySessionToken":"v1.d143ebf.2862331018-20902-03904x17703-1-159-3810-0","elevatedProductId":null,"searchSource":"search","disableReformulation":false,"orderBy":"default","clusterId":null,"includeDebugInfo":false,"clusteringStrategy":null,"contentManagementSearchParams":{"itemGridColumnCount":2},"shopId":"4192"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"a6a067507df765e653439f50b15e819d665f53ccc9e4bfde78f53fe1f5233f5a"}}`, {
                 headers: {
                     'sec-ch-device-memory': '8',
                     'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
@@ -110,7 +115,7 @@ class GiantFood {
 
 const test = new GiantFood({
     zip: 20906,
-    item: 'kool aid',
+    items: ['kool aid', 'milk'],
 });
 
-test.start();
+test.compileList();
