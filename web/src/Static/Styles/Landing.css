@@ -70,8 +70,8 @@
 }
 
 .GetStarted {
-    background-color: #1DA1F2;
-    color: #ffffff;
+    background-color: var(--primary-blue);
+    color: var(--white);
     padding: 10px 10px 10px 10px;
     width: 200px;
     border-radius: 100px;
@@ -82,7 +82,7 @@
 }
 
 .GetStarted:hover {
-    background-color: #0a88d6;
+    background-color: var(--hover-blue);
     color: #eeeeee;
     padding: 10px 10px 10px 10px;
     width: 200px;
