@@ -25,7 +25,7 @@ class Costco {
     async getRelevant(item) {
         try {
             // Get item endpoint
-            const response = await this.client.get(`https://www.instacart.com/graphql?operationName=SearchResultsPlacements&variables={"filters":[],"action":null,"query":"${item.replace(' ', '%20')}","pageViewId":"4cf8432c-9885-52b5-995b-ccad7d4ba41d","retailerInventorySessionToken":"v1.87a0cfb.2862939251-20902-03904x17703-1-12-23148-0","elevatedProductId":null,"searchSource":"search","disableReformulation":false,"orderBy":"default","autosuggestImpressionId":"31b5cbeb-dba0-4e1d-976b-07100f8a2f55","clusterId":null,"includeDebugInfo":false,"clusteringStrategy":null,"contentManagementSearchParams":{"itemGridColumnCount":2},"shopId":"30781"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"a6a067507df765e653439f50b15e819d665f53ccc9e4bfde78f53fe1f5233f5a"}}`, {
+            const response = await this.client.get(`https://www.instacart.com/graphql?operationName=SearchResultsPlacements&variables={"filters":[],"action":null,"query":"${item.replace(' ', '%20')}","pageViewId":"93424984-ca3e-5826-a673-cd67a83178cf","retailerInventorySessionToken":"v1.1389584.2864694512-20740-03898x17693-1-5-1157-0","elevatedProductId":null,"searchSource":"search","disableReformulation":false,"orderBy":"default","clusterId":null,"includeDebugInfo":false,"clusteringStrategy":null,"contentManagementSearchParams":{"itemGridColumnCount":2},"shopId":"8251"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"a6a067507df765e653439f50b15e819d665f53ccc9e4bfde78f53fe1f5233f5a"}}`, {
                 headers: {
                     'sec-ch-device-memory': '8',
                     'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
