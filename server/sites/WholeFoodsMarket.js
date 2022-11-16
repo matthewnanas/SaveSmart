@@ -16,7 +16,6 @@ const wrapper = require('axios-cookiejar-support');
 
 class WholeFoodsMarket {
     constructor(info) {
-        this.zip = info.zipCode;
         this.items = info.items;
         this.jar = new CookieJar.CookieJar();
         this.client = wrapper.wrapper(axios.create({ jar: this.jar }));
@@ -114,7 +113,6 @@ class WholeFoodsMarket {
 }
 
 const test = new WholeFoodsMarket({
-    zip: 20906,
     items: ['oats', 'milk'],
 });
 
