@@ -72,7 +72,7 @@ class GiantFood {
     }
 
     /**
-     * Function getRelevant
+     * Function getRelevantPrice
      * 
      * Use instacart endpoint to get the price of the most relevant price
      */
