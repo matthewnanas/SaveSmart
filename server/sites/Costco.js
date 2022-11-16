@@ -10,11 +10,27 @@
  * 
  */
 
+const axios = require('axios');
+const CookieJar = require('tough-cookie');
+const wrapper = require('axios-cookiejar-support');
+
 class Costco {
     constructor(info) {
         this.items = info.items;
         this.jar = new CookieJar.CookieJar();
         this.client = wrapper.wrapper(axios.create({ jar: this.jar }));
+    }
+
+    async compileList() {
+        const items = [];
+
+        // Search for item in items list
+        for (let x = 0; x < this.items.length; x++) {
+            const result = await this.getRelevant(this.items[x]);
+            items.push(result);
+        }
+
+        console.log(items);
     }
 
     /**
@@ -54,4 +70,50 @@ class Costco {
             console.log('Error sending instacart request');
         }
     }
+
+    /**
+     * Function getRelevant
+     * 
+     * Use instacart endpoint to get the price of the most relevant price
+     */
+    async getRelevantPrice(relevant) {
+        try {
+            // Get price endpoint
+            const response = await this.client.get(`https://www.instacart.com/graphql?operationName=ItemPricesQuery&variables={"ids":["${relevant['id']}"],"shopId":"8251","zoneId":"272","postalCode":"20740"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"6bc7919897d4104897f991ab9e6f544aa2157e60781606871bf236f30e50243f"}}`, {
+                headers: {
+                    'sec-ch-device-memory': '8',
+                    'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                    'sec-ch-ua-arch': '"arm"',
+                    'sec-ch-ua-full-version-list': '"Google Chrome";v="107.0.5304.110", "Chromium";v="107.0.5304.110", "Not=A?Brand";v="24.0.0.0"',
+                    'sec-ch-ua-mobile': '?0',
+                    'sec-ch-ua-platform': '"macOS"',
+                    'sec-fetch-dest': 'empty',
+                    'sec-fetch-mode': 'cors',
+                    'sec-fetch-site': 'same-origin',
+                    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+                    'cookie': `__Host-instacart_sid=v2.aaa4fc73.aFOZ3Ri3z-Hlhfl_7r3graqk80DCtKcdSKhkkVE1Yew;`
+                },
+            });
+
+            const item = {
+                'product_name': relevant.name,
+                'product_size': relevant.size,
+                'brand': relevant.brandName,
+                'price': response.data['data']['itemPrices'][0]['viewSection']['itemDetails']['priceString'],
+                'unit_price': response.data['data']['itemPrices'][0]['viewSection']['itemDetails']['pricePerUnitString'],
+                'image': relevant['viewSection']['itemImage']['url'],
+            }
+
+            return item;
+        } catch (err) {
+            console.log(err);
+            console.log('Error sending price request');
+        }
+    }
 }
+
+const test = new Costco({
+    items: ['oats', 'milk'],
+});
+
+test.compileList();
