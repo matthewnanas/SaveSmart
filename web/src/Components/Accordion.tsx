@@ -15,30 +15,54 @@ export function DesktopAccordion(props: {
 }) {
     const [ opacity, setOpacity ] = useState('0')
     const [ dropIcon, setDrop ] = useState('rotate(180deg)')
-    const [ answerPosition, setPosition ] = useState('-30px')
-    const [ display, setDisplay ] = useState('none')
+    const [ answerPosition, setPosition ] = useState('-10px')
 
     const handleClick = () => {
         if(opacity == '0'){
-            setPosition('-20px')
+            setPosition('0px')
             setDrop('rotate(1turn) translateY(-5px)')
             setOpacity('1')
-            setDisplay('block')
         } else {
-            setPosition('-30px')
+            setPosition('-10px')
             setDrop('rotate(.5turn) translateY(5px)')
             setOpacity('0')
-            setDisplay('none')
         }
     }
     return (
         <div className='accordionContainer'>
-            <div className='accordionBody'>
-                <button className='accordionButton' onClick={handleClick}>
-                    {props.question}<h2 className='accordionTitle' style={{ transform: dropIcon }}><MdExpandLess/></h2>
-                </button>
-                <p className='accordionAnswer' style={{ opacity: opacity, marginTop: answerPosition, display: display }}>{props.answer}</p>
-            </div>
+            <button className='accordionButton' onClick={handleClick}>
+                {props.question}<h2 className='accordionTitle' style={{ transform: dropIcon }}><MdExpandLess/></h2>
+            </button>
+            <p className='accordionAnswer' style={{ opacity: opacity, marginTop: answerPosition }}>{props.answer}</p>
+        </div>
+    )
+}
+
+export function MobileAccordion(props: {
+    question: string,
+    answer: string,
+}) {
+    const [ opacity, setOpacity ] = useState('0')
+    const [ dropIcon, setDrop ] = useState('rotate(180deg)')
+    const [ answerPosition, setPosition ] = useState('-10px')
+
+    const handleClick = () => {
+        if(opacity == '0'){
+            setPosition('0px')
+            setDrop('rotate(1turn) translateY(-5px)')
+            setOpacity('1')
+        } else {
+            setPosition('-10px')
+            setDrop('rotate(.5turn) translateY(5px)')
+            setOpacity('0')
+        }
+    }
+    return(
+        <div className='accordionContainer'>
+            <button className='accordionButtonMobile' onClick={handleClick}>
+                {props.question}<h2 className='accordionTitle' style={{ transform: dropIcon }}><MdExpandLess/></h2>
+            </button>
+            <p className='accordionAnswer' style={{ opacity: opacity, marginTop: answerPosition }}>{props.answer}</p>
         </div>
     )
 }

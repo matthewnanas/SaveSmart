@@ -58,14 +58,28 @@
 }
 
 .About {
-    margin-left: 20px;
-    margin-right: 20px;
+    font-family: Inter; 
+    padding-bottom: 150px;
     text-align: center;
     margin-top: 150px;
-    font-family: Inter;
+    width: 900px;
+    margin-left: calc(50% - 450px);
+}
+.About h1 {
+    font-family: Inter-Bold;
 }
 
-.About h1 {
+.AboutMobile {
+    font-family: Inter; 
+    padding-bottom: 150px;
+    text-align: center;
+    width: 80%;
+    /* margin: calc(50% - 200px); */
+    margin: auto;
+    margin-top: 150px;
+}
+
+.AboutMobile h1 {
     font-family: Inter-Bold;
 }
 
