@@ -12,7 +12,8 @@ import '../Static/Styles/Landing.css';
 import GreenBlob from '../Static/Assets/GreenBlob.svg';
 import BlueBlob from '../Static/Assets/BlueBlob.svg';
 import { DesktopCard, MobileCard } from '../Components/Card';
-import Accordion from 'react-bootstrap/Accordion';
+import { DesktopAccordion } from '../Components/Accordion';
+// import Accordion from 'react-bootstrap/Accordion';
 import { useNavigate } from 'react-router-dom';
 
 /**
@@ -171,7 +172,20 @@ function About() {
     return (
         <div className='About'>
             <h1 style={{marginBottom: '35px'}}>About this project</h1>
-            <Accordion>
+            {
+                    content.map((
+                        item: {
+                            question: string,
+                            content: string
+                        },
+                        i: any,
+                    ) => {
+                        return (
+                            <DesktopAccordion question={item.question} answer={item.content} />
+                        )
+                    })
+                }
+            {/* <Accordion>
                 {
                     content.map((
                         item: {
@@ -188,7 +202,7 @@ function About() {
                         )
                     })
                 }
-            </Accordion>
+            </Accordion><br/> */}
         </div>
     )
 }
