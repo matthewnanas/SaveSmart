@@ -26,3 +26,6 @@ server/node_modules
 server/.pnp
 server/.pnp.js
 server/package-lock.json
+
+# DSStore file
+.DS_Store
