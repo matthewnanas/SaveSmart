@@ -9,3 +9,11 @@
  * 2. Conduct price search
  * 
  */
+
+class Costco {
+    constructor(info) {
+        this.items = info.items;
+        this.jar = new CookieJar.CookieJar();
+        this.client = wrapper.wrapper(axios.create({ jar: this.jar }));
+    }
+}
