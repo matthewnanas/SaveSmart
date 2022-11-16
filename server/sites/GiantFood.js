@@ -25,7 +25,8 @@ class GiantFood {
     }
 
     async start() {
-        this.getRelevant();
+        const item = await this.getRelevant();
+        console.log(item);
     }
 
     /**
@@ -55,9 +56,10 @@ class GiantFood {
             // Check to see if any items exist
             if (response.data['data']['searchResultsPlacements']['placements'].length < 3) {
                 console.log('No items found');
+                return null;
             } else {
                 const relevant = response.data['data']['searchResultsPlacements']['placements'][2]['content']['items'][0];
-                this.getRelevantPrice(relevant);
+                return this.getRelevantPrice(relevant);
             }
         } catch (err) {
             console.log(err);
@@ -108,7 +110,7 @@ class GiantFood {
 
 const test = new GiantFood({
     zip: 20906,
-    item: 'milk',
+    item: 'kool aid',
 });
 
 test.start();
