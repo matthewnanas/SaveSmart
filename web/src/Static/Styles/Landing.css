@@ -99,8 +99,7 @@
 } 
 
 .GetStarted:hover {
-    background-color: #0ec25c;
-    color: black;
+    background-color: #2eff89;
 }
 
 .GetStarted:before, .GetStarted::after {
@@ -109,7 +108,7 @@
     right:0;
     height:2px;
     width:0;
-    background: #082c24;
+    background: #ffffff;
     transition:400ms ease all; content: '';
 }
 
