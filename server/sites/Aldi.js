@@ -14,12 +14,11 @@ const axios = require('axios');
 const CookieJar = require('tough-cookie');
 const wrapper = require('axios-cookiejar-support');
 
-export class Aldi {
+class Aldi {
     constructor(info) {
         this.items = info.items;
         this.jar = new CookieJar.CookieJar();
         this.client = wrapper.wrapper(axios.create({ jar: this.jar }));
-        this.list = [];
     }
 
     async compileList() {
@@ -32,7 +31,7 @@ export class Aldi {
         }
 
         console.log(items);
-        this.list = items;
+        return items;
     }
 
     /**
@@ -114,8 +113,4 @@ export class Aldi {
     }
 }
 
-const test = new Aldi({
-    items: ['oats', 'milk'],
-});
-
-test.compileList();
+module.exports = Aldi;
