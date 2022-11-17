@@ -7,7 +7,7 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
-import { Navbar, Container, Nav } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import '../Static/Styles/Navigation.css';
 
 /**

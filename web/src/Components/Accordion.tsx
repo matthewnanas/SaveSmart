@@ -4,9 +4,9 @@ import { MdExpandLess } from 'react-icons/md'
 import '../Static/Styles/Accordion.css'
 
 /**
- * Function - DesktopCard
+ * Function - DesktopAccordion
  * 
- * Will return a card component given props suited for desktop displays
+ * Will return a accordion component given props suited for desktop displays
  * 
  */
 export function DesktopAccordion(props: { 
@@ -18,7 +18,7 @@ export function DesktopAccordion(props: {
     const [ answerPosition, setPosition ] = useState('-10px')
 
     const handleClick = () => {
-        if(opacity == '0'){
+        if(opacity === '0'){
             setPosition('0px')
             setDrop('rotate(1turn) translateY(-5px)')
             setOpacity('1')
@@ -28,6 +28,7 @@ export function DesktopAccordion(props: {
             setOpacity('0')
         }
     }
+
     return (
         <div className='accordionContainer'>
             <button className='accordionButton' onClick={handleClick}>
@@ -38,6 +39,12 @@ export function DesktopAccordion(props: {
     )
 }
 
+/**
+ * Function - MobileAccordion
+ * 
+ * Will return a accordion component given props suited for mobile displays
+ * 
+ */
 export function MobileAccordion(props: {
     question: string,
     answer: string,
@@ -47,7 +54,7 @@ export function MobileAccordion(props: {
     const [ answerPosition, setPosition ] = useState('-10px')
 
     const handleClick = () => {
-        if(opacity == '0'){
+        if(opacity === '0'){
             setPosition('0px')
             setDrop('rotate(1turn) translateY(-5px)')
             setOpacity('1')
@@ -57,6 +64,7 @@ export function MobileAccordion(props: {
             setOpacity('0')
         }
     }
+
     return(
         <div className='accordionContainer'>
             <button className='accordionButtonMobile' onClick={handleClick}>

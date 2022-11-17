@@ -13,7 +13,6 @@ import GreenBlob from '../Static/Assets/GreenBlob.svg';
 import BlueBlob from '../Static/Assets/BlueBlob.svg';
 import { DesktopCard, MobileCard } from '../Components/Card';
 import { DesktopAccordion, MobileAccordion } from '../Components/Accordion';
-// import Accordion from 'react-bootstrap/Accordion';
 import { useNavigate } from 'react-router-dom';
 
 /**
@@ -144,9 +143,9 @@ function MobileSteps() {
 }
 
 /**
- * Function - About
+ * Function - DesktopAbout
  * 
- * Returns an accordion covering content about the project
+ * Returns an accordion covering content about the project suitable for desktop devices
  * 
  */
 function DesktopAbout() {
@@ -173,25 +172,25 @@ function DesktopAbout() {
         <div className='About'>
             <h1 style={{marginBottom: '35px'}}>About this project</h1>
             {
-                    content.map((
-                        item: {
-                            question: string,
-                            content: string
-                        },
-                        i: any,
-                    ) => {
-                        return (
-                            <DesktopAccordion question={item.question} answer={item.content} />
-                        )
-                    })
-                }
+                content.map((
+                    item: {
+                        question: string,
+                        content: string
+                    },
+                    i: any,
+                ) => {
+                    return (
+                        <DesktopAccordion question={item.question} answer={item.content} key={i} />
+                    )
+                })
+            }
         </div>
     )
 }
 /**
- * Function - About
+ * Function - MobileAbout
  * 
- * Returns an accordion covering content about the project
+ * Returns an accordion covering content about the project suited for mobile displays
  * 
  */
 function MobileAbout() {
@@ -218,18 +217,18 @@ function MobileAbout() {
         <div className='AboutMobile'>
             <h1 style={{marginBottom: '35px'}}>About this project</h1>
             {
-                    content.map((
-                        item: {
-                            question: string,
-                            content: string
-                        },
-                        i: any,
-                    ) => {
-                        return (
-                            <MobileAccordion question={item.question} answer={item.content} />
-                        )
-                    })
-                }
+                content.map((
+                    item: {
+                        question: string,
+                        content: string
+                    },
+                    i: any,
+                ) => {
+                    return (
+                        <MobileAccordion question={item.question} answer={item.content} key={i} />
+                    )
+                })
+            }
         </div>
     )
 }
