@@ -58,7 +58,7 @@ function NavigateDesktop(props: {
         <div className='NavContainer'>
             <Navbar>
                 <Navbar.Brand>
-                    <h1 className='SmartSave'>Smart<span style={{ color: '#1DA1F2' }}>Save</span></h1>
+                    <h1 className='SmartSave'><span style={{ color: '#1DA1F2' }}>Save</span>Smart</h1>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -88,7 +88,7 @@ function NavigateMobile(props: {
         <div className='NavContainerMobile'>
             <Navbar>
                 <Navbar.Brand>
-                    <h1 className='SmartSave'>Smart<span style={{ color: '#1DA1F2' }}>Save</span></h1>
+                    <h1 className='SmartSave'><span style={{ color: '#1DA1F2' }}>Save</span>Smart</h1>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
