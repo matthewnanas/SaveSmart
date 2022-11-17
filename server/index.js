@@ -114,6 +114,27 @@ app.post('/grab_lidl', async (req, res) => {
     }
 });
 
+/**
+ * /grab_publix endpoint
+ * 
+ * Will handle receiving lists created by users and compile a list from Publix 
+ */
+app.post('/grab_publix', async (req, res) => {
+    try {
+        console.log(`${new Date().toISOString()} - Handling PUBLIX`);
+
+        // Create a new Publix thread and compile item list
+        const thread = new Publix({ items: req.body.list });
+        const result = await thread.compileList();
+
+        res.send(result);
+    } catch (err) {
+        // In the case something goes totally wrong, log it to the cloud console and respond with a status code of 500
+        console.log(`${new Date().toISOString()} - FATAL ERROR - ${err}`);
+        res.sendStatus(500);
+    }
+});
+
 app.get('/', async (req, res) => {
     res.send('Cannot get "/"');
 });
