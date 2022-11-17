@@ -135,6 +135,27 @@ app.post('/grab_publix', async (req, res) => {
     }
 });
 
+/**
+ * /grab_safeway endpoint
+ * 
+ * Will handle receiving lists created by users and compile a list from Safeway 
+ */
+app.post('/grab_safeway', async (req, res) => {
+    try {
+        console.log(`${new Date().toISOString()} - Handling SAFEWAY`);
+
+        // Create a new Safeway thread and compile item list
+        const thread = new Safeway({ items: req.body.list });
+        const result = await thread.compileList();
+
+        res.send(result);
+    } catch (err) {
+        // In the case something goes totally wrong, log it to the cloud console and respond with a status code of 500
+        console.log(`${new Date().toISOString()} - FATAL ERROR - ${err}`);
+        res.sendStatus(500);
+    }
+});
+
 app.get('/', async (req, res) => {
     res.send('Cannot get "/"');
 });
