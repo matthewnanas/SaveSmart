@@ -31,9 +31,9 @@ app.use(express.json());
 app.use(cors({ origin: '*' }));
 
 /**
- * compare_list endpoint
+ * grab_aldi endpoint
  * 
- * Will handle receiving lists created by users and compile a list of all stores and their respective subtotals
+ * Will handle receiving lists created by users and compile a list from Aldi 
  */
 app.post('/grab_aldi', async (req, res) => {
     try {
@@ -41,6 +41,27 @@ app.post('/grab_aldi', async (req, res) => {
 
         // Create a new Aldi thread and compile item list
         const thread = new Aldi({ items: req.body.list });
+        const result = await thread.compileList();
+
+        res.send(result);
+    } catch (err) {
+        // In the case something goes totally wrong, log it to the cloud console and respond with a status code of 500
+        console.log(`${new Date().toISOString()} - FATAL ERROR - ${err}`);
+        res.sendStatus(500);
+    }
+});
+
+/**
+ * /grab_costco endpoint
+ * 
+ * Will handle receiving lists created by users and compile a list from Costco 
+ */
+app.post('/grab_costco', async (req, res) => {
+    try {
+        console.log(`${new Date().toISOString()} - Handling ALDI`);
+
+        // Create a new Aldi thread and compile item list
+        const thread = new Costco({ items: req.body.list });
         const result = await thread.compileList();
 
         res.send(result);
