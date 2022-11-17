@@ -19,7 +19,6 @@ class GiantFood {
         this.items = info.items;
         this.jar = new CookieJar.CookieJar();
         this.client = wrapper.wrapper(axios.create({ jar: this.jar }));
-        this.list = [];
     }
 
     async compileList() {
@@ -31,8 +30,7 @@ class GiantFood {
             items.push(result);
         }
 
-        console.log(items);
-        this.list = items;
+        return items;
     }
 
     /**
@@ -114,8 +112,4 @@ class GiantFood {
     }
 }
 
-const test = new GiantFood({
-    items: ['kool aid', 'milk'],
-});
-
-test.compileList();
+module.exports = GiantFood;
