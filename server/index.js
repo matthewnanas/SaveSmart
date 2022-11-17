@@ -93,6 +93,27 @@ app.post('/grab_giant', async (req, res) => {
     }
 });
 
+/**
+ * /grab_lidl endpoint
+ * 
+ * Will handle receiving lists created by users and compile a list from Lidl 
+ */
+app.post('/grab_lidl', async (req, res) => {
+    try {
+        console.log(`${new Date().toISOString()} - Handling LIDL`);
+
+        // Create a new Lidl thread and compile item list
+        const thread = new Lidl({ items: req.body.list });
+        const result = await thread.compileList();
+
+        res.send(result);
+    } catch (err) {
+        // In the case something goes totally wrong, log it to the cloud console and respond with a status code of 500
+        console.log(`${new Date().toISOString()} - FATAL ERROR - ${err}`);
+        res.sendStatus(500);
+    }
+});
+
 app.get('/', async (req, res) => {
     res.send('Cannot get "/"');
 });
