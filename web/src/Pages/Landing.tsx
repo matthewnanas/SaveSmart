@@ -152,7 +152,7 @@ function DesktopAbout() {
     const content = [
         { 
             question: "What retailers do you support?",
-            content: "At the moment we current support: Aldi, Costco, Giant, Kroger, Whole Foods Market, Trader Joes, Target, Walmart"
+            content: "At the moment, we currently support: Aldi, Costco, GiantFood, Lidl, Publix, Safeway, Shoppers, Wegmans, and Whole Foods Market."
         },
         { 
             question: "How does this work?",
@@ -160,11 +160,11 @@ function DesktopAbout() {
         },
         { 
             question: "What is the catch?",
-            content: "There's no catch, your data is not shared with 3rd parties, this is just a project made in one's freetime that may not operate forever"
+            content: "There is no catch! We do not collect any identifying information such as emails or phone numbers. Our service is completely anonymous and will remain free until we can no longer run it!"
         },
         { 
             question: "How can I support the project?",
-            content: "Just share it around :)"
+            content: "Just share it around :) Or help other families by supporting a trusthworthy non profit organization!"
         }
     ];
 
@@ -197,7 +197,7 @@ function MobileAbout() {
     const content = [
         { 
             question: "What retailers do you support?",
-            content: "At the moment we current support: Aldi, Costco, Giant, Kroger, Whole Foods Market, Trader Joes, Target, Walmart"
+            content: "At the moment, we currently support: Aldi, Costco, GiantFood, Lidl, Publix, Safeway, Shoppers, Wegmans, and Whole Foods Market."
         },
         { 
             question: "How does this work?",
@@ -205,11 +205,11 @@ function MobileAbout() {
         },
         { 
             question: "What is the catch?",
-            content: "There's no catch, your data is not shared with 3rd parties, this is just a project made in one's freetime that may not operate forever"
+            content: "There is no catch! We do not collect any identifying information such as emails or phone numbers. Our service is completely anonymous and will remain free until we can no longer run it!"
         },
         { 
             question: "How can I support the project?",
-            content: "Just share it around :)"
+            content: "Just share it around :) Or help other families by supporting a trusthworthy non profit organization!"
         }
     ];
 

@@ -8,6 +8,7 @@
 import React from 'react';
 import Navigation from '../Components/Navigation';
 import { useMediaQuery } from 'react-responsive';
+import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
@@ -76,6 +77,10 @@ function DesktopList() {
         setItems([...temp]);
     }
 
+    // Begin comparing prices and navigate to loading screen
+    const navigate = useNavigate();
+    const navLoad = () => { return navigate('/loading') }
+
     return (
         <div>
             <div className='ListHeading'>
@@ -88,7 +93,7 @@ function DesktopList() {
                         <Button className='SubmitButton' variant='primary' type='submit'>
                             Submit
                         </Button>
-                        <Button className='SubmitButton' variant='primary' style={{marginLeft: 5}}>
+                        <Button className='SubmitButton' variant='primary' style={{marginLeft: 5}} onClick={() => navLoad()}>
                             Compare Stores
                         </Button>
                     </Form>
@@ -182,6 +187,10 @@ function MobileList() {
         setItems([...temp]);
     }
 
+    // Begin comparing prices and navigate to loading screen
+    const navigate = useNavigate();
+    const navLoad = () => { return navigate('/loading') }
+
     return (
         <div>
             <div className='ListHeading'>
@@ -194,7 +203,7 @@ function MobileList() {
                         <Button className='SubmitButton' variant='primary' type='submit'>
                             Submit
                         </Button>
-                        <Button className='SubmitButton' variant='primary' style={{marginLeft: 5}}>
+                        <Button className='SubmitButton' variant='primary' style={{marginLeft: 5}} onClick={() => navLoad()}>
                             Compare Stores
                         </Button>
                     </Form>

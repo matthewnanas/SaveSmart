@@ -17,6 +17,7 @@ import {
 import GroceryList from './Pages/GroceryList';
 import Landing from './Pages/Landing';
 import Results from './Pages/Results';
+import Loading from './Pages/Loading';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -30,6 +31,7 @@ root.render(
         <Route path="/" element={<Landing />} />
         <Route path="/create" element={<GroceryList />} />
         <Route path="/results" element={<Results />} />
+        <Route path="/loading" element={<Loading />} />
       </Routes>
     </BrowserRouter>
   </>
