@@ -33,7 +33,47 @@ class Lidl {
         console.log(items);
     }
 
-    
+    /**
+     * Function getRelevant
+     * 
+     * Use instacart endpoint and filter to find the most relevant item to the search
+     */
+    async getRelevant(item) {
+        try {
+            // Get item endpoint
+            const response = await this.client.get(`https://mobileapi.lidl.com/v1/search/products?numResults=9&q=${item.replace(' ', '%20')}&storeId=US01053`, {
+                headers: {
+                    'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                    'sec-ch-ua-mobile': '?0',
+                    'sec-ch-ua-platform': '"macOS"',
+                    'sec-fetch-dest': 'empty',
+                    'sec-fetch-mode': 'cors',
+                    'sec-fetch-site': 'same-site',
+                    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'
+                },
+            });
+
+            // Check to see if any items exist
+            if (response.data['results'].length === 0) {
+                console.log('No items found');
+                return null;
+            } else {
+                const relevant = {
+                    'product_name': response.data['results'][0]['name'],
+                    'product_size': response.data['results'][0]['description'],
+                    'brand': response.data['results'][0]['name'],
+                    'price': `$${response.data['results'][0]['price']['currentPrice']['value']}`,
+                    'unit_price': response.data['results'][0]['price']['basePrice'],
+                    'image': response.data['results'][0].images?.[0]['url'],
+                }
+                
+                return relevant;
+            }
+        } catch (err) {
+            console.log(err);
+            console.log('Error sending instacart request');
+        }
+    }
 }
 
 const test = new Lidl({
