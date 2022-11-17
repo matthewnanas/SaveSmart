@@ -26,7 +26,7 @@ class Lidl {
 
         // Search for item in items list
         for (let x = 0; x < this.items.length; x++) {
-            const result = await this.getRelevant(this.items[x]);
+            const result = await this.getRelevant(this.items[x]['item']);
             items.push(result);
         }
 
