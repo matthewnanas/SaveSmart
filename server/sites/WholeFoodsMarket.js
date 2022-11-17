@@ -19,7 +19,6 @@ class WholeFoodsMarket {
         this.items = info.items;
         this.jar = new CookieJar.CookieJar();
         this.client = wrapper.wrapper(axios.create({ jar: this.jar }));
-        this.list = [];
     }
 
     async compileList() {
@@ -31,8 +30,7 @@ class WholeFoodsMarket {
             items.push(result);
         }
 
-        console.log(items);
-        this.list = items;
+        return items;
     }
 
     /**
@@ -114,8 +112,4 @@ class WholeFoodsMarket {
     }
 }
 
-const test = new WholeFoodsMarket({
-    items: ['oats', 'milk'],
-});
-
-test.compileList();
+module.exports = WholeFoodsMarket;

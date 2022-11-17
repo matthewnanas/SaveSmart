@@ -198,6 +198,27 @@ app.post('/grab_wegmans', async (req, res) => {
     }
 });
 
+/**
+ * /grab_wholefoodsmarket endpoint
+ * 
+ * Will handle receiving lists created by users and compile a list from WholeFoodsMarket 
+ */
+app.post('/grab_wholefoodsmarket', async (req, res) => {
+    try {
+        console.log(`${new Date().toISOString()} - Handling WHOLEFOODSMARKET`);
+
+        // Create a new WholeFoodsMarket thread and compile item list
+        const thread = new WholeFoodsMarket({ items: req.body.list });
+        const result = await thread.compileList();
+
+        res.send(result);
+    } catch (err) {
+        // In the case something goes totally wrong, log it to the cloud console and respond with a status code of 500
+        console.log(`${new Date().toISOString()} - FATAL ERROR - ${err}`);
+        res.sendStatus(500);
+    }
+});
+
 app.get('/', async (req, res) => {
     res.send('Cannot get "/"');
 });
