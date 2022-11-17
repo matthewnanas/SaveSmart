@@ -6,12 +6,27 @@ export default function Loading() {
 
     // Access the items list on page load and call the getResults function
     React.useEffect(() => {
-        getResults(localStorage.getItem("items"));
+        const items = localStorage.getItem("items");
+        getResults(items);
     }, []);
 
     // Use our API to compile a list of results
     const getResults = (items: any) => {
-        const itemList = JSON.parse(items);
+        const itemList: any = JSON.parse(items);
+        const results: any = [];
+        console.log(itemList);
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                list: itemList, 
+            })
+        };
+
+        fetch(`http://192.168.1.160:7777/grab_aldi`, options).then(response => response.json()).then(data => console.log(data));
     }
 
     return (
