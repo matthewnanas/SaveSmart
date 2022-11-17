@@ -1,11 +1,14 @@
 import React from 'react';
 import '../Static/Styles/Loading.css'
 import HashLoader from 'react-spinners/HashLoader'
+import { useNavigate } from 'react-router-dom';
 
 export default function Loading() {
 
     // Access the items list on page load and call the getResults function
+    const navigate = useNavigate();
     React.useEffect(() => {
+        const results = localStorage.getItem("results");
         const items = localStorage.getItem("items");
         getResults(items);
     }, []);
@@ -14,7 +17,6 @@ export default function Loading() {
     const getResults = (items: any) => {
         const itemList: any = JSON.parse(items);
         const results: any = [];
-        console.log(itemList);
 
         const options = {
             method: 'POST',
@@ -69,9 +71,11 @@ export default function Loading() {
         fetch(`http://192.168.1.160:7777/grab_wholefoodsmarket`, options).then(response => response.json()).then(data => results.push({
             name: "Whole Foods Market",
             results: data,
-        }));
-
-        console.log(results);
+        })).then(() => {
+            console.log(results);
+            localStorage.setItem("results", JSON.stringify(results)); 
+            return navigate('/results');
+        });
     }
 
     return (
