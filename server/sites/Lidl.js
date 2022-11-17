@@ -19,6 +19,7 @@ class Lidl {
         this.items = info.items;
         this.jar = new CookieJar.CookieJar();
         this.client = wrapper.wrapper(axios.create({ jar: this.jar }));
+        this.list = [];
     }
 
     async compileList() {
@@ -31,6 +32,7 @@ class Lidl {
         }
 
         console.log(items);
+        this.list = items;
     }
 
     /**
