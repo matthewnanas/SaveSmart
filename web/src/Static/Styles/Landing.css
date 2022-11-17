@@ -84,23 +84,43 @@
 }
 
 .GetStarted {
-    background-color: var(--primary-blue);
+    background-color: #0ec25c;
     color: var(--white);
     padding: 10px 10px 10px 10px;
     width: 200px;
+    height: 50px;
     border-radius: 100px;
     text-align: center;
     font-family: Inter-Bold;
     border: none;
     margin-top: 50px;
-}
+    position: relative;
+    transition: 800ms ease all;
+} 
 
 .GetStarted:hover {
-    background-color: var(--hover-blue);
-    color: #eeeeee;
-    padding: 10px 10px 10px 10px;
-    width: 200px;
-    border-radius: 100px;
-    text-align: center;
-    font-family: Inter-Bold;
+    background-color: aqua;
+    color: black;
+}
+
+.GetStarted:before, .GetStarted::after {
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #1AAB8A;
+    transition:400ms ease all; content: '';
+}
+
+.GetStarted::after {
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+}
+
+.GetStarted:hover::before,.GetStarted:hover::after {
+    width:100%;
+    transition:800ms ease all;
 }

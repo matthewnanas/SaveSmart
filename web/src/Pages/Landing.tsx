@@ -69,7 +69,7 @@ function DesktopHeading() {
             <div className='Heading'>
                 <h1>Saving on grocery trips<br />has never been <span style={{ color: '#1DA1F2' }}>easier</span></h1>
                 <h4>It’s as easy as 1, 2, 3!</h4>
-                <button className='GetStarted' onClick={() => navStart()}>Get Started</button>
+                <button className='GetStarted' onClick={() => navStart()}><span>Start Saving!</span></button>
             </div>
         </div>
     )
@@ -185,24 +185,6 @@ function DesktopAbout() {
                         )
                     })
                 }
-            {/* <Accordion>
-                {
-                    content.map((
-                        item: {
-                            question: string,
-                            content: string
-                        },
-                        i: any,
-                    ) => {
-                        return (
-                            <Accordion.Item eventKey={i}>
-                                <Accordion.Header>{item.question}</Accordion.Header>
-                                <Accordion.Body>{item.content}</Accordion.Body>
-                            </Accordion.Item>
-                        )
-                    })
-                }
-            </Accordion><br/> */}
         </div>
     )
 }
