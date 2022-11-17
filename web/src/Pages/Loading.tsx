@@ -3,6 +3,17 @@ import '../Static/Styles/Loading.css'
 import HashLoader from 'react-spinners/HashLoader'
 
 export default function Loading() {
+
+    // Access the items list on page load and call the getResults function
+    React.useEffect(() => {
+        getResults(localStorage.getItem("items"));
+    }, []);
+
+    // Use our API to compile a list of results
+    const getResults = (items: any) => {
+        const itemList = JSON.parse(items);
+    }
+
     return (
         <div className='LoadingContent'>
             <div>

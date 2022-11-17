@@ -53,12 +53,14 @@ function DesktopList() {
     const addItem = (e: React.FormEvent<HTMLFormElement>) => {
         if (search === '') {
             alert('Please enter a valid item name!');
+            setSearch("");
         } else {
             e.preventDefault()
             setItems([...items, {
                 'item': search,
                 'quantity': 1,
             }]);
+            setSearch("");
         }
     }
 
@@ -79,7 +81,10 @@ function DesktopList() {
 
     // Begin comparing prices and navigate to loading screen
     const navigate = useNavigate();
-    const navLoad = () => { return navigate('/loading') }
+    const navLoad = () => { 
+        localStorage.setItem("items", JSON.stringify(items));
+        return navigate('/loading'); 
+    }
 
     return (
         <div>
@@ -163,12 +168,14 @@ function MobileList() {
     const addItem = (e: React.FormEvent<HTMLFormElement>) => {
         if (search === '') {
             alert('Please enter a valid item name!');
+            setSearch("");
         } else {
             e.preventDefault()
             setItems([...items, {
                 'item': search,
                 'quantity': 1,
             }]);
+            setSearch("");
         }
     }
 
@@ -189,7 +196,10 @@ function MobileList() {
 
     // Begin comparing prices and navigate to loading screen
     const navigate = useNavigate();
-    const navLoad = () => { return navigate('/loading') }
+    const navLoad = () => { 
+        localStorage.setItem("items", JSON.stringify(items));
+        return navigate('/loading'); 
+    }
 
     return (
         <div>
