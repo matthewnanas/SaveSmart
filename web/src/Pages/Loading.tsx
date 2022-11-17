@@ -26,7 +26,52 @@ export default function Loading() {
             })
         };
 
-        fetch(`http://192.168.1.160:7777/grab_aldi`, options).then(response => response.json()).then(data => console.log(data));
+        fetch(`http://192.168.1.160:7777/grab_aldi`, options).then(response => response.json()).then(data => results.push({
+            name: "Target",
+            results: data,
+        }));
+
+        fetch(`http://192.168.1.160:7777/grab_costco`, options).then(response => response.json()).then(data => results.push({
+            name: "Costco",
+            results: data,
+        }));
+
+        fetch(`http://192.168.1.160:7777/grab_giant`, options).then(response => response.json()).then(data => results.push({
+            name: "Giant",
+            results: data,
+        }));
+
+        fetch(`http://192.168.1.160:7777/grab_lidl`, options).then(response => response.json()).then(data => results.push({
+            name: "Lidl",
+            results: data,
+        }));
+
+        fetch(`http://192.168.1.160:7777/grab_publix`, options).then(response => response.json()).then(data => results.push({
+            name: "Publix",
+            results: data,
+        }));
+
+        fetch(`http://192.168.1.160:7777/grab_safeway`, options).then(response => response.json()).then(data => results.push({
+            name: "Safeway",
+            results: data,
+        }));
+
+        fetch(`http://192.168.1.160:7777/grab_shoppers`, options).then(response => response.json()).then(data => results.push({
+            name: "Shoppers",
+            results: data,
+        }));
+
+        fetch(`http://192.168.1.160:7777/grab_wegmans`, options).then(response => response.json()).then(data => results.push({
+            name: "Wegmans",
+            results: data,
+        }));
+
+        fetch(`http://192.168.1.160:7777/grab_wholefoodsmarket`, options).then(response => response.json()).then(data => results.push({
+            name: "Whole Foods Market",
+            results: data,
+        }));
+
+        console.log(results);
     }
 
     return (
