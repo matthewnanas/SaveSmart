@@ -84,7 +84,7 @@
 }
 
 .GetStarted {
-    background-color: #0ec25c;
+    background-color: var(--primary-blue);
     color: var(--white);
     padding: 10px 10px 10px 10px;
     width: 200px;
@@ -99,7 +99,7 @@
 } 
 
 .GetStarted:hover {
-    background-color: aqua;
+    background-color: #0ec25c;
     color: black;
 }
 
@@ -109,7 +109,7 @@
     right:0;
     height:2px;
     width:0;
-    background: #1AAB8A;
+    background: #082c24;
     transition:400ms ease all; content: '';
 }
 
