@@ -177,6 +177,27 @@ app.post('/grab_shoppers', async (req, res) => {
     }
 });
 
+/**
+ * /grab_wegmans endpoint
+ * 
+ * Will handle receiving lists created by users and compile a list from Wegmans 
+ */
+app.post('/grab_wegmans', async (req, res) => {
+    try {
+        console.log(`${new Date().toISOString()} - Handling WEGMANS`);
+
+        // Create a new Wegmans thread and compile item list
+        const thread = new Wegmans({ items: req.body.list });
+        const result = await thread.compileList();
+
+        res.send(result);
+    } catch (err) {
+        // In the case something goes totally wrong, log it to the cloud console and respond with a status code of 500
+        console.log(`${new Date().toISOString()} - FATAL ERROR - ${err}`);
+        res.sendStatus(500);
+    }
+});
+
 app.get('/', async (req, res) => {
     res.send('Cannot get "/"');
 });
