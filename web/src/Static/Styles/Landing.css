@@ -58,35 +58,69 @@
 }
 
 .About {
-    margin-left: 20px;
-    margin-right: 20px;
+    font-family: Inter; 
+    padding-bottom: 150px;
     text-align: center;
     margin-top: 150px;
-    font-family: Inter;
+    width: 900px;
+    margin-left: calc(50% - 450px);
 }
-
 .About h1 {
     font-family: Inter-Bold;
 }
 
+.AboutMobile {
+    font-family: Inter; 
+    padding-bottom: 150px;
+    text-align: center;
+    width: 80%;
+    /* margin: calc(50% - 200px); */
+    margin: auto;
+    margin-top: 150px;
+}
+
+.AboutMobile h1 {
+    font-family: Inter-Bold;
+}
+
 .GetStarted {
-    background-color: #1DA1F2;
-    color: #ffffff;
+    background-color: var(--primary-blue);
+    color: var(--white);
     padding: 10px 10px 10px 10px;
     width: 200px;
+    height: 50px;
     border-radius: 100px;
     text-align: center;
     font-family: Inter-Bold;
     border: none;
     margin-top: 50px;
-}
+    position: relative;
+    transition: 800ms ease all;
+} 
 
 .GetStarted:hover {
-    background-color: #0a88d6;
-    color: #eeeeee;
-    padding: 10px 10px 10px 10px;
-    width: 200px;
-    border-radius: 100px;
-    text-align: center;
-    font-family: Inter-Bold;
+    background-color: #0ec25c;
+    color: black;
+}
+
+.GetStarted:before, .GetStarted::after {
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #082c24;
+    transition:400ms ease all; content: '';
+}
+
+.GetStarted::after {
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+}
+
+.GetStarted:hover::before,.GetStarted:hover::after {
+    width:100%;
+    transition:800ms ease all;
 }

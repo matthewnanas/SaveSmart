@@ -6,12 +6,12 @@
 .NavContainer {
     font-family: Inter-Bold;
     margin: 5px 50px 0px 50px;
-    border-bottom: 1px solid rgba(39, 64, 96, 0.5);
+    border-bottom: 1px solid var(--gray);
 }
 
 .StartButton {
-    background-color: #1DA1F2;
-    color: #ffffff;
+    background-color: var(--primary-blue);
+    color: #ffff;
     padding: 10px 10px 10px 10px;
     width: 150px;
     border-radius: 100px;
@@ -20,7 +20,7 @@
 }
 
 .StartButton:hover {
-    background-color: #0a88d6;
+    background-color: var(--hover-blue);
     color: #eeeeee;
     padding: 10px 10px 10px 10px;
     width: 150px;
@@ -32,5 +32,5 @@
 .NavContainerMobile {
     font-family: Inter-Bold;
     margin: 10px 5px 0px 5px;
-    border-bottom: 1px solid rgba(39, 64, 96, 0.5);
+    border-bottom: 1px solid var(--gray);
 }

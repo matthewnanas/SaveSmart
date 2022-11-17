@@ -12,7 +12,8 @@ import '../Static/Styles/Landing.css';
 import GreenBlob from '../Static/Assets/GreenBlob.svg';
 import BlueBlob from '../Static/Assets/BlueBlob.svg';
 import { DesktopCard, MobileCard } from '../Components/Card';
-import Accordion from 'react-bootstrap/Accordion';
+import { DesktopAccordion, MobileAccordion } from '../Components/Accordion';
+// import Accordion from 'react-bootstrap/Accordion';
 import { useNavigate } from 'react-router-dom';
 
 /**
@@ -36,14 +37,14 @@ export default function Landing() {
                 <div>
                     <DesktopHeading /> 
                     <DesktopSteps />
-                    <About />
+                    <DesktopAbout />
                 </div>
             }
             { isMobile && 
                 <div>
                     <MobileHeading />
                     <MobileSteps />
-                    <About />
+                    <MobileAbout />
                 </div>
             }
         </div>
@@ -68,7 +69,7 @@ function DesktopHeading() {
             <div className='Heading'>
                 <h1>Saving on grocery trips<br />has never been <span style={{ color: '#1DA1F2' }}>easier</span></h1>
                 <h4>It’s as easy as 1, 2, 3!</h4>
-                <button className='GetStarted' onClick={() => navStart()}>Get Started</button>
+                <button className='GetStarted' onClick={() => navStart()}><span>Start Saving!</span></button>
             </div>
         </div>
     )
@@ -148,7 +149,7 @@ function MobileSteps() {
  * Returns an accordion covering content about the project
  * 
  */
-function About() {
+function DesktopAbout() {
     const content = [
         { 
             question: "What retailers do you support?",
@@ -171,8 +172,7 @@ function About() {
     return (
         <div className='About'>
             <h1 style={{marginBottom: '35px'}}>About this project</h1>
-            <Accordion>
-                {
+            {
                     content.map((
                         item: {
                             question: string,
@@ -181,14 +181,55 @@ function About() {
                         i: any,
                     ) => {
                         return (
-                            <Accordion.Item eventKey={i}>
-                                <Accordion.Header>{item.question}</Accordion.Header>
-                                <Accordion.Body>{item.content}</Accordion.Body>
-                            </Accordion.Item>
+                            <DesktopAccordion question={item.question} answer={item.content} />
                         )
                     })
                 }
-            </Accordion>
+        </div>
+    )
+}
+/**
+ * Function - About
+ * 
+ * Returns an accordion covering content about the project
+ * 
+ */
+function MobileAbout() {
+    const content = [
+        { 
+            question: "What retailers do you support?",
+            content: "At the moment we current support: Aldi, Costco, Giant, Kroger, Whole Foods Market, Trader Joes, Target, Walmart"
+        },
+        { 
+            question: "How does this work?",
+            content: "TBA"
+        },
+        { 
+            question: "What is the catch?",
+            content: "There's no catch, your data is not shared with 3rd parties, this is just a project made in one's freetime that may not operate forever"
+        },
+        { 
+            question: "How can I support the project?",
+            content: "Just share it around :)"
+        }
+    ];
+
+    return (
+        <div className='AboutMobile'>
+            <h1 style={{marginBottom: '35px'}}>About this project</h1>
+            {
+                    content.map((
+                        item: {
+                            question: string,
+                            content: string
+                        },
+                        i: any,
+                    ) => {
+                        return (
+                            <MobileAccordion question={item.question} answer={item.content} />
+                        )
+                    })
+                }
         </div>
     )
 }

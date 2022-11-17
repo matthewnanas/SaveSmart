@@ -20,7 +20,7 @@ export function DesktopCard(props: {
                 width: 100,
                 height: 100,
             }}>
-                <h1>{props.step}</h1>
+                {props.step}
             </div>
             <p>{props.description}</p>
             <span>{props.emoji}</span>
@@ -47,7 +47,7 @@ export function MobileCard(props: {
                 width: 75,
                 height: 75,
             }}>
-                <h1>{props.step}</h1>
+                {props.step}
             </div>
             <p>{props.description}</p>
             <span>{props.emoji}</span>

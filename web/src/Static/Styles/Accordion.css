@@ -1,0 +1,60 @@
+.accordionContainer{
+    text-align: center;
+    transition: 0.3s ease-in-out;
+}
+
+.accordionButton {
+    background-color: transparent;
+    font-size: 1.5vw;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    width: 900px;
+    font-size: 20px;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    margin-top:2%;
+    z-index: 3;
+}
+
+.accordionTitle{
+    float: right;
+    transition: 0.3s ease-in-out;
+    margin: 0;
+    padding: 0;
+}
+
+.accordionAnswer{
+    color: var(--gray);
+    text-align: left;
+    font-size: 15px;
+    transition: 0.3s ease-in-out;
+    margin: auto;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.accordionButtonMobile {
+    background-color: transparent;
+    font-size: 1.5vw;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    /* width: 400px; */
+    width: 80%;
+    font-size: 20px;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    margin-top:2%;
+    z-index: 3;
+}

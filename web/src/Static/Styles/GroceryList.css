@@ -14,7 +14,7 @@
 .SubmitButton {
     float: left;
     position: static;
-    background-color: #1DA1F2 !important;
+    background-color: var(--primary-blue) !important;
     border: none;
     font-weight: bold;
 }
@@ -32,7 +32,7 @@
     width: 50px;
     color: white;
     border-radius: 100px;
-    background-color: #e92a6c;
+    background-color: var(--primary-red);
     text-align: center;
     border: none;
 }
@@ -42,7 +42,7 @@
     width: 50px;
     color: white;
     border-radius: 100px;
-    background-color: #ff0059;
+    background-color: var(--hover-red);
     text-align: center;
     border: none;
 }

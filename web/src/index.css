@@ -18,8 +18,29 @@ body {
   font-family: Inter, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --primary-blue: #1DA1F2;
+  --hover-blue: #0a88d6;
+
+  --primary-red: #e92a6c;
+  --hover-red: #ff0059;
+
+  --white: #ffffff;
+  --gray: rgba(39, 64, 96, 0.5);
+  --box-shadow-color: rgba(0, 0, 0, 0.25);
 }
 
 code {
   font-family: Inter, sans-serif;
+}
+
+::-webkit-scrollbar{
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: var(--primary-blue);
+  border-radius: 5px;
+}::-webkit-scrollbar-button{
+  background: transparent;
 }
