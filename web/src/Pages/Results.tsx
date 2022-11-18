@@ -18,14 +18,14 @@ export default function Results() {
 
     // Access search results and update state
     React.useEffect(() => {
-        /*const results = localStorage.getItem("results");
+        const results = localStorage.getItem("results");
         console.log(results);
-        setResults(results);*/
+        setResults(results);
     }, []);
 
     return (
         <div>
-            <h1>Test</h1>
+            <h1>{results}</h1>
         </div>
     )
 }

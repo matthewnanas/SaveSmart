@@ -4,19 +4,13 @@ import HashLoader from 'react-spinners/HashLoader'
 import { useNavigate } from 'react-router-dom';
 
 export default function Loading() {
+    const [status, setStatus]: any = React.useState('Starting...');
 
     // Access the items list on page load and call the getResults function
     const navigate = useNavigate();
     React.useEffect(() => {
-        const results = localStorage.getItem("results");
-        const items = localStorage.getItem("items");
-        getResults(items);
-    }, []);
-
-    // Use our API to compile a list of results
-    const getResults = (items: any) => {
-        const itemList: any = JSON.parse(items);
-        const results: any = [];
+        const items: any = localStorage.getItem("items");
+        let compiled: any = [];
 
         const options = {
             method: 'POST',
@@ -24,59 +18,68 @@ export default function Loading() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                list: itemList, 
+                list: JSON.parse(items), 
             })
         };
 
-        fetch(`http://192.168.1.160:7777/grab_aldi`, options).then(response => response.json()).then(data => results.push({
-            name: "Target",
-            results: data,
-        }));
+        const api = [
+            {
+                endpoint: 'grab_aldi',
+                storeName: 'Aldi'
+            },
+            {
+                endpoint: 'grab_aldi',
+                storeName: 'Costco'
+            },
+            {
+                endpoint: 'grab_giant',
+                storeName: 'Giant'
+            },
+            {
+                endpoint: 'grab_lidl',
+                storeName: 'Lidl'
+            },
+            {
+                endpoint: 'grab_publix',
+                storeName: 'Publix'
+            },
+            {
+                endpoint: 'grab_safeway',
+                storeName: 'Safeway'
+            },
+            {
+                endpoint: 'grab_shoppers',
+                storeName: 'Shoppers'
+            },
+            {
+                endpoint: 'grab_wegmans',
+                storeName: 'Wegmans'
+            },
+            {
+                endpoint: 'grab_wholefoodsmarket',
+                storeName: 'Whole Foods Market'
+            },
+        ]
 
-        fetch(`http://192.168.1.160:7777/grab_costco`, options).then(response => response.json()).then(data => results.push({
-            name: "Costco",
-            results: data,
-        }));
+        async function getLists() {
+            for (var x = 0; x < api.length; x++) {
+                setStatus(`Grabbing prices from ${api[x].storeName}`)
+                let response = await fetch(`http://localhost:7777/${api[x].endpoint}`, options);
+                let parsed = await response.json();
+                compiled.push({
+                    'name': api[x].storeName,
+                    'results': parsed,
+                })
+            }
 
-        fetch(`http://192.168.1.160:7777/grab_giant`, options).then(response => response.json()).then(data => results.push({
-            name: "Giant",
-            results: data,
-        }));
-
-        fetch(`http://192.168.1.160:7777/grab_lidl`, options).then(response => response.json()).then(data => results.push({
-            name: "Lidl",
-            results: data,
-        }));
-
-        fetch(`http://192.168.1.160:7777/grab_publix`, options).then(response => response.json()).then(data => results.push({
-            name: "Publix",
-            results: data,
-        }));
-
-        fetch(`http://192.168.1.160:7777/grab_safeway`, options).then(response => response.json()).then(data => results.push({
-            name: "Safeway",
-            results: data,
-        }));
-
-        fetch(`http://192.168.1.160:7777/grab_shoppers`, options).then(response => response.json()).then(data => results.push({
-            name: "Shoppers",
-            results: data,
-        }));
-
-        fetch(`http://192.168.1.160:7777/grab_wegmans`, options).then(response => response.json()).then(data => results.push({
-            name: "Wegmans",
-            results: data,
-        }));
-
-        fetch(`http://192.168.1.160:7777/grab_wholefoodsmarket`, options).then(response => response.json()).then(data => results.push({
-            name: "Whole Foods Market",
-            results: data,
-        })).then(() => {
-            console.log(results);
-            localStorage.setItem("results", JSON.stringify(results)); 
+            localStorage.setItem("results", JSON.stringify(compiled)); 
             return navigate('/results');
-        });
-    }
+        }
+
+        if (compiled.length === 0) {
+            getLists();
+        }
+    }, []);
 
     return (
         <div className='LoadingContent'>
@@ -92,7 +95,7 @@ export default function Loading() {
                 />
                 <br />
                 <br />
-                <h1 style={{marginTop: 55}}>Processing</h1>
+                <h1 style={{marginTop: 55}}>{status}</h1>
             </div>
         </div>
     )
