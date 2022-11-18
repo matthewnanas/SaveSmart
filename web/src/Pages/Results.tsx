@@ -1,5 +1,8 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
+import Navigation from '../Components/Navigation';
+import { MobileRAccordion, DesktopRAccordion } from '../Components/RAccordion';
+import '../Static/Styles/Results.css';
 
 /**
  * @function Results
@@ -21,11 +24,55 @@ export default function Results() {
         const results = localStorage.getItem("results");
         console.log(results);
         setResults(results);
+        console.log(results)
     }, []);
 
     return (
         <div>
-            <h1>{results}</h1>
+            <Navigation />
+            { isDesktop && <DesktopResults /> }
+            { isMobile && <MobileResults /> }
         </div>
     )
+
+        /**
+     * @function DesktopResults
+     * 
+     * @return appropriate heading content for desktop devices
+     */
+    function DesktopResults() {
+        /**
+         * Navigation function for the get started button
+         */
+        
+        return (
+            <div className='results_container'>
+                <h1>Results</h1>
+                <p style={{ color: '#1DA1F2'}}>Click on entries for total breakdown</p>
+                <DesktopRAccordion store='a' storeName='a' estTotal="string" />
+                <DesktopRAccordion store='a' storeName='a' estTotal="string" />
+            </div>
+        )
+    }
+
+
+        /**
+     * @function MobileResults
+     * 
+     * @return appropriate heading content for desktop devices
+     */
+    function MobileResults() {
+        /**
+         * Navigation function for the get started button
+         */
+        
+        return (
+            <div>
+                <div className='Heading'>
+                    <h1>Saving on grocery trips<br />has never been <span style={{ color: '#1DA1F2' }}>easier</span></h1>
+                    <h4>It’s as easy as 1, 2, 3!</h4>
+                </div>
+            </div>
+        )
+    }
 }

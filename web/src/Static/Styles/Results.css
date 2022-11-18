@@ -1,0 +1,7 @@
+.results_container{
+    text-align: center;
+    font-family: Inter-Medium;
+    margin-top: 20px;
+}
+
+.results_container h1 {font-family: Inter-Bold;}
