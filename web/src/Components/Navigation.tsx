@@ -11,10 +11,9 @@ import { Navbar, Nav } from 'react-bootstrap';
 import '../Static/Styles/Navigation.css';
 
 /**
- * Function - Navigation
+ * @function Navigation
  * 
- * Will return appropriate navigation bar component
- * 
+ * @return appropriate navigation bar component
  */
 export default function Navigation() {
     /**
@@ -44,10 +43,9 @@ export default function Navigation() {
 }
 
 /**
- * Function - NavigateDesktop
+ * @function NavigateDesktop
  * 
- * Will return navigation bar component designed for desktop displays
- * 
+ * @return navigation bar component designed for desktop displays
  */
 function NavigateDesktop(props: { 
     navHome: () => void; 
@@ -75,10 +73,9 @@ function NavigateDesktop(props: {
 }
 
 /**
- * Function - NavigateMobile
+ * @function NavigateMobile
  * 
- * Will return navigation bar component designed for mobile/tablet displays
- * 
+ * @return navigation bar component designed for mobile/tablet displays
  */
 function NavigateMobile(props: { 
     navHome: () => void; 

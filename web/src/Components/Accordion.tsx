@@ -4,10 +4,9 @@ import { MdExpandLess } from 'react-icons/md'
 import '../Static/Styles/Accordion.css'
 
 /**
- * Function - DesktopAccordion
+ * @function DesktopAccordion
  * 
- * Will return a accordion component given props suited for desktop displays
- * 
+ * @return a accordion component given props suited for desktop displays
  */
 export function DesktopAccordion(props: { 
     question: string,
@@ -40,10 +39,9 @@ export function DesktopAccordion(props: {
 }
 
 /**
- * Function - MobileAccordion
+ * @function MobileAccordion
  * 
- * Will return a accordion component given props suited for mobile displays
- * 
+ * @return a accordion component given props suited for mobile displays
  */
 export function MobileAccordion(props: {
     question: string,

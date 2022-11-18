@@ -16,10 +16,9 @@ import { DesktopAccordion, MobileAccordion } from '../Components/Accordion';
 import { useNavigate } from 'react-router-dom';
 
 /**
- * Function - Landing
+ * @function Landing
  * 
- * Will return appropriate landing screen
- * 
+ * @return appropriate landing screen
  */
 export default function Landing() {
     /**
@@ -51,10 +50,9 @@ export default function Landing() {
 }
 
 /**
- * Function - DesktopHeading
+ * @function DesktopHeading
  * 
- * Will return appropriate heading content for desktop devices
- * 
+ * @return appropriate heading content for desktop devices
  */
 function DesktopHeading() {
     /**
@@ -75,10 +73,9 @@ function DesktopHeading() {
 }
 
 /**
- * Function - DesktopSteps
+ * @function DesktopSteps
  * 
- * Will return appropriate step content for desktop devices
- * 
+ * @return appropriate step content for desktop devices
  */
 function DesktopSteps() {
     return (
@@ -98,10 +95,9 @@ function DesktopSteps() {
 }
 
 /**
- * Function - MobileHeading
+ * @function MobileHeading
  * 
- * Will return appropriate heading content for mobile devices
- * 
+ * @return appropriate heading content for mobile devices 
  */
 function MobileHeading() {
     /**
@@ -122,10 +118,9 @@ function MobileHeading() {
 }
 
 /**
- * Function - MobileSteps
+ * @function MobileSteps
  * 
- * Will return appropriate step content for mobile devices
- * 
+ * @return appropriate step content for mobile devices
  */
 function MobileSteps() {
     return (
@@ -143,10 +138,9 @@ function MobileSteps() {
 }
 
 /**
- * Function - DesktopAbout
+ * @function DesktopAbout
  * 
- * Returns an accordion covering content about the project suitable for desktop devices
- * 
+ * @return an accordion covering content about the project suitable for desktop devices
  */
 function DesktopAbout() {
     const content = [
@@ -188,10 +182,9 @@ function DesktopAbout() {
     )
 }
 /**
- * Function - MobileAbout
+ * @function MobileAbout
  * 
- * Returns an accordion covering content about the project suited for mobile displays
- * 
+ * @return an accordion covering content about the project suited for mobile displays
  */
 function MobileAbout() {
     const content = [

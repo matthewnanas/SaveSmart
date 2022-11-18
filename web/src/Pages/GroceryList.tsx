@@ -16,10 +16,9 @@ import { BsTrashFill } from 'react-icons/bs';
 import '../Static/Styles/GroceryList.css'
 
 /**
- * Function - GroceryList
+ * @function GroceryList
  * 
- * Will return appropriate grocery list screen
- * 
+ * @return appropriate grocery list screen
  */
 export default function GroceryList() {
     /**
@@ -39,10 +38,9 @@ export default function GroceryList() {
 }
 
 /**
- * Function - DesktopList
+ * @function DesktopList
  * 
- * Will return appropriate list content for desktop screens
- * 
+ * @return appropriate list content for desktop screens
  */
 function DesktopList() {
     // Search state
@@ -154,10 +152,9 @@ function DesktopList() {
 }
 
 /**
- * Function - MobileList
+ * @function MobileList
  * 
- * Will return appropriate list content for mobile screens
- * 
+ * @return appropriate list content for mobile screens
  */
 function MobileList() {
     // Search state 

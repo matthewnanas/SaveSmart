@@ -2,10 +2,9 @@ import React from 'react';
 import '../Static/Styles/Card.css'
 
 /**
- * Function - DesktopCard
+ * @function DesktopCard
  * 
- * Will return a card component given props suited for desktop displays
- * 
+ * @return a card component given props suited for desktop displays
  */
 export function DesktopCard(props: { 
     color: string, 
@@ -29,10 +28,9 @@ export function DesktopCard(props: {
 }
 
 /**
- * Function - MobileCard
+ * @function MobileCard
  * 
- * Will return a card component given props for mobile displays
- * 
+ * @return a card component given props for mobile displays
  */
 export function MobileCard(props: { 
     color: string, 
