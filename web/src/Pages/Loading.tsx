@@ -83,18 +83,15 @@ export default function Loading() {
 
     return (
         <div className='LoadingContent'>
-            <div>
+            <div style={{ textAlign: 'center' }}>
                 <HashLoader 
                     color="#1DA1F2"
                     loading={true}
                     size={50}
                     aria-label="Processing"
-                    style={{
-                        justifySelf: 'center'
-                    }}
+                    className='loadingIcon'
+                    // style={{ }}
                 />
-                <br />
-                <br />
                 <h1 style={{marginTop: 55}}>{status}</h1>
             </div>
         </div>
