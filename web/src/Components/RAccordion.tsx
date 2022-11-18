@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { MdExpandLess } from 'react-icons/md'
 
 import '../Static/Styles/RAccordion.css'
@@ -9,13 +9,14 @@ import '../Static/Styles/RAccordion.css'
  * @return a accordion component given props suited for desktop displays
  */
 export function DesktopRAccordion(props: { 
-    store: string,
-    storeName: string, 
-    estTotal: string
+    name: string,
+    result: any, 
+    estTotal: string,
+    logo: string,
 }) {
-    const [ opacity, setOpacity ] = useState('0')
-    const [ display, setDisplay ] = useState('none')
-    const [ line, setLine ] = useState('#ffff')
+    const [opacity, setOpacity] = React.useState('0');
+    const [display, setDisplay] = React.useState('none');
+    const [line, setLine] = React.useState('#ffff');
 
     const handleClick = () => {
         if(opacity === '0'){
@@ -27,7 +28,7 @@ export function DesktopRAccordion(props: {
             setDisplay('none')
             setLine('#ffff')
         }
-    }
+    };
 
     const data = [
         {
@@ -46,49 +47,50 @@ export function DesktopRAccordion(props: {
             "unit_price":"About $0.28 each",
             "image":"https://d2lnr5mha7bycj.cloudfront.net/product-image/file/large_660f23f5-11f9-4e5d-9b64-7e69348ade1a.jpg"
         },
-    ]
+    ];
 
     return (
         <div className='accordionContainer'>
             <div className='accordionHeader' onClick={handleClick}>
                 <div className='accordionStore'>
                     <p>Store</p>
-                    <img src='/logo192.png' alt='store logo' />
+                    <img src={props.logo} alt={`${props.name} Logo`} />
                 </div>
                 <div className='accordionName'>
                     <p>Store Name</p>
-                    <h3>Costco</h3>
+                    <h3>{props.name}</h3>
                 </div>
                 <div className='accordionTotal'>
                     <p>Estimated Total</p>
                     <h3>$124</h3>
                 </div>
-            </div><hr style={{ color: line }}/>
+            </div>
+            <hr style={{ color: line }}/>
             <div className='accordionBody' style={{ display: display }}>
-            {
-                data.map((
-                    item: {
-                        product_name: string,
-                        product_size: string,
-                        brand: string | null,
-                        price: string,
-                        unit_price: string,
-                        image: string
-                    }, i: any
-                ) => (
-                <div className='accordionHeader'>
-                    <div className='accordionStore'>
-                        <img src={item.image} alt='image' />
+                {
+                    data.map((
+                        item: {
+                            product_name: string,
+                            product_size: string,
+                            brand: string | null,
+                            price: string,
+                            unit_price: string,
+                            image: string
+                        }, i: any
+                    ) => (
+                    <div className='accordionHeader' key={i}>
+                        <div className='accordionStore'>
+                            <img src={item.image} alt='image' />
+                        </div>
+                        <div className='accordionName'>
+                            <h5>{item.product_name}</h5>
+                        </div>
+                        <div className='accordionTotal'>
+                            <h5>{item.price}</h5>
+                        </div>
                     </div>
-                    <div className='accordionName'>
-                        <h5>{item.product_name}</h5>
-                    </div>
-                    <div className='accordionTotal'>
-                        <h5>{item.price}</h5>
-                    </div>
-                </div>
-                ))
-            }
+                    ))
+                }
             </div>
         </div>
     )
@@ -103,9 +105,9 @@ export function MobileRAccordion(props: {
     question: string,
     answer: string,
 }) {
-    const [ opacity, setOpacity ] = useState('0')
-    const [ dropIcon, setDrop ] = useState('rotate(180deg)')
-    const [ answerPosition, setPosition ] = useState('-10px')
+    const [ opacity, setOpacity ] = React.useState('0')
+    const [ dropIcon, setDrop ] = React.useState('rotate(180deg)')
+    const [ answerPosition, setPosition ] = React.useState('-10px')
 
     const handleClick = () => {
         if(opacity === '0'){

@@ -25,39 +25,48 @@ export default function Loading() {
         const api = [
             {
                 endpoint: 'grab_aldi',
-                storeName: 'Aldi'
+                storeName: 'Aldi',
+                logo: 'https://corporate.aldi.us/fileadmin/fm-dam/logos/ALDI_2017.png',
             },
             {
-                endpoint: 'grab_aldi',
-                storeName: 'Costco'
+                endpoint: 'grab_costco',
+                storeName: 'Costco',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Costco_Wholesale_logo_2010-10-26.svg/2560px-Costco_Wholesale_logo_2010-10-26.svg.png',
             },
             {
                 endpoint: 'grab_giant',
-                storeName: 'Giant'
+                storeName: 'Giant',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Giant_Food_logo.svg/1200px-Giant_Food_logo.svg.png',
             },
             {
                 endpoint: 'grab_lidl',
-                storeName: 'Lidl'
+                storeName: 'Lidl',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/1/1d/Lidl_logo.png',
             },
             {
                 endpoint: 'grab_publix',
-                storeName: 'Publix'
+                storeName: 'Publix',
+                logo: 'https://logos-world.net/wp-content/uploads/2021/10/Publix-Logo.png',
             },
             {
                 endpoint: 'grab_safeway',
-                storeName: 'Safeway'
+                storeName: 'Safeway',
+                logo: 'https://logos-world.net/wp-content/uploads/2022/01/Safeway-Logo.png',
             },
             {
                 endpoint: 'grab_shoppers',
-                storeName: 'Shoppers'
+                storeName: 'Shoppers',
+                logo: 'https://www.shoppersfood.com/content/svu-retail-banners/shoppers/en/_jcr_content/header/headerlogo.img.png/1509573214807.png',
             },
             {
                 endpoint: 'grab_wegmans',
-                storeName: 'Wegmans'
+                storeName: 'Wegmans',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/WegmansLogo.svg/2560px-WegmansLogo.svg.png',
             },
             {
                 endpoint: 'grab_wholefoodsmarket',
-                storeName: 'Whole Foods Market'
+                storeName: 'Whole Foods Market',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Whole_Foods_Market_logo.svg/2560px-Whole_Foods_Market_logo.svg.png'
             },
         ]
 
@@ -69,6 +78,7 @@ export default function Loading() {
                 compiled.push({
                     'name': api[x].storeName,
                     'results': parsed,
+                    'logo': api[x].logo,
                 })
             }
 
