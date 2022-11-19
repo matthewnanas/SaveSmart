@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MdExpandLess } from 'react-icons/md'
 
 import '../Static/Styles/RAccordion.css'
@@ -29,25 +29,9 @@ export function DesktopRAccordion(props: {
             setLine('#ffff')
         }
     };
-
-    const data = [
-        {
-            "product_name":"Banana",
-            "product_size":"per lb",
-            "brand":null,
-            "price":"$0.28 each (est.)",
-            "unit_price":"About $0.28 each",
-            "image":"https://d2lnr5mha7bycj.cloudfront.net/product-image/file/large_660f23f5-11f9-4e5d-9b64-7e69348ade1a.jpg"
-        },
-        {
-            "product_name":"Banana",
-            "product_size":"per lb",
-            "brand":null,
-            "price":"$0.28 each (est.)",
-            "unit_price":"About $0.28 each",
-            "image":"https://d2lnr5mha7bycj.cloudfront.net/product-image/file/large_660f23f5-11f9-4e5d-9b64-7e69348ade1a.jpg"
-        },
-    ];
+    useEffect(() => {
+        console.log(props.result)
+    }, [props])
 
     return (
         <div className='accordionContainer'>
@@ -62,13 +46,13 @@ export function DesktopRAccordion(props: {
                 </div>
                 <div className='accordionTotal'>
                     <p>Estimated Total</p>
-                    <h3>$124</h3>
+                    <h3>{props.estTotal}</h3>
                 </div>
             </div>
             <hr style={{ color: line }}/>
             <div className='accordionBody' style={{ display: display }}>
                 {
-                    data.map((
+                    props.result.map((
                         item: {
                             product_name: string,
                             product_size: string,
@@ -82,7 +66,7 @@ export function DesktopRAccordion(props: {
                         <div className='accordionStore'>
                             <img src={item.image} alt='image' />
                         </div>
-                        <div className='accordionName'>
+                        <div className='accordionProductName'>
                             <h5>{item.product_name}</h5>
                         </div>
                         <div className='accordionTotal'>

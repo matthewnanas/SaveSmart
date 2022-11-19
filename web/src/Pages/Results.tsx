@@ -52,7 +52,7 @@ function DesktopResults(props: any) {
             <p style={{ color: '#1DA1F2'}}>Click on entries for total breakdown</p>
             {props.results.map((result: any) => {
                 return (
-                    <DesktopRAccordion name={result.name} result={result.results} estTotal="string" logo={result.logo} />
+                    <DesktopRAccordion name={result.name} result={result.results} estTotal="string" logo={result.logo}/>
                 )
             })}
         </div>
