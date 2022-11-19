@@ -63,7 +63,7 @@ class Aldi {
                 console.log('No items found');
                 return null;
             } else {
-                const relevant = response.data['data']['searchResultsPlacements']['placements'][2]['content']['items'][0];
+                const relevant = response.data['data']['searchResultsPlacements']['placements'][0]['content']['items'][0];
                 return this.getRelevantPrice(relevant);
             }
         } catch (err) {
