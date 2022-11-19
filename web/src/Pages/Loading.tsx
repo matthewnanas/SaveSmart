@@ -75,10 +75,21 @@ export default function Loading() {
                 setStatus(`${api[x].storeName}`)
                 let response = await fetch(`http://localhost:7777/${api[x].endpoint}`, options);
                 let parsed = await response.json();
+
+                let total = 0.0;
+                for (let y = 0; y < parsed.length; y++) {
+                    try {
+                        if (parsed[y].price != null) {
+                            total += parseFloat(parsed[y].price.split("$")[1].split(" ")[0]);
+                        }
+                    } catch {}
+                }
+
                 compiled.push({
                     'name': api[x].storeName,
                     'results': parsed,
                     'logo': api[x].logo,
+                    'total': total,
                 })
             }
 
