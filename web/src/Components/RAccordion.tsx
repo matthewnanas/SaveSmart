@@ -64,18 +64,17 @@ export function DesktopRAccordion(props: {
                     ) => (
                     <div className='accordionHeader' key={i}>
                         <div className='accordionStore'>
-                            <img src={item?.image} alt='image' />
-                            {/* {
-                                item.image?
-                                <img src='/logo192.png' alt='product'/>
-                                : <img src='/logo192.png' alt='product'/>
-                            } */}
+                            {
+                                item?.image?
+                                <img src={item.image} alt='product'/>
+                                : <></>
+                            }
                         </div>
                         <div className='accordionProductName'>
-                            <h5>{item?.product_name}</h5>
+                            <p>{item?.product_name}</p>
                         </div>
                         <div className='accordionTotal'>
-                            <h5>{item?.price}</h5>
+                            <p>{item?.price}</p>
                         </div>
                     </div>
                     ))
