@@ -54,23 +54,28 @@ export function DesktopRAccordion(props: {
                 {
                     props.result.map((
                         item: {
-                            product_name: string,
-                            product_size: string,
+                            product_name: string | null,
+                            product_size: string | null,
                             brand: string | null,
-                            price: string,
-                            unit_price: string,
-                            image: string
+                            price: string | null,
+                            unit_price: string | null,
+                            image: string | undefined
                         }, i: any
                     ) => (
                     <div className='accordionHeader' key={i}>
                         <div className='accordionStore'>
-                            <img src={item.image} alt='image' />
+                            <img src={item?.image} alt='image' />
+                            {/* {
+                                item.image?
+                                <img src='/logo192.png' alt='product'/>
+                                : <img src='/logo192.png' alt='product'/>
+                            } */}
                         </div>
                         <div className='accordionProductName'>
-                            <h5>{item.product_name}</h5>
+                            <h5>{item?.product_name}</h5>
                         </div>
                         <div className='accordionTotal'>
-                            <h5>{item.price}</h5>
+                            <h5>{item?.price}</h5>
                         </div>
                     </div>
                     ))
