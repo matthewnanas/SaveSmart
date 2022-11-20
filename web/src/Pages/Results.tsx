@@ -23,8 +23,6 @@ export default function Results() {
     React.useEffect(() => {
         const list: any = localStorage.getItem("results");
         setResults(JSON.parse(list));
-        console.log(list);
-        console.log(results);
     }, []);
 
     return (

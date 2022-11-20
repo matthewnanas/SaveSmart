@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { MdExpandLess } from 'react-icons/md'
 import Table from 'react-bootstrap/Table';
 
 import '../Static/Styles/RAccordion.css'
