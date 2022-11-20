@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { MdExpandLess } from 'react-icons/md'
+import Table from 'react-bootstrap/Table';
 
 import '../Static/Styles/RAccordion.css'
 
@@ -13,6 +14,7 @@ export function DesktopRAccordion(props: {
     result: any, 
     estTotal: string,
     logo: string,
+    catalog: string,
 }) {
     const [opacity, setOpacity] = React.useState('0');
     const [display, setDisplay] = React.useState('none');
@@ -29,29 +31,96 @@ export function DesktopRAccordion(props: {
             setLine('#ffff')
         }
     };
+
     useEffect(() => {
         console.log(props.result)
-    }, [props])
+    }, [])
 
     return (
-        <div className='accordionContainer'>
-            <div className='accordionHeader' onClick={handleClick}>
-                <div className='accordionStore'>
+        <div className='raccordionContainer'>
+            <div className='raccordionHeader' onClick={handleClick}>
+                <div className='raccordionStore'>
                     <p>Store</p>
                     <img src={props.logo} alt={`${props.name} Logo`} />
                 </div>
-                <div className='accordionName'>
-                    <p>Store Name</p>
-                    <h3>{props.name}</h3>
+                <div className='raccordionName'>
+                    <p>Store Coupon Catalog</p>
+                    <a href={props.catalog} target="_blank" rel="noreferrer">
+                        <h3>Visit {props.name}</h3>
+                    </a>
                 </div>
-                <div className='accordionTotal'>
+                <div className='raccordionTotal'>
                     <p>Estimated Total</p>
                     <h3>{props.estTotal}</h3>
                 </div>
             </div>
             <hr style={{ color: line }}/>
-            <div className='accordionBody' style={{ display: display }}>
-                {
+            <div className='raccordionBody' style={{ display: display }}>
+                <Table striped>
+                    <thead>
+                        <tr>
+                            <th>Search Term</th>
+                            <th>Image</th>
+                            <th>Store Item</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            props.result.map((
+                                item: {
+                                    product_name: string | null,
+                                    product_size: string | null,
+                                    brand: string | null,
+                                    price: string | null,
+                                    unit_price: string | null,
+                                    image: string | undefined,
+                                    query: string,
+                                }, i: any
+                            ) => {
+                                return (
+                                    <tr key={i}>
+                                        <td>
+                                            {
+                                                item?.query?
+                                                    <p>{item.query}</p>
+                                                : <>N/A</>
+                                            }
+                                        </td>
+                                        <td>
+                                            <div className='accordionStore'>
+                                                {
+                                                    item?.image?
+                                                        <img src={item.image} width={50} alt='product'/>
+                                                    : <>N/A</>
+                                                }
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {
+                                                item?.product_name? 
+                                                    <p>{item.product_name}</p>
+                                                : <>Not found</>
+                                            }
+                                        </td>
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>
+                                            {
+                                                item?.price? 
+                                                    <p>{item?.price}</p>
+                                                : <>$0.00</>
+                                            }
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </Table>
+                {/*
                     props.result.map((
                         item: {
                             product_name: string | null,
@@ -81,7 +150,7 @@ export function DesktopRAccordion(props: {
                             <hr />
                         </div>
                     ))
-                }
+                */}
             </div>
         </div>
     )

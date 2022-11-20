@@ -63,7 +63,7 @@ class Safeway {
                 return null;
             } else {
                 const relevant = response.data['data']['searchResultsPlacements']['placements'][0]['content']['items'][0];
-                return this.getRelevantPrice(relevant);
+                return this.getRelevantPrice(relevant, item);
             }
         } catch (err) {
             console.log(err);
@@ -76,7 +76,7 @@ class Safeway {
      * 
      * Use instacart endpoint to get the price of the most relevant price
      */
-    async getRelevantPrice(relevant) {
+    async getRelevantPrice(relevant, itemName) {
         try {
             // Get price endpoint
             const response = await this.client.get(`https://www.instacart.com/graphql?operationName=ItemPricesQuery&variables={"ids":["${relevant['id']}"],"shopId":"10540","zoneId":"272","postalCode":"20740"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"6bc7919897d4104897f991ab9e6f544aa2157e60781606871bf236f30e50243f"}}`, {
@@ -102,6 +102,7 @@ class Safeway {
                 'price': response.data['data']['itemPrices'][0]['viewSection']['itemDetails']['priceString'],
                 'unit_price': response.data['data']['itemPrices'][0]['viewSection']['itemDetails']['pricePerUnitString'],
                 'image': relevant['viewSection']['itemImage']['url'],
+                'query': itemName
             }
 
             return item;

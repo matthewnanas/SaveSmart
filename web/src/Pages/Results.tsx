@@ -53,7 +53,7 @@ function DesktopResults(props: any) {
             {props.results.map((result: any) => {
                 console.log(props.results)
                 return (
-                    <DesktopRAccordion name={result.name} result={result.results} estTotal={`$${result.total}`} logo={result.logo} />
+                    <DesktopRAccordion name={result.name} result={result.results} estTotal={`$${result.total}`} logo={result.logo} catalog={result.catalog} />
                 )
             })}
         </div>

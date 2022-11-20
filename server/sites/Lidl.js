@@ -66,6 +66,7 @@ class Lidl {
                     'price': `$${response.data['results'][0]['price']['currentPrice']['value']}`,
                     'unit_price': response.data['results'][0]['price']['basePrice'],
                     'image': response.data['results'][0].images?.[0]['url'],
+                    'query': item
                 }
                 
                 return relevant;
