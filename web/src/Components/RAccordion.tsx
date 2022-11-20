@@ -164,32 +164,118 @@ export function DesktopRAccordion(props: {
  * 
  * @return a accordion component given props suited for mobile displays
  */
-export function MobileRAccordion(props: {
-    question: string,
-    answer: string,
+
+export function MobileRAccordion(props: { 
+    name: string,
+    result: any, 
+    estTotal: string,
+    logo: string,
+    catalog: string,
 }) {
-    const [ opacity, setOpacity ] = React.useState('0')
-    const [ dropIcon, setDrop ] = React.useState('rotate(180deg)')
-    const [ answerPosition, setPosition ] = React.useState('-10px')
+    const [opacity, setOpacity] = React.useState('0');
+    const [display, setDisplay] = React.useState('none');
+    const [line, setLine] = React.useState('#ffff');
 
     const handleClick = () => {
         if(opacity === '0'){
-            setPosition('0px')
-            setDrop('rotate(1turn) translateY(-5px)')
             setOpacity('1')
+            setDisplay('block')
+            setLine('gray')
         } else {
-            setPosition('-10px')
-            setDrop('rotate(.5turn) translateY(5px)')
             setOpacity('0')
+            setDisplay('none')
+            setLine('#ffff')
         }
-    }
+    };
 
-    return(
-        <div className='accordionContainer'>
-            <button className='accordionButtonMobile' onClick={handleClick}>
-                {props.question}<h2 className='accordionTitle' style={{ transform: dropIcon }}><MdExpandLess/></h2>
-            </button>
-            <p className='accordionAnswer' style={{ opacity: opacity, marginTop: answerPosition }}>{props.answer}</p>
+    useEffect(() => {
+        console.log(props.result)
+    }, [])
+
+    return (
+        <div className='raccordionContainer'>
+            <div className='raccordionHeader' onClick={handleClick}>
+                <div className='raccordionStore'>
+                    <p>Store</p>
+                    <a href={props.catalog} target="_blank" rel="noreferrer">
+                        <img src={props.logo} alt={`${props.name} Logo`} />
+                    </a>
+                </div>
+                <div className='raccordionTotal'>
+                    <p>Estimated Total</p>
+                    <h3>{props.estTotal}</h3>
+                </div>
+            </div>
+            <hr style={{ color: line }}/>
+            <div className='raccordionBody' style={{ display: display }}>
+                <Table striped>
+                    <thead>
+                        <tr>
+                            <th className='accordionQuery'>Search Term</th>
+                            <th>Image</th>
+                            <th>Store Item</th>
+                            <th className='accordionQuery'>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            props.result.map((
+                                item: {
+                                    product_name: string | null,
+                                    product_size: string | null,
+                                    brand: string | null,
+                                    price: string | null,
+                                    unit_price: string | null,
+                                    image: string | undefined,
+                                    query: string,
+                                    link: string | undefined,
+                                }, i: any
+                            ) => {
+                                return (
+                                    <tr key={i}>
+                                        <td className='accordionQuery'>
+                                            {
+                                                item?.query?
+                                                    <p>{item.query}</p>
+                                                : <>N/A</>
+                                            }
+                                        </td>
+                                        <td>
+                                            <div className='accordionStore'>
+                                                {
+                                                    item?.image?
+                                                        <img src={item.image} width={50} alt='product'/>
+                                                    : <>N/A</>
+                                                }
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {
+                                                item?.product_name? 
+                                                    <a href={item.link} target="_blank" rel="noreferrer">
+                                                        <p>{item.product_name}</p>
+                                                    </a>
+                                                : <>Not found</>
+                                            }
+                                        </td>
+                                        <td className='accordionQuery'>
+                                            1
+                                        </td>
+                                        <td>
+                                            {
+                                                item?.price? 
+                                                    <p>{item?.price}</p>
+                                                : <>$0.00</>
+                                            }
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </Table>
+            </div>
         </div>
     )
 }

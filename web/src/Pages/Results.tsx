@@ -31,7 +31,7 @@ export default function Results() {
         <div>
             <Navigation />
             { isDesktop && <DesktopResults results={results} /> }
-            { isMobile && <MobileResults /> }
+            { isMobile && <MobileResults results={results}/> }
         </div>
     )
 }
@@ -60,22 +60,28 @@ function DesktopResults(props: any) {
     )
 }
 
+
 /**
  * @function MobileResults
  * 
- * @return appropriate heading content for desktop devices
+ * @return appropriate heading content for mobile devices
  */
-function MobileResults() {
+function MobileResults(props: any) {
     /**
      * Navigation function for the get started button
      */
     
     return (
-        <div>
-            <div className='Heading'>
-                <h1>Saving on grocery trips<br />has never been <span style={{ color: '#1DA1F2' }}>easier</span></h1>
-                <h4>It’s as easy as 1, 2, 3!</h4>
-            </div>
+        <div className='results_container'>
+            <h1>Results</h1>
+            <p style={{ color: '#1DA1F2'}}>Click on entries for total breakdown</p>
+            <p style={{ color: '#1DA1F2', marginTop: '-15px'}}>Click the store logos for discounts and coupons</p>
+            {props.results.map((result: any) => {
+                console.log(props.results)
+                return (
+                    <MobileRAccordion name={result.name} result={result.results} estTotal={`$${result.total}`} logo={result.logo} catalog={result.catalog} />
+                )
+            })}
         </div>
     )
 }

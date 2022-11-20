@@ -63,3 +63,12 @@
     color: rgba(0, 0, 0, 0.75);
     margin-top: 5px;
 }
+
+@media screen and (max-width: 650px) {
+    .accordionQuery{
+        display: none;
+    }
+    .raccordionBody {
+        font-size: 15px;
+    }
+}
