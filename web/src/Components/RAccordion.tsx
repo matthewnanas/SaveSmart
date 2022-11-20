@@ -77,6 +77,7 @@ export function DesktopRAccordion(props: {
                                     unit_price: string | null,
                                     image: string | undefined,
                                     query: string,
+                                    link: string | undefined,
                                 }, i: any
                             ) => {
                                 return (
@@ -100,7 +101,9 @@ export function DesktopRAccordion(props: {
                                         <td>
                                             {
                                                 item?.product_name? 
-                                                    <p>{item.product_name}</p>
+                                                    <a href={item.link} target="_blank" rel="noreferrer">
+                                                        <p>{item.product_name}</p>
+                                                    </a>
                                                 : <>Not found</>
                                             }
                                         </td>

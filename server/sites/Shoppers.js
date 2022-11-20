@@ -107,7 +107,8 @@ class Shoppers {
                 'price': response.data['data']['itemPrices'][0]['viewSection']['itemDetails']['priceString'],
                 'unit_price': response.data['data']['itemPrices'][0]['viewSection']['itemDetails']['pricePerUnitString'],
                 'image': relevant['viewSection']['itemImage']['url'],
-                'query': itemName
+                'query': itemName,
+                'link': `https://www.instacart.com/store/shoppersfood/products/${relevant['id'].split('-')[1]}`
             }
 
             return item;
