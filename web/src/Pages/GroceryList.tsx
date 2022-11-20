@@ -94,7 +94,7 @@ function DesktopList() {
                             <Form.Control type="text" placeholder='Search for...' value={search} onChange={(e) => setSearch(e.target.value)} />
                         </Form.Group>
                         <Button className='SubmitButton' variant='primary' type='submit'>
-                            Submit
+                            Add Item
                         </Button>
                         <Button className='SubmitButton' variant='primary' style={{marginLeft: 5}} onClick={() => navLoad()}>
                             Compare Stores
@@ -208,7 +208,7 @@ function MobileList() {
                             <Form.Control type="text" placeholder='Search for...' value={search} onChange={(e) => setSearch(e.target.value)} />
                         </Form.Group>
                         <Button className='SubmitButton' variant='primary' type='submit'>
-                            Submit
+                            Add Item
                         </Button>
                         <Button className='SubmitButton' variant='primary' style={{marginLeft: 5}} onClick={() => navLoad()}>
                             Compare Stores

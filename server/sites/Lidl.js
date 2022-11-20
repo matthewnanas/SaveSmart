@@ -57,7 +57,9 @@ class Lidl {
             // Check to see if any items exist
             if (response.data['results'].length === 0) {
                 console.log('No items found');
-                return null;
+                return {
+                    'query': item,
+                };
             } else {
                 const relevant = {
                     'product_name': response.data['results'][0]['name'],
@@ -74,6 +76,9 @@ class Lidl {
         } catch (err) {
             console.log(err);
             console.log('Error sending instacart request');
+            return {
+                'query': item,
+            };
         }
     }
 }

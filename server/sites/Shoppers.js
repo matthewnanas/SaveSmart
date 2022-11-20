@@ -60,7 +60,9 @@ class Shoppers {
             // Check to see if any items exist
             if (response.data['data']['searchResultsPlacements']['placements'].length < 3) {
                 console.log('No items found');
-                return null;
+                return {
+                    'query': item,
+                };
             } else {
                 const relevant = response.data['data']['searchResultsPlacements']['placements'][0]['content']['items'][0];
                 return this.getRelevantPrice(relevant, item);
@@ -68,6 +70,9 @@ class Shoppers {
         } catch (err) {
             console.log(err);
             console.log('Error sending instacart request');
+            return {
+                'query': item,
+            };
         }
     }
 
@@ -109,6 +114,9 @@ class Shoppers {
         } catch (err) {
             console.log(err);
             console.log('Error sending price request');
+            return {
+                'query': item,
+            };
         }
     }
 }
