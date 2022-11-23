@@ -48,10 +48,10 @@ function DesktopResults(props: any) {
         <div className='results_container'>
             <h1>Results</h1>
             <p style={{ color: '#1DA1F2'}}>Click on entries for total breakdown</p>
-            {props.results.map((result: any) => {
+            {props.results.map((result: any, i: any) => {
                 console.log(props.results)
                 return (
-                    <DesktopRAccordion name={result.name} result={result.results} estTotal={`$${result.total}`} logo={result.logo} catalog={result.catalog} />
+                    <DesktopRAccordion name={result.name} result={result.results} estTotal={`$${result.total}`} logo={result.logo} catalog={result.catalog} key={i} />
                 )
             })}
         </div>
@@ -74,10 +74,10 @@ function MobileResults(props: any) {
             <h1>Results</h1>
             <p style={{ color: '#1DA1F2'}}>Click on entries for total breakdown</p>
             <p style={{ color: '#1DA1F2', marginTop: '-15px'}}>Click the store logos for discounts and coupons</p>
-            {props.results.map((result: any) => {
+            {props.results.map((result: any, i: any) => {
                 console.log(props.results)
                 return (
-                    <MobileRAccordion name={result.name} result={result.results} estTotal={`$${result.total}`} logo={result.logo} catalog={result.catalog} />
+                    <MobileRAccordion name={result.name} result={result.results} estTotal={`$${result.total}`} logo={result.logo} catalog={result.catalog} key={i} />
                 )
             })}
         </div>
