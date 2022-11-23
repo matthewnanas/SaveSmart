@@ -4,6 +4,9 @@
  * This is the main entry point to the server-sided component of this project
  */
 
+// Add firebase
+const functions = require('firebase-functions');
+
 // Import dependencies
 const express = require('express');
 const cors = require('cors');
@@ -223,6 +226,16 @@ app.get('/', async (req, res) => {
     res.send('Cannot get "/"');
 });
 
-app.listen(7777, () => {
+/*app.listen(7777, () => {
     console.log(`${new Date().toISOString()} - Server deployed!`);
+});*/
+
+const api = functions.https.onRequest((request, response) => {
+    if (!request.path) {
+        request.url = `/${request.url}`;
+    }
+
+    return app(request, response);
 });
+
+module.exports = { api };
