@@ -30,7 +30,6 @@ class Lidl {
             items.push(result);
         }
 
-        console.log(items);
         return items;
     }
 
