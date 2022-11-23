@@ -59,13 +59,17 @@ function DesktopList() {
                 'quantity': 1,
             }]);
             setSearch("");
+            console.log(items);
         }
     }
 
     // Handle editing a quantity in the table
     const editQuantity = (newValue: string, element: number) => {
+        if (/^\d*\.?\d*$/.test(newValue) === false) {
+            alert("Please enter a number.");
+        }
         let temp = items;
-        temp[element]['quantity'] = newValue;
+        temp[element]['quantity'] = parseInt(newValue);
         setItems(temp);
     }
 
@@ -129,7 +133,7 @@ function DesktopList() {
                                         <td>{i}</td>
                                         <td>{item.item}</td>
                                         <td>
-                                            <input type='text' name='quantity' defaultValue={item.quantity} onChange={(e) => {
+                                            <input type='number' name='quantity' defaultValue={item.quantity} onChange={(e) => {
                                                 editQuantity(e.target.value, i)
                                             }} />
                                         </td>
@@ -178,8 +182,11 @@ function MobileList() {
 
     // Handle editing a quantity in the table
     const editQuantity = (newValue: string, element: number) => {
+        if (/^\d*\.?\d*$/.test(newValue) === false) {
+            alert("Please enter a number.");
+        }
         let temp = items;
-        temp[element]['quantity'] = newValue;
+        temp[element]['quantity'] = parseInt(newValue);
         setItems(temp);
     }
 
@@ -244,7 +251,7 @@ function MobileList() {
                                         <td>{i}</td>
                                         <td>{item.item}</td>
                                         <td>
-                                            <input type='text' className='w-25' name='quantity' defaultValue={item.quantity} width={10} onChange={(e) => {
+                                            <input type='number' className='w-25' name='quantity' defaultValue={item.quantity} width={10} onChange={(e) => {
                                                 editQuantity(e.target.value, i)
                                             }} />
                                         </td>
