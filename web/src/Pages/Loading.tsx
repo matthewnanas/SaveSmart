@@ -82,14 +82,16 @@ export default function Loading() {
         async function getLists() {
             for (var x = 0; x < api.length; x++) {
                 setStatus(`${api[x].storeName}`)
-                let response = await fetch(`http://localhost:7777/${api[x].endpoint}`, options);
+                let response = await fetch(`http://192.168.1.160:7777/${api[x].endpoint}`, options);
                 let parsed = await response.json();
 
                 let total = 0.0;
                 for (let y = 0; y < parsed.length; y++) {
                     try {
-                        if (parsed[y].price != null) {
-                            total += parseFloat(parsed[y].price.split("$")[1].split(" ")[0]);
+                        for (let z = 0; z < items.length; z++) {
+                            if (JSON.parse(items)[z]['item'] === parsed[y]['query']) {
+                                total += parseFloat(parsed[y].price.split("$")[1].split(" ")[0]) * JSON.parse(items)[z]['quantity'];
+                            }
                         }
                     } catch {}
                 }
@@ -98,7 +100,7 @@ export default function Loading() {
                     'name': api[x].storeName,
                     'results': parsed,
                     'logo': api[x].logo,
-                    'total': total,
+                    'total': Math.trunc(total*100)/100,
                     'catalog': api[x].catalog,
                 })
             }
