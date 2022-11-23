@@ -8,10 +8,41 @@
     z-index: -1;
 }
 
+.mobileDemo {
+    height: 60%;
+    width: auto;
+    position: absolute;
+    float: right;
+    right: 5px;
+    top: 25%;
+    z-index: -1;
+}
+
 .Heading {
     margin-top: 200px;
     text-align: left;
     margin-left: 20%;
+}
+
+@media screen and (max-width: 1275px) {
+    .demo {
+        height: 60%;
+        top: 25%;
+    }
+}
+
+@media screen and (max-width: 1060px) {
+    .demo{display: none;}
+}
+
+@media screen and (max-width: 800px) {
+    .mobileDemo {
+        display: none;
+    }
+    .Heading {
+        margin-left: 0%;
+        text-align: center;
+    }
 }
 
 .Heading h1 {
