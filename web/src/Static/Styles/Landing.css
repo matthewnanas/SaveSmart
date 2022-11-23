@@ -1,6 +1,17 @@
+.demo {
+    height: 80%;
+    width: auto;
+    position: absolute;
+    float: right;
+    right: 0;
+    top: 10%;
+    z-index: -1;
+}
+
 .Heading {
     margin-top: 200px;
-    text-align: center;
+    text-align: left;
+    margin-left: 20%;
 }
 
 .Heading h1 {

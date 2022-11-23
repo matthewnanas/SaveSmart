@@ -14,6 +14,7 @@ import BlueBlob from '../Static/Assets/BlueBlob.svg';
 import { DesktopCard, MobileCard } from '../Components/Card';
 import { DesktopAccordion, MobileAccordion } from '../Components/Accordion';
 import { useNavigate } from 'react-router-dom';
+import demo from '../Static/Assets/demo.png';
 
 /**
  * @function Landing
@@ -67,6 +68,7 @@ function DesktopHeading() {
                 <h1>Saving on grocery trips<br />has never been <span style={{ color: '#1DA1F2' }}>easier</span></h1>
                 <h4>It’s as easy as 1, 2, 3!</h4>
                 <button className='GetStarted' onClick={() => navStart()}><span>Start Saving!</span></button>
+                <img src={demo} alt="Demo" className='demo' />
             </div>
         </div>
     )
