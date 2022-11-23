@@ -154,7 +154,7 @@ function DesktopAbout() {
         },
         { 
             question: "How does this work?",
-            content: "TBA"
+            content: "The process is fairly simple! Jot down the items you would like to scoop up at your next grocery trip. And like every other search engine, we'd find items that are most relevant to your query at the most popular grocery stores around the DMV. With that said, try to be as specific as possible when it comes to your entries. "
         },
         { 
             question: "What is the catch?",
@@ -163,6 +163,10 @@ function DesktopAbout() {
         { 
             question: "How can I support the project?",
             content: "Just share it around :) Or help other families by supporting a trusthworthy non profit organization!"
+        },
+        { 
+            question: "Would you like to contact us?",
+            content: "Email me one of our team members at mnanas@umd.edu"
         }
     ];
 
@@ -198,7 +202,7 @@ function MobileAbout() {
         },
         { 
             question: "How does this work?",
-            content: "TBA"
+            content: "The process is fairly simple! Jot down the items you would like to scoop up at your next grocery trip. And like every other search engine, we'd find items that are most relevant to your query at the most popular grocery stores around the DMV. With that said, try to be as specific as possible when it comes to your entries. "
         },
         { 
             question: "What is the catch?",
@@ -207,6 +211,10 @@ function MobileAbout() {
         { 
             question: "How can I support the project?",
             content: "Just share it around :) Or help other families by supporting a trusthworthy non profit organization!"
+        },
+        { 
+            question: "Would you like to contact us?",
+            content: "Email me one of our team members at mnanas@umd.edu"
         }
     ];
 
