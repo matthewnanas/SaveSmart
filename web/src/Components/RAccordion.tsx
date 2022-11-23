@@ -122,37 +122,6 @@ export function DesktopRAccordion(props: {
                         }
                     </tbody>
                 </Table>
-                {/*
-                    props.result.map((
-                        item: {
-                            product_name: string | null,
-                            product_size: string | null,
-                            brand: string | null,
-                            price: string | null,
-                            unit_price: string | null,
-                            image: string | undefined
-                        }, i: any
-                    ) => (
-                        <div>
-                            <div className='accordionHeader' key={i}>
-                                <div className='accordionStore'>
-                                    {
-                                        item?.image?
-                                        <img src={item.image} alt='product'/>
-                                        : <></>
-                                    }
-                                </div>
-                                <div className='accordionProductName'>
-                                    <p>{item?.product_name}</p>
-                                </div>
-                                <div className='accordionTotal'>
-                                    <p>{item?.price}</p>
-                                </div>
-                            </div>
-                            <hr />
-                        </div>
-                    ))
-                */}
             </div>
         </div>
     )
@@ -192,7 +161,7 @@ export function MobileRAccordion(props: {
     }, [])
 
     return (
-        <div className='raccordionContainer'>
+        <div className='raccordionContainerMobile'>
             <div className='raccordionHeader' onClick={handleClick}>
                 <div className='raccordionStore'>
                     <p>Store</p>
