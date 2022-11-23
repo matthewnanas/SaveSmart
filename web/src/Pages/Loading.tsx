@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import '../Static/Styles/Loading.css'
 import HashLoader from 'react-spinners/HashLoader'
