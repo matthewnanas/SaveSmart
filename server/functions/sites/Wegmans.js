@@ -65,7 +65,7 @@ class Wegmans {
                     'query': item,
                 };
             } else {
-                const relevant = response.data['data']['searchResultsPlacements']['placements'][0]['content']['items'][0];
+                const relevant = response.data['data']['searchResultsPlacements']['placements'][1]['content']['items'][0];
                 return this.getRelevantPrice(relevant, item);
             }
         } catch (err) {
