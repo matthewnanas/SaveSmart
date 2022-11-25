@@ -166,7 +166,7 @@ function DesktopAbout() {
         },
         { 
             question: "Would you like to contact us?",
-            content: "Email me one of our team members at mnanas@umd.edu"
+            content: "Email one of our team members at mnanas@umd.edu"
         }
     ];
 
@@ -214,7 +214,7 @@ function MobileAbout() {
         },
         { 
             question: "Would you like to contact us?",
-            content: "Email me one of our team members at mnanas@umd.edu"
+            content: "Email one of our team members at mnanas@umd.edu"
         }
     ];
 
