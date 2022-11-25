@@ -43,19 +43,23 @@ class Aldi {
             // Get item endpoint
             const response = await this.client.get(`https://www.instacart.com/graphql?operationName=SearchResultsPlacements&variables={"filters":[],"action":null,"query":"${item.replace(' ', '%20')}","pageViewId":"6eeaba7b-7828-527e-b3ee-9a31ca61e568","retailerInventorySessionToken":"v1.c237c9f.2865107139-20740-03898x17693-1-12-23435-0","elevatedProductId":null,"searchSource":"search","disableReformulation":false,"orderBy":"default","clusterId":null,"includeDebugInfo":false,"clusteringStrategy":null,"contentManagementSearchParams":{"itemGridColumnCount":2},"shopId":"11973"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"a6a067507df765e653439f50b15e819d665f53ccc9e4bfde78f53fe1f5233f5a"}}`, {
                 headers: {
-                    'sec-ch-device-memory': '8',
-                    'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-                    'sec-ch-ua-arch': '"arm"',
-                    'sec-ch-ua-full-version-list': '"Google Chrome";v="107.0.5304.110", "Chromium";v="107.0.5304.110", "Not=A?Brand";v="24.0.0.0"',
-                    'sec-ch-ua-mobile': '?0',
-                    'sec-ch-ua-platform': '"macOS"',
-                    'sec-fetch-dest': 'empty',
-                    'sec-fetch-mode': 'cors',
-                    'sec-fetch-site': 'same-origin',
+                    "accept-encoding": 'none',
+                    "accept-language": "en-US,en;q=0.9",
+                    "if-none-match": `W/"8dcbea38ce58276aeb29d097e7324f6d"`,
+                    "sec-ch-ua": `"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"`,
+                    "sec-ch-ua-mobile": "?0",
+                    "sec-fetch-dest": "document",
+                    "sec-fetch-mode": "navigate",
+                    "sec-fetch-site": "none",
+                    "sec-fetch-user": "?1",
+                    "upgrade-insecure-requests": "1",
+                    'sec-ch-ua-platform': "macOS",
                     'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
                     'cookie': `__Host-instacart_sid=v2.aac610c3.mxJCid2UWOOjNrNrEu0e3A3cf6tGi6rQePpFcNSWnK0;`
-                },
+                }
             });
+
+            console.log(response.data);
 
             // Check to see if any items exist
             if (response.data['data']['searchResultsPlacements']['placements'].length < 1) {
@@ -86,6 +90,7 @@ class Aldi {
             // Get price endpoint
             const response = await this.client.get(`https://www.instacart.com/graphql?operationName=ItemPricesQuery&variables={"ids":["${relevant['id']}"],"shopId":"11973","zoneId":"272","postalCode":"20740"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"6bc7919897d4104897f991ab9e6f544aa2157e60781606871bf236f30e50243f"}}`, {
                 headers: {
+                    "accept-encoding": 'none',
                     'sec-ch-device-memory': '8',
                     'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
                     'sec-ch-ua-arch': '"arm"',

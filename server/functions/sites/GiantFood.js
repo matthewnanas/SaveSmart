@@ -43,6 +43,7 @@ class GiantFood {
             // Get item endpoint
             const response = await this.client.get(`https://www.instacart.com/graphql?operationName=SearchResultsPlacements&variables={"filters":[],"action":null,"query":"${item.replace(' ', '%20')}","pageViewId":"0b1bc757-ca2a-554c-93a1-895bebc7dd82","retailerInventorySessionToken":"v1.d143ebf.2862331018-20902-03904x17703-1-159-3810-0","elevatedProductId":null,"searchSource":"search","disableReformulation":false,"orderBy":"default","clusterId":null,"includeDebugInfo":false,"clusteringStrategy":null,"contentManagementSearchParams":{"itemGridColumnCount":2},"shopId":"4192"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"a6a067507df765e653439f50b15e819d665f53ccc9e4bfde78f53fe1f5233f5a"}}`, {
                 headers: {
+                    "accept-encoding": 'none',
                     'sec-ch-device-memory': '8',
                     'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
                     'sec-ch-ua-arch': '"arm"',
@@ -86,6 +87,7 @@ class GiantFood {
             // Get price endpoint
             const response = await this.client.get(`https://www.instacart.com/graphql?operationName=ItemPricesQuery&variables={"ids":["${relevant['id']}"],"shopId":"4192","zoneId":"37","postalCode":"20902"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"6bc7919897d4104897f991ab9e6f544aa2157e60781606871bf236f30e50243f"}}`, {
                 headers: {
+                    "accept-encoding": 'none',
                     'sec-ch-device-memory': '8',
                     'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
                     'sec-ch-ua-arch': '"arm"',

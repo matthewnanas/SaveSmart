@@ -83,7 +83,8 @@ export default function Loading() {
         async function getLists() {
             for (var x = 0; x < api.length; x++) {
                 setStatus(`${api[x].storeName}`)
-                let response = await fetch(`https://us-central1-savesmart-369519.cloudfunctions.net/api/${api[x].endpoint}`, options);
+                //let response = await fetch(`https://us-central1-savesmart-369519.cloudfunctions.net/api/${api[x].endpoint}`, options);
+                let response = await fetch(`http://localhost:7777/${api[x].endpoint}`, options);
                 let parsed = await response.json();
 
                 let total = 0.0;
