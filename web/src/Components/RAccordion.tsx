@@ -78,6 +78,7 @@ export function DesktopRAccordion(props: {
                                     image: string | undefined,
                                     query: string,
                                     link: string | undefined,
+                                    quantity: number,
                                 }, i: any
                             ) => {
                                 return (
@@ -108,7 +109,11 @@ export function DesktopRAccordion(props: {
                                             }
                                         </td>
                                         <td>
-                                            1
+                                            {
+                                                item?.quantity? 
+                                                    <p>{item.quantity}</p>
+                                                : <p>1</p>
+                                            }
                                         </td>
                                         <td>
                                             {
@@ -199,6 +204,7 @@ export function MobileRAccordion(props: {
                                     image: string | undefined,
                                     query: string,
                                     link: string | undefined,
+                                    quantity: number,
                                 }, i: any
                             ) => {
                                 return (
@@ -229,7 +235,11 @@ export function MobileRAccordion(props: {
                                             }
                                         </td>
                                         <td className='accordionQuery'>
-                                            1
+                                            {
+                                                item?.quantity? 
+                                                    <p>{item.quantity}</p>
+                                                : <p>1</p>
+                                            }
                                         </td>
                                         <td>
                                             {

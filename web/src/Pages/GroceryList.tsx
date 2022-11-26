@@ -130,7 +130,7 @@ function DesktopList() {
                             ) => {
                                 return (
                                     <tr key={i}>
-                                        <td>{i}</td>
+                                        <td>{i + 1}</td>
                                         <td>{item.item}</td>
                                         <td>
                                             <input type='number' name='quantity' defaultValue={item.quantity} onChange={(e) => {

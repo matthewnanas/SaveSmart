@@ -27,6 +27,7 @@ class Safeway {
         // Search for item in items list
         for (let x = 0; x < this.items.length; x++) {
             const result = await this.getRelevant(this.items[x]['item']);
+            result.quantity = this.items[x]['quantity'];
             items.push(result);
         }
 
