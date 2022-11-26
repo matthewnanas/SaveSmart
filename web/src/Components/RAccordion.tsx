@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import Table from 'react-bootstrap/Table';
+import { Container, Row, Col, Table } from 'react-bootstrap';
 import { BsFillEyeFill, BsWallet, BsCaretDownFill, BsInfoLg } from 'react-icons/bs';
 
 import '../Static/Styles/RAccordion.css'
@@ -70,6 +69,7 @@ export function DesktopRAccordion(props: {
                     </div>
                 </Col>
             </Row>
+            
             <div className='raccordionBody' style={{ display: display }}>
                 <Table striped>
                     <thead>

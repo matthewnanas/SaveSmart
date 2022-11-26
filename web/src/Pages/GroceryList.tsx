@@ -4,14 +4,11 @@
  * This file will contain the frontend code to handle users creating their grocery list
  */
 
-
 import React from 'react';
 import Navigation from '../Components/Navigation';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Table from 'react-bootstrap/Table';
+import { Form, Button, Table } from 'react-bootstrap';
 import { BsTrashFill } from 'react-icons/bs';
 import '../Static/Styles/GroceryList.css'
 import Select from 'react-select';
