@@ -20,7 +20,6 @@ export default function Loading() {
         async function getLists() {
             for (var x = 0; x < JSON.parse(stores).length; x++) {
                 for (var y = 0; y < api.length; y++) {
-                    //console.log(JSON.parse(stores)[x]['label'] == api[y]['storeName']);
                     if (JSON.parse(stores)[x]['label'] === api[y]['storeName']) {
                         setStatus(`${api[y].storeName}`)
                         //let response = await fetch(`https://us-central1-savesmart-369519.cloudfunctions.net/api/${api[x].endpoint}`, options);

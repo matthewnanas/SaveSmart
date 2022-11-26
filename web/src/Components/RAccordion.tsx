@@ -19,17 +19,14 @@ export function DesktopRAccordion(props: {
 }) {
     const [opacity, setOpacity] = React.useState('0');
     const [display, setDisplay] = React.useState('none');
-    const [line, setLine] = React.useState('#ffff');
 
     const handleClick = () => {
         if(opacity === '0'){
             setOpacity('1')
             setDisplay('block')
-            setLine('gray')
         } else {
             setOpacity('0')
             setDisplay('none')
-            setLine('#ffff')
         }
     };
 
