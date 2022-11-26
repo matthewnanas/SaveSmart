@@ -93,6 +93,7 @@ function DesktopList() {
         } else if (selectedStores.length === 0) {
             alert("Select at least one store to compare!");
         } else {
+            localStorage.setItem("stores", JSON.stringify(selectedStores));
             localStorage.setItem("items", JSON.stringify(items));
             return navigate('/loading'); 
         }
@@ -176,6 +177,7 @@ function MobileList() {
     // Search state 
     const [search, setSearch] = React.useState("");
     const [items, setItems]: any[] = React.useState([]);
+    const [selectedStores, setSelectedStores]: any[] = React.useState([]);
     
     // Handle adding new items to the list
     const addItem = (e: React.FormEvent<HTMLFormElement>) => {
@@ -213,8 +215,15 @@ function MobileList() {
     // Begin comparing prices and navigate to loading screen
     const navigate = useNavigate();
     const navLoad = () => { 
-        localStorage.setItem("items", JSON.stringify(items));
-        return navigate('/loading'); 
+        if (items.length === 0) {
+            alert("Add at least one item to the list!");
+        } else if (selectedStores.length === 0) {
+            alert("Select at least one store to compare!");
+        } else {
+            localStorage.setItem("stores", JSON.stringify(selectedStores));
+            localStorage.setItem("items", JSON.stringify(items));
+            return navigate('/loading'); 
+        }
     }
 
     return (
@@ -223,6 +232,8 @@ function MobileList() {
                 <h1>My Search List</h1>
                 <div className='ListSearch'>
                     <Form onSubmit={(e) => addItem(e)}>
+                        <Select options={stores} isMulti={true} placeholder="Stores to compare" onChange={setSelectedStores} />
+                        <br />
                         <Form.Group className="mb-3" controlId='searchQuery'>
                             <Form.Control type="text" placeholder='Search for...' value={search} onChange={(e) => setSearch(e.target.value)} />
                         </Form.Group>

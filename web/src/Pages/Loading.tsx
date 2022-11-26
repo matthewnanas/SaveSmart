@@ -3,6 +3,7 @@ import React from 'react';
 import '../Static/Styles/Loading.css'
 import HashLoader from 'react-spinners/HashLoader'
 import { useNavigate } from 'react-router-dom';
+import { api } from '../Static/Constants';
 
 export default function Loading() {
     const [status, setStatus]: any = React.useState('Starting...');
@@ -11,7 +12,46 @@ export default function Loading() {
     const navigate = useNavigate();
     React.useEffect(() => {
         const items: any = localStorage.getItem("items");
+        const stores: any = localStorage.getItem("stores");
         let compiled: any = [];
+
+        console.log(stores);
+
+        async function getLists() {
+            for (var x = 0; x < JSON.parse(stores).length; x++) {
+                for (var y = 0; y < api.length; y++) {
+                    //console.log(JSON.parse(stores)[x]['label'] == api[y]['storeName']);
+                    if (JSON.parse(stores)[x]['label'] === api[y]['storeName']) {
+                        setStatus(`${api[y].storeName}`)
+                        //let response = await fetch(`https://us-central1-savesmart-369519.cloudfunctions.net/api/${api[x].endpoint}`, options);
+                        let response = await fetch(`http://localhost:7777/${api[y].endpoint}`, options);
+                        let parsed = await response.json();
+    
+                        let total = 0.0;
+                        for (let n = 0; n < parsed.length; n++) {
+                            try {
+                                for (let z = 0; z < items.length; z++) {
+                                    if (JSON.parse(items)[z]['item'] === parsed[n]['query']) {
+                                        total += parseFloat(parsed[n].price.split("$")[1].split(" ")[0]) * JSON.parse(items)[z]['quantity'];
+                                    }
+                                }
+                            } catch {}
+                        }
+    
+                        compiled.push({
+                            'name': api[y].storeName,
+                            'results': parsed,
+                            'logo': api[y].logo,
+                            'total': Math.trunc(total*100)/100,
+                            'catalog': api[y].catalog,
+                        })
+                    }
+                }
+            }
+
+            localStorage.setItem("results", JSON.stringify(compiled)); 
+            return navigate('/results');
+        }
 
         const options = {
             method: 'POST',
@@ -22,94 +62,6 @@ export default function Loading() {
                 list: JSON.parse(items), 
             })
         };
-
-        const api = [
-            {
-                endpoint: 'grab_aldi',
-                storeName: 'Aldi',
-                logo: 'https://corporate.aldi.us/fileadmin/fm-dam/logos/ALDI_2017.png',
-                catalog: 'https://www.aldi.us/en/weekly-specials/our-weekly-ads/',
-            },
-            {
-                endpoint: 'grab_costco',
-                storeName: 'Costco',
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Costco_Wholesale_logo_2010-10-26.svg/2560px-Costco_Wholesale_logo_2010-10-26.svg.png',
-                catalog: 'https://www.costco.com/CatalogSearch?keyword=OFF&dept=All&sortBy=item_page_views+desc',
-            },
-            {
-                endpoint: 'grab_giant',
-                storeName: 'Giant',
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Giant_Food_logo.svg/1200px-Giant_Food_logo.svg.png',
-                catalog: 'https://giantfood.com/savings/weekly-ad/grid-view',
-            },
-            {
-                endpoint: 'grab_lidl',
-                storeName: 'Lidl',
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/1/1d/Lidl_logo.png',
-                catalog: 'https://www.lidl.com/specials?category=all-current',
-            },
-            {
-                endpoint: 'grab_publix',
-                storeName: 'Publix',
-                logo: 'https://logos-world.net/wp-content/uploads/2021/10/Publix-Logo.png',
-                catalog: 'https://www.publix.com/savings/select-store?redirect=%2Fsavings%2Fweekly-ad%3Fnav%3Dsecondary_nav_weeklyad',
-            },
-            {
-                endpoint: 'grab_safeway',
-                storeName: 'Safeway',
-                logo: 'https://logos-world.net/wp-content/uploads/2022/01/Safeway-Logo.png',
-                catalog: 'https://coupons.safeway.com/weeklyad',
-            },
-            {
-                endpoint: 'grab_shoppers',
-                storeName: 'Shoppers',
-                logo: 'https://www.shoppersfood.com/content/svu-retail-banners/shoppers/en/_jcr_content/header/headerlogo.img.png/1509573214807.png',
-                catalog: 'https://www.shoppersfood.com/weekly-ads.html',
-            },
-            {
-                endpoint: 'grab_wegmans',
-                storeName: 'Wegmans',
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/WegmansLogo.svg/2560px-WegmansLogo.svg.png',
-                catalog: 'https://shop.wegmans.com/shop/coupons',
-            },
-            {
-                endpoint: 'grab_wholefoodsmarket',
-                storeName: 'Whole Foods Market',
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Whole_Foods_Market_logo.svg/2560px-Whole_Foods_Market_logo.svg.png',
-                catalog: 'https://www.wholefoodsmarket.com/sales-flyer'
-            },
-        ]
-
-        async function getLists() {
-            for (var x = 0; x < api.length; x++) {
-                setStatus(`${api[x].storeName}`)
-                //let response = await fetch(`https://us-central1-savesmart-369519.cloudfunctions.net/api/${api[x].endpoint}`, options);
-                let response = await fetch(`http://localhost:7777/${api[x].endpoint}`, options);
-                let parsed = await response.json();
-
-                let total = 0.0;
-                for (let y = 0; y < parsed.length; y++) {
-                    try {
-                        for (let z = 0; z < items.length; z++) {
-                            if (JSON.parse(items)[z]['item'] === parsed[y]['query']) {
-                                total += parseFloat(parsed[y].price.split("$")[1].split(" ")[0]) * JSON.parse(items)[z]['quantity'];
-                            }
-                        }
-                    } catch {}
-                }
-
-                compiled.push({
-                    'name': api[x].storeName,
-                    'results': parsed,
-                    'logo': api[x].logo,
-                    'total': Math.trunc(total*100)/100,
-                    'catalog': api[x].catalog,
-                })
-            }
-
-            localStorage.setItem("results", JSON.stringify(compiled)); 
-            return navigate('/results');
-        }
 
         if (compiled.length === 0) {
             getLists();
