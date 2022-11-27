@@ -61,8 +61,8 @@ export function DesktopRAccordion(props: {
             <Row>
                 <Col style={{whiteSpace: 'nowrap'}}>
                     <button className='ViewCatalog' onClick={() => window.open(props.catalog)}>
-                        <span>View Catalog &nbsp;</span>
                         <BsFillEyeFill />
+                        <span> &nbsp;View Catalog</span>
                     </button>
                 </Col>
                 <Col xs={5} style={{textAlign: 'left', whiteSpace: 'nowrap'}}>
