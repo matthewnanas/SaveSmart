@@ -10,7 +10,7 @@ import React from 'react';
 export const stores = [
     { value: 'aldi', label: 'Aldi' },
     { value: 'costco', label: 'Costco' },
-    { value: 'giantfood', label: 'GiantFood' },
+    { value: 'giantfood', label: 'Giant Food' },
     { value: 'lidl', label: 'Lidl' },
     { value: 'publix', label: 'Publix' },
     { value: 'safeway', label: 'Safeway' },
@@ -58,7 +58,7 @@ export const api = [
     },
     {
         endpoint: 'grab_giant',
-        storeName: 'Giant',
+        storeName: 'Giant Food',
         logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Giant_Food_logo.svg/1200px-Giant_Food_logo.svg.png',
         catalog: 'https://giantfood.com/savings/weekly-ad/grid-view',
     },
