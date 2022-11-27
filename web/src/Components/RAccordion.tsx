@@ -59,13 +59,13 @@ export function DesktopRAccordion(props: {
     return (
         <Container className='raccordionContainer'>
             <Row>
-                <Col>
+                <Col style={{whiteSpace: 'nowrap'}}>
                     <button className='ViewCatalog' onClick={() => window.open(props.catalog)}>
                         <span>View Catalog &nbsp;</span>
                         <BsFillEyeFill />
                     </button>
                 </Col>
-                <Col xs={5} style={{textAlign: 'left'}}>
+                <Col xs={5} style={{textAlign: 'left', whiteSpace: 'nowrap'}}>
                     <Row>
                         <div className='StoreColumn'>
                             <h6>Store</h6>
@@ -73,7 +73,7 @@ export function DesktopRAccordion(props: {
                         </div>
                     </Row>
                 </Col>
-                <Col>
+                <Col style={{whiteSpace: 'nowrap'}}>
                     <div className='TotalPrice'>
                         <BsWallet />
                         <span> &nbsp;Total Price: ${Math.trunc(total*100)/100}</span>
