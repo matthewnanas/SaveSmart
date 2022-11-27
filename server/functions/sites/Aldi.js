@@ -27,8 +27,11 @@ class Aldi {
         // Search for item in items list
         for (let x = 0; x < this.items.length; x++) {
             const result = await this.getRelevant(this.items[x]['item']);
-            result.quantity = this.items[x]['quantity'];
-            items.push(result);
+            items.push({
+                'query': this.items[x]['item'],
+                'quantity': this.items[x]['quantity'],
+                'items': result,
+            })
         }
 
         return items;
@@ -42,7 +45,7 @@ class Aldi {
     async getRelevant(item) {
         try {
             // Get item endpoint
-            const response = await this.client.get(`https://www.instacart.com/graphql?operationName=SearchResultsPlacements&variables={"filters":[],"action":null,"query":"${item.replace(' ', '%20')}","pageViewId":"6eeaba7b-7828-527e-b3ee-9a31ca61e568","retailerInventorySessionToken":"v1.c237c9f.2865107139-20740-03898x17693-1-12-23435-0","elevatedProductId":null,"searchSource":"search","disableReformulation":false,"orderBy":"default","clusterId":null,"includeDebugInfo":false,"clusteringStrategy":null,"contentManagementSearchParams":{"itemGridColumnCount":2},"shopId":"11973"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"a6a067507df765e653439f50b15e819d665f53ccc9e4bfde78f53fe1f5233f5a"}}`, {
+            const response = await this.client.get(`https://www.instacart.com/graphql?operationName=SearchResultsPlacements&variables={"filters":[],"action":null,"query":"${item.replace(' ', '%20')}","pageViewId":"6eeaba7b-7828-527e-b3ee-9a31ca61e568","retailerInventorySessionToken":"v1.c237c9f.2865107139-20740-03898x17693-1-12-23435-0","elevatedProductId":null,"searchSource":"search","disableReformulation":false,"orderBy":"default","clusterId":null,"includeDebugInfo":false,"clusteringStrategy":null,"contentManagementSearchParams":{"itemGridColumnCount":10},"shopId":"11973"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"a6a067507df765e653439f50b15e819d665f53ccc9e4bfde78f53fe1f5233f5a"}}`, {
                 headers: {
                     "accept-encoding": 'none',
                     "accept-language": "en-US,en;q=0.9",
@@ -60,18 +63,18 @@ class Aldi {
                 }
             });
 
-            console.log(response.data);
-
-            // Check to see if any items exist
-            if (response.data['data']['searchResultsPlacements']['placements'].length < 1) {
-                console.log('No items found');
-                return {
-                    'query': item,
-                };
-            } else {
-                const relevant = response.data['data']['searchResultsPlacements']['placements'][1]['content']['items'][0];
-                return this.getRelevantPrice(relevant, item);
+            let itemBodys = []
+            for (var x = 0; x < response.data['data']['searchResultsPlacements']['placements'].length; x++) {
+                if (response.data['data']['searchResultsPlacements']['placements'][x].content?.hasOwnProperty('itemIds')) {
+                    const itemIds = response.data['data']['searchResultsPlacements']['placements'][x]['content']['itemIds'];
+                    for (var n = 0; n < itemIds.length; n++) {
+                        itemBodys.push(response.data['data']['searchResultsPlacements']['placements'][x]['content']['items'][n]);
+                    }
+                    break;
+                }
             }
+
+            return this.getRelevantPrice(itemBodys, item);
         } catch (err) {
             console.log(err);
             console.log('Error sending instacart request');
@@ -81,50 +84,43 @@ class Aldi {
         }
     }
 
-    /**
-     * Function getRelevantPrice
-     * 
-     * Use instacart endpoint to get the price of the most relevant price
-     */
-    async getRelevantPrice(relevant, itemName) {
+    async getRelevantPrice(itemBodies, itemName) {
+        let itemResult = [];
         try {
-            // Get price endpoint
-            const response = await this.client.get(`https://www.instacart.com/graphql?operationName=ItemPricesQuery&variables={"ids":["${relevant['id']}"],"shopId":"11973","zoneId":"272","postalCode":"20740"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"6bc7919897d4104897f991ab9e6f544aa2157e60781606871bf236f30e50243f"}}`, {
-                headers: {
-                    "accept-encoding": 'none',
-                    'sec-ch-device-memory': '8',
-                    'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
-                    'sec-ch-ua-arch': '"arm"',
-                    'sec-ch-ua-full-version-list': '"Google Chrome";v="107.0.5304.110", "Chromium";v="107.0.5304.110", "Not=A?Brand";v="24.0.0.0"',
-                    'sec-ch-ua-mobile': '?0',
-                    'sec-ch-ua-platform': '"macOS"',
-                    'sec-fetch-dest': 'empty',
-                    'sec-fetch-mode': 'cors',
-                    'sec-fetch-site': 'same-origin',
-                    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
-                    'cookie': `__Host-instacart_sid=v2.aac610c3.mxJCid2UWOOjNrNrEu0e3A3cf6tGi6rQePpFcNSWnK0;`
-                },
-            });
+            for (var x = 0; itemBodies.length; x++) {
+                const response = await this.client.get(`https://www.instacart.com/graphql?operationName=ItemPricesQuery&variables={"ids":["${itemBodies[x]['id']}"],"shopId":"11973","zoneId":"272","postalCode":"20740"}&extensions={"persistedQuery":{"version":1,"sha256Hash":"6bc7919897d4104897f991ab9e6f544aa2157e60781606871bf236f30e50243f"}}`, {
+                    headers: {
+                        "accept-encoding": 'none',
+                        'sec-ch-device-memory': '8',
+                        'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+                        'sec-ch-ua-arch': '"arm"',
+                        'sec-ch-ua-full-version-list': '"Google Chrome";v="107.0.5304.110", "Chromium";v="107.0.5304.110", "Not=A?Brand";v="24.0.0.0"',
+                        'sec-ch-ua-mobile': '?0',
+                        'sec-ch-ua-platform': '"macOS"',
+                        'sec-fetch-dest': 'empty',
+                        'sec-fetch-mode': 'cors',
+                        'sec-fetch-site': 'same-origin',
+                        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+                        'cookie': `__Host-instacart_sid=v2.aac610c3.mxJCid2UWOOjNrNrEu0e3A3cf6tGi6rQePpFcNSWnK0;`
+                    },
+                });
 
-            const item = {
-                'product_name': relevant.name,
-                'product_size': relevant.size,
-                'brand': relevant.brandName,
-                'price': response.data['data']['itemPrices'][0]['viewSection']['itemDetails']['priceString'],
-                'unit_price': response.data['data']['itemPrices'][0]['viewSection']['itemDetails']['pricePerUnitString'],
-                'image': relevant['viewSection']['itemImage']['url'],
-                'query': itemName,
-                'link': `https://www.instacart.com/store/aldi/products/${relevant['id'].split('-')[1]}`
+                itemResult.push({
+                    'product_name': itemBodies[x].name,
+                    'product_size': itemBodies[x].size,
+                    'brand': itemBodies[x].brandName,
+                    'price': response.data['data']['itemPrices'][0]['viewSection']['itemDetails']['priceString'],
+                    'unit_price': response.data['data']['itemPrices'][0]['viewSection']['itemDetails']['pricePerUnitString'],
+                    'image': itemBodies[x]['viewSection']['itemImage']['url'],
+                    'query': itemName,
+                    'link': `https://www.instacart.com/store/aldi/products/${itemBodies[x]['id'].split('-')[1]}`
+                })
             }
-
-            return item;
         } catch (err) {
             console.log(err);
             console.log('Error sending price request');
-            return {
-                'query': item,
-            };
         }
+        return itemResult;
     }
 }
 

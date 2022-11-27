@@ -27,7 +27,7 @@ export default function Loading() {
                         let parsed = await response.json();
     
                         let total = 0.0;
-                        for (let n = 0; n < parsed.length; n++) {
+                        /*for (let n = 0; n < parsed.length; n++) {
                             try {
                                 for (let z = 0; z < items.length; z++) {
                                     if (JSON.parse(items)[z]['item'] === parsed[n]['query']) {
@@ -35,7 +35,7 @@ export default function Loading() {
                                     }
                                 }
                             } catch {}
-                        }
+                        }*/
     
                         compiled.push({
                             'name': api[y].storeName,
