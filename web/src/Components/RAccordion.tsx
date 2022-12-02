@@ -199,23 +199,38 @@ export function MobileRAccordion(props: {
 }) {
     const [opacity, setOpacity] = React.useState('0');
     const [display, setDisplay] = React.useState('none');
-    const [line, setLine] = React.useState('#ffff');
+    const [total, setTotal] = React.useState(0.0);
 
     const handleClick = () => {
         if(opacity === '0'){
             setOpacity('1')
             setDisplay('block')
-            setLine('gray')
         } else {
             setOpacity('0')
             setDisplay('none')
-            setLine('#ffff')
         }
     };
 
+    // Calculate the total
     useEffect(() => {
-        console.log(props.result)
-    }, [])
+        let sum = 0.0
+        for (var x = 0; x < props.result.length; x++) {
+            sum += parseFloat(props.result[x].items[0].price.split("$")[1].split(" ")[0]) * props.result[x]['quantity'];
+        }
+        setTotal(sum);
+    }, []);
+
+    // Calculate new total on item change
+    const editTotal = (query: string, previousIndex: number, newIndex: number) => {
+        let sum = total;
+        for (var x = 0; x < props.result.length; x++) {
+            if (props.result[x].query === query) {
+                sum -= parseFloat(props.result[x].items[previousIndex].price.split("$")[1].split(" ")[0]) * props.result[x]['quantity'];
+                sum += parseFloat(props.result[x].items[newIndex].price.split("$")[1].split(" ")[0]) * props.result[x]['quantity'];
+            }
+        }
+        setTotal(sum);
+    }
 
     return (
         <div className='raccordionContainerMobile'>
@@ -231,7 +246,7 @@ export function MobileRAccordion(props: {
                     <h3>{props.estTotal}</h3>
                 </div>
             </div>
-            <hr style={{ color: line }}/>
+            <hr />
             <div className='raccordionBody' style={{ display: display }}>
                 <Table striped>
                     <thead>
