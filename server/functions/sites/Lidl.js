@@ -27,8 +27,11 @@ class Lidl {
         // Search for item in items list
         for (let x = 0; x < this.items.length; x++) {
             const result = await this.getRelevant(this.items[x]['item']);
-            result.quantity = this.items[x]['quantity'];
-            items.push(result);
+            items.push({
+                'query': this.items[x]['item'],
+                'quantity': this.items[x]['quantity'],
+                'items': result,
+            })
         }
 
         return items;
@@ -61,18 +64,24 @@ class Lidl {
                     'query': item,
                 };
             } else {
-                const relevant = {
-                    'product_name': response.data['results'][0]['name'],
-                    'product_size': response.data['results'][0]['description'],
-                    'brand': response.data['results'][0]['name'],
-                    'price': `$${response.data['results'][0]['price']['currentPrice']['value']}`,
-                    'unit_price': response.data['results'][0]['price']['basePrice'],
-                    'image': response.data['results'][0].images?.[0]['url'],
-                    'query': item,
-                    'link': `https://www.lidl.com/products/${response.data['results'][0]['id']}`
+                let itemResult = [];
+
+                for (var x = 0; x < response.data['results'].length; x++) {
+                    const relevant = {
+                        'product_name': response.data['results'][x]['name'],
+                        'product_size': response.data['results'][x]['description'],
+                        'brand': response.data['results'][x]['name'],
+                        'price': `$${response.data['results'][x]['price']['currentPrice']['value']}`,
+                        'unit_price': response.data['results'][x]['price']['basePrice'],
+                        'image': response.data['results'][x].images?.[0]['url'],
+                        'query': item,
+                        'link': `https://www.lidl.com/products/${response.data['results'][x]['id']}`
+                    }
+
+                    itemResult.push(relevant);
                 }
                 
-                return relevant;
+                return itemResult;
             }
         } catch (err) {
             console.log(err);
