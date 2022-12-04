@@ -25,24 +25,76 @@
 
 .UtilButton {
     background-color: #eaf0f6;
-    width: 50px;
-    padding: 10px 0px 10px 0px;
-    border-radius: 70px;
+    padding: 0.5em 0.6em;
+    border-radius: 50%;
     color: #5a698b;
     border: none;
     margin: 15px 15px 15px 0px;
-    float: left;
+    display: inline-block;
 }
 
 .UtilButton:Hover {
     background-color: #d3dae1;
-    width: 50px;
-    padding: 10px 0px 10px 0px;
-    border-radius: 70px;
+    padding: 0.5em 0.6em;
+    border-radius: 50%;
     color: #5a698b;
     border: none;
     margin: 15px 15px 15px 0px;
-    float: left;
+    display: inline-block;
+}
+
+.UtilButtonMobile {
+    display: inline-block;
+    padding: 0.5em 0.6em;
+    border-radius: 50%;
+    color: #5a698b;
+    border: none;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 2px solid;
+    border-color: #cdcdcd;
+    color: var(--primary-blue);
+}
+
+.UtilButtonMobile:hover {
+    display: inline-block;
+    padding: 0.5em 0.6em;
+    border-radius: 50%;
+    color: #5a698b;
+    border: none;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 2px solid;
+    border-color: #5f5f5f;
+    background-color: var(--hover-blue);
+}
+
+.ViewMobile {
+    display: inline-block;
+    padding: 0.5em 0.6em;
+    border-radius: 50px;
+    color: #fff;
+    border: none;
+    background-color: var(--primary-blue);
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+
+.ViewMobile:Hover {
+    display: inline-block;
+    padding: 0.5em 0.6em;
+    border-radius: 50px;
+    color: #fff;
+    border: none;
+    background-color: var(--hover-blue);
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
 }
 
 .TotalPrice {
@@ -76,7 +128,16 @@
     box-shadow: 0px 4px 15px var(--box-shadow-color);
     width: 95%;
     height: auto;
-    border-radius: 10px;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 25px;
+}
+
+.raccordionContainerMobile h6 h3 {
+    box-shadow: 0px 4px 15px var(--box-shadow-color);
+    width: 95%;
+    height: auto;
+    border-radius: 5px;
     margin: auto;
     margin-top: 25px;
 }
