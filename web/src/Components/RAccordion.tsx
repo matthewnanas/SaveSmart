@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import { Container, Row, Col, Table } from 'react-bootstrap';
+import { Container, Row, Col, Table, Card } from 'react-bootstrap';
 import { BsFillEyeFill, BsWallet, BsCaretDownFill, BsInfoLg } from 'react-icons/bs';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from "swiper";
@@ -105,7 +105,7 @@ export function DesktopRAccordion(props: {
                 </Table>
 
                 {
-                    (props.result || [] ).map((
+                    (props.result || []).map((
                         item: {
                             items: any[],
                             query: string,
@@ -213,12 +213,14 @@ export function MobileRAccordion(props: {
             setDisplay('none')
         }
     };
-
+    
     // Calculate the total
     useEffect(() => {
         let sum = 0.0
         for (var x = 0; x < props.result.length; x++) {
-            sum += parseFloat(props.result[x].items[0].price.split("$")[1].split(" ")[0]) * props.result[x]['quantity'];
+            try {
+                sum += parseFloat(props.result[x].items[0].price.split("$")[1].split(" ")[0]) * props.result[x]['quantity'];
+            } catch {}
         }
         setTotal(sum);
     }, []);
@@ -263,7 +265,7 @@ export function MobileRAccordion(props: {
                     </thead>
                     <tbody>
                         {
-                            props.result.map((
+                            (props.result || []).map((
                                 item: {
                                     product_name: string | null,
                                     product_size: string | null,
