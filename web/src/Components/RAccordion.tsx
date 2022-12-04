@@ -258,7 +258,7 @@ export function MobileRAccordion(props: {
             <div>
                 <Row style={{paddingTop: '10px', paddingBottom: '10px'}}>
                     <Col style={{display: 'flex', marginLeft: '10px'}}>
-                        <img src={props.logo} width={50} alt='Store'/>
+                        <img src={props.logo} alt='Store' className='MobileStoreLogo' />
                         <div style={{marginLeft: '15px'}}>
                             <h6>Store</h6>
                             <a href={props.catalog} target="_blank" rel="noreferrer">

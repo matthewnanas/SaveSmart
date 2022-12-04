@@ -70,6 +70,17 @@
     color: var(--hover-blue);
 }
 
+.MobileStoreLogo {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 70px;
+    height: auto;
+    width: auto;
+    display: block;
+    max-height: 50px;
+}
+
 .ViewMobile {
     display: inline-block;
     padding: 0.5em 0.6em;
