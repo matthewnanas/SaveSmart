@@ -58,6 +58,14 @@ export function DesktopRAccordion(props: {
         setTotal(sum);
     }
 
+    const showInfo = () => {
+        if (props.name === 'Costco') {
+            alert('Do note that prices are only an estimate and may vary depending on store and location.\n\nCOSTCO REQUIRES A MEMBERSHIP TO SHOP');
+        } else {
+            alert('Do note that prices are only an estimate and may vary depending on store and location.');
+        }
+    }
+
     return (
         <Container className='raccordionContainer'>
             <Row>
@@ -85,7 +93,7 @@ export function DesktopRAccordion(props: {
                     <button className='UtilButton' onClick={handleClick}>
                         <BsCaretDownFill />
                     </button>
-                    <div className='UtilButton'>
+                    <div className='UtilButton' onClick={showInfo}>
                         <BsInfoLg />
                     </div>
                 </Col>
@@ -237,6 +245,14 @@ export function MobileRAccordion(props: {
         setTotal(sum);
     }
 
+    const showInfo = () => {
+        if (props.name === 'Costco') {
+            alert('Do note that prices are only an estimate and may vary depending on store and location.\n\nCOSTCO REQUIRES A MEMBERSHIP TO SHOP');
+        } else {
+            alert('Do note that prices are only an estimate and may vary depending on store and location.');
+        }
+    }
+
     return (
         <Container className='raccordionContainerMobile'>
             <div>
@@ -252,7 +268,7 @@ export function MobileRAccordion(props: {
                     </Col>
                     <Col />
                     <Col>
-                        <div className='UtilButtonMobile'>
+                        <div className='UtilButtonMobile' onClick={showInfo}>
                             <BsInfoLg />
                         </div>
                     </Col>
