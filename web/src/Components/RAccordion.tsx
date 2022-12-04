@@ -100,17 +100,25 @@ export function DesktopRAccordion(props: {
             </Row>
             
             <div className='raccordionBody' style={{ display: display }}>
-                <Table striped>
-                    <thead>
-                        <tr>
-                            <th>Search Term</th>
-                            <th>Image</th>
-                            <th>Store Item</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                </Table>
+                <Row className='ItemSlide' style={{fontWeight: 'bold'}}>
+                    <Col style={{textAlign: 'right'}}>
+                        <span>Search</span>
+                    </Col>
+                    <Col style={{textAlign: 'right'}}>
+                        <span>Image</span>
+                    </Col>
+                    <Col xs={6}>
+                        <span>Item</span>
+                    </Col>
+                    <Col>
+                        <span>Quantity</span>
+                    </Col>
+                    <Col>
+                        <span>Price</span>
+                    </Col>
+                    <Col />
+                    <hr />
+                </Row>
 
                 {
                     (props.result || []).map((
