@@ -20,20 +20,11 @@ export default function Loading() {
                 for (var y = 0; y < api.length; y++) {
                     if (JSON.parse(stores)[x]['label'] === api[y]['storeName']) {
                         setStatus(`${api[y].storeName}`)
-                        //let response = await fetch(`https://us-central1-savesmart-369519.cloudfunctions.net/api/${api[x].endpoint}`, options);
-                        let response = await fetch(`http://localhost:7777/${api[y].endpoint}`, options);
+                        let response = await fetch(`https://us-central1-savesmart-369519.cloudfunctions.net/api/${api[y].endpoint}`, options);
+                        //let response = await fetch(`http://192.168.1.160:7777/${api[y].endpoint}`, options);
                         let parsed = await response.json();
     
                         let total = 0.0;
-                        /*for (let n = 0; n < parsed.length; n++) {
-                            try {
-                                for (let z = 0; z < items.length; z++) {
-                                    if (JSON.parse(items)[z]['item'] === parsed[n]['query']) {
-                                        total += parseFloat(parsed[n].price.split("$")[1].split(" ")[0]) * JSON.parse(items)[z]['quantity'];
-                                    }
-                                }
-                            } catch {}
-                        }*/
     
                         compiled.push({
                             'name': api[y].storeName,

@@ -29,3 +29,5 @@ server/package-lock.json
 
 # DSStore file
 .DS_Store
+# Local Netlify folder
+.netlify

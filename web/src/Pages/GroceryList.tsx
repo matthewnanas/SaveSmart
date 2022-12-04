@@ -59,8 +59,6 @@ function DesktopList() {
                 'quantity': 1,
             }]);
             setSearch("");
-            console.log(items);
-            console.log(selectedStores);
         }
     }
 

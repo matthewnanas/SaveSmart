@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import { Container, Row, Col, Table, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { BsFillEyeFill, BsWallet, BsCaretDownFill, BsInfoLg } from 'react-icons/bs';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from "swiper";
