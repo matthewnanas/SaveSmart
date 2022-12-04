@@ -15,8 +15,6 @@ export default function Loading() {
         const stores: any = localStorage.getItem("stores");
         let compiled: any = [];
 
-        console.log(stores);
-
         async function getLists() {
             for (var x = 0; x < JSON.parse(stores).length; x++) {
                 for (var y = 0; y < api.length; y++) {

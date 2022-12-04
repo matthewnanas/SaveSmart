@@ -39,7 +39,9 @@ export function DesktopRAccordion(props: {
     useEffect(() => {
         let sum = 0.0
         for (var x = 0; x < props.result.length; x++) {
-            sum += parseFloat(props.result[x].items[0].price.split("$")[1].split(" ")[0]) * props.result[x]['quantity'];
+            try {
+                sum += parseFloat(props.result[x].items[0].price.split("$")[1].split(" ")[0]) * props.result[x]['quantity'];
+            } catch {}
         }
         setTotal(sum);
     }, []);
@@ -103,7 +105,7 @@ export function DesktopRAccordion(props: {
                 </Table>
 
                 {
-                    props.result.map((
+                    (props.result || [] ).map((
                         item: {
                             items: any[],
                             query: string,
@@ -115,9 +117,10 @@ export function DesktopRAccordion(props: {
                                 navigation
                                 modules={[Navigation]}
                                 onSlideChange={index => editTotal(item.query, index.previousIndex, index.activeIndex)}
+                                key={i}
                             >
                                 {
-                                    item.items.map((
+                                    (item.items || []).map((
                                         product: {
                                             brand: string | null,
                                             image: string | null,
