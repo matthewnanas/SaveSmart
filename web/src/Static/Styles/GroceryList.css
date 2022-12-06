@@ -46,3 +46,13 @@
     text-align: center;
     border: none;
 }
+
+.SearchSuggestionContainer {
+    background-color: #fff;
+    z-index: 1;
+    position: absolute;
+    text-align: left;
+    margin-top: 10px;
+    padding-top: 10px;
+    align-self: right;
+}
