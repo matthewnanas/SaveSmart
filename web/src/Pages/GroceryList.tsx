@@ -119,11 +119,11 @@ function DesktopList() {
             <div className='ListHeading'>
                 <h1>My Search List</h1>
                 <div className='ListSearch'>
-                    <Form onSubmit={(e) => addItem(e)}>
+                    <Form onSubmit={(e) => addItem(e)} autoComplete="off">
                         <Select options={stores} isMulti={true} placeholder="Stores to compare" onChange={setSelectedStores} />
                         <br />
                         <Form.Group className="mb-3" controlId='searchQuery' style={{height: 40}}>
-                            <Form.Control type="text" placeholder='Search for...' value={search} onChange={handleSearchChange} />
+                            <Form.Control type="text" placeholder='Search for...' value={search} onChange={handleSearchChange} autoComplete='off' />
                             { searchSuggestions.length !== 0 && <div className='SearchSuggestionContainer'>
                                 <ul>
                                     {searchSuggestions.map((suggestion: any, i: any) => (
