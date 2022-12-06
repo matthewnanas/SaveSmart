@@ -8,7 +8,7 @@ import React from 'react';
 import Navigation from '../Components/Navigation';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
-import { Form, Button, Table } from 'react-bootstrap';
+import { Form, Button, Table, InputGroup } from 'react-bootstrap';
 import { BsTrashFill, BsSearch } from 'react-icons/bs';
 import '../Static/Styles/GroceryList.css'
 import Select from 'react-select';
@@ -258,13 +258,13 @@ function MobileList() {
                     <Form onSubmit={(e) => addItem(e)}>
                         <Select options={stores} isMulti={true} placeholder="Stores to compare" onChange={setSelectedStores} />
                         <br />
-                        <Form.Group className="mb-3" controlId='searchQuery'>
+                        <InputGroup className="mb-3">
                             <Form.Control type="text" placeholder='Search for...' value={search} onChange={(e) => setSearch(e.target.value)} />
-                        </Form.Group>
-                        <Button className='SubmitButton' variant='primary' type='submit'>
-                            Add Item
-                        </Button>
-                        <Button className='SubmitButton' variant='primary' style={{marginLeft: 5}} onClick={() => navLoad()}>
+                            <Button className='SubmitButton' variant='primary' type='submit'>
+                                Add Item
+                            </Button>
+                        </InputGroup>
+                        <Button className='SubmitButtonMobile' variant='primary' style={{marginLeft: 5}} onClick={() => navLoad()}>
                             Compare Stores
                         </Button>
                     </Form>
