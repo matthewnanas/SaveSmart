@@ -17,6 +17,7 @@
     background-color: var(--primary-blue) !important;
     border: none;
     font-weight: bold;
+    z-index: 0 !important;
 }
 
 .SubmitButtonMobile {

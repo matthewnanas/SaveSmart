@@ -202,9 +202,29 @@ function MobileList() {
     const [search, setSearch] = React.useState("");
     const [items, setItems]: any[] = React.useState([]);
     const [selectedStores, setSelectedStores]: any[] = React.useState([]);
+    const [searchSuggestions, setSearchSuggestions]: any = React.useState([]);
+
+    // Handle search suggestions
+    const handleSearchChange = (e: any) => {
+        const value = e.target.value;
+        setSearch(value);
+        if (value === "") {
+            setSearchSuggestions([]);
+        } else {
+            setSearchSuggestions(
+                foodlist.filter(item => item.toUpperCase().startsWith(value.toUpperCase())).slice(0, 5)
+            );
+        }        
+    };
+
+    const handleSearchSuggestionClick = (e: any) => {
+        setSearch(e.target.innerText);
+        setSearchSuggestions([]);
+    };
     
     // Handle adding new items to the list
     const addItem = (e: React.FormEvent<HTMLFormElement>) => {
+        setSearchSuggestions([]);
         if (search === '') {
             alert('Please enter a valid item name!');
             setSearch("");
@@ -259,7 +279,16 @@ function MobileList() {
                         <Select options={stores} isMulti={true} placeholder="Stores to compare" onChange={setSelectedStores} />
                         <br />
                         <InputGroup className="mb-3">
-                            <Form.Control type="text" placeholder='Search for...' value={search} onChange={(e) => setSearch(e.target.value)} />
+                            <Form.Control type="text" placeholder='Search for...' value={search} onChange={handleSearchChange} />
+                            { searchSuggestions.length !== 0 && <div className='SearchSuggestionContainer'>
+                                <ul>
+                                    {searchSuggestions.map((suggestion: any, i: any) => (
+                                        <p key={i}>
+                                            <BsSearch />  &nbsp; <span onClick={handleSearchSuggestionClick}>{suggestion}</span> &nbsp; 
+                                        </p>
+                                    ))}
+                                </ul>
+                            </div> }
                             <Button className='SubmitButton' variant='primary' type='submit'>
                                 Add Item
                             </Button>
