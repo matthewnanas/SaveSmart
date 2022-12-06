@@ -15,16 +15,19 @@ export function DesktopAccordion(props: {
     const [ opacity, setOpacity ] = useState('0')
     const [ dropIcon, setDrop ] = useState('rotate(180deg)')
     const [ answerPosition, setPosition ] = useState('-10px')
+    const [ textSize, setTextSize ] = useState('0px');
 
     const handleClick = () => {
         if(opacity === '0'){
             setPosition('0px')
             setDrop('rotate(1turn) translateY(-5px)')
             setOpacity('1')
+            setTextSize('18px')
         } else {
             setPosition('-10px')
             setDrop('rotate(.5turn) translateY(5px)')
             setOpacity('0')
+            setTextSize('0px')
         }
     }
 
@@ -33,7 +36,7 @@ export function DesktopAccordion(props: {
             <button className='accordionButton' onClick={handleClick}>
                 {props.question}<h2 className='accordionTitle' style={{ transform: dropIcon }}><MdExpandLess/></h2>
             </button>
-            <p className='accordionAnswer' style={{ opacity: opacity, marginTop: answerPosition }}>{props.answer}</p>
+            <p className='accordionAnswer' style={{ opacity: opacity, marginTop: answerPosition, fontSize: textSize }}>{props.answer}</p>
         </div>
     )
 }
@@ -50,16 +53,19 @@ export function MobileAccordion(props: {
     const [ opacity, setOpacity ] = useState('0')
     const [ dropIcon, setDrop ] = useState('rotate(180deg)')
     const [ answerPosition, setPosition ] = useState('-10px')
+    const [ textSize, setTextSize ] = useState('0px');
 
     const handleClick = () => {
         if(opacity === '0'){
             setPosition('0px')
             setDrop('rotate(1turn) translateY(-5px)')
             setOpacity('1')
+            setTextSize('18px')
         } else {
             setPosition('-10px')
             setDrop('rotate(.5turn) translateY(5px)')
             setOpacity('0')
+            setTextSize('0px')
         }
     }
 
@@ -68,7 +74,7 @@ export function MobileAccordion(props: {
             <button className='accordionButtonMobile' onClick={handleClick}>
                 {props.question}<h2 className='accordionTitle' style={{ transform: dropIcon }}><MdExpandLess/></h2>
             </button>
-            <p className='accordionAnswer' style={{ opacity: opacity, marginTop: answerPosition }}>{props.answer}</p>
+            <p className='accordionAnswer' style={{ opacity: opacity, marginTop: answerPosition, fontSize: textSize }}>{props.answer}</p>
         </div>
     )
 }
