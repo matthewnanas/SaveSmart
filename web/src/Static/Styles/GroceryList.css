@@ -39,7 +39,8 @@
 }
 
 .EditButton {
-    padding: 5px;
+    padding: 0.5em 0.6em;
+    border-radius: 50%;
     width: 50px;
     color: white;
     border-radius: 100px;
@@ -49,7 +50,8 @@
 }
 
 .EditButton:hover {
-    padding: 5px;
+    padding: 0.5em 0.6em;
+    border-radius: 50%;
     width: 50px;
     color: white;
     border-radius: 100px;
