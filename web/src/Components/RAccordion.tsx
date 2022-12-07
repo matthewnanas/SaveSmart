@@ -107,14 +107,17 @@ export function DesktopRAccordion(props: {
                     <Col style={{textAlign: 'right'}}>
                         <span>Image</span>
                     </Col>
-                    <Col xs={6}>
+                    <Col xs={5}>
                         <span>Item</span>
                     </Col>
                     <Col>
-                        <span>Quantity</span>
+                        <span>Unit Price</span>
                     </Col>
                     <Col>
                         <span>Price</span>
+                    </Col>
+                    <Col>
+                        <span>Quantity</span>
                     </Col>
                     <Col />
                     <hr />
@@ -165,7 +168,7 @@ export function DesktopRAccordion(props: {
                                                             : <>N/A</>
                                                         }
                                                     </Col>
-                                                    <Col xs={6}>
+                                                    <Col xs={5}>
                                                         {
                                                             product?.link? 
                                                                 <a href={product.link} target="_blank" rel="noreferrer">
@@ -176,9 +179,9 @@ export function DesktopRAccordion(props: {
                                                     </Col>
                                                     <Col>
                                                         {
-                                                            item?.quantity? 
-                                                                <p>{item.quantity}</p>
-                                                            : <p>1</p>
+                                                            product?.unit_price? 
+                                                                <p>{product.unit_price}</p>
+                                                            : <p>N/A</p>
                                                         }
                                                     </Col>
                                                     <Col>
@@ -186,6 +189,13 @@ export function DesktopRAccordion(props: {
                                                             product?.price? 
                                                                 <p>{product?.price}</p>
                                                             : <>$0.00</>
+                                                        }
+                                                    </Col>
+                                                    <Col>
+                                                        {
+                                                            item?.quantity? 
+                                                                <p>{item.quantity}</p>
+                                                            : <p>1</p>
                                                         }
                                                     </Col>
                                                     <Col />
@@ -344,9 +354,17 @@ export function MobileRAccordion(props: {
                                                                 : <Card.Subtitle>$0.00</Card.Subtitle>
                                                             }
                                                             {
-                                                                item?.quantity? 
-                                                                    <Card.Text>Quantity: {item.quantity}</Card.Text>
-                                                                : <Card.Text>1</Card.Text>
+                                                                product?.unit_price? 
+                                                                    <Card.Text>
+                                                                        Unit Price: {product.unit_price}
+                                                                        <br />
+                                                                        {
+                                                                            item?.quantity? 
+                                                                                <span>Quantity: {item.quantity}</span>
+                                                                            : <span>1</span>
+                                                                        }
+                                                                    </Card.Text>
+                                                                : <p>N/A</p>
                                                             }
                                                         </Card.Body>
                                                     </Card>
