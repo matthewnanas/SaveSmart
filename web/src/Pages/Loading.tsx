@@ -16,26 +16,28 @@ export default function Loading() {
         let compiled: any = [];
 
         async function getLists() {
-            for (var x = 0; x < JSON.parse(stores).length; x++) {
-                for (var y = 0; y < api.length; y++) {
-                    if (JSON.parse(stores)[x]['label'] === api[y]['storeName']) {
-                        setStatus(`${api[y].storeName}`)
-                        let response = await fetch(`https://us-central1-savesmart-369519.cloudfunctions.net/api/${api[y].endpoint}`, options);
-                        //let response = await fetch(`http://192.168.1.160:7777/${api[y].endpoint}`, options);
-                        let parsed = await response.json();
-    
-                        let total = 0.0;
-    
-                        compiled.push({
-                            'name': api[y].storeName,
-                            'results': parsed,
-                            'logo': api[y].logo,
-                            'total': Math.trunc(total*100)/100,
-                            'catalog': api[y].catalog,
-                        })
-                    }
-                }
-            }
+            await Promise.all(
+                JSON.parse(stores).map(async (store: { [x: string]: string; }) => {
+                    for (var y = 0; y < api.length; y++) {
+                        if (store['label'] === api[y]['storeName']) {
+                            setStatus(`${api[y].storeName}`)
+                            let response = await fetch(`https://us-central1-savesmart-369519.cloudfunctions.net/api/${api[y].endpoint}`, options);
+                            //let response = await fetch(`http://192.168.1.160:7777/${api[y].endpoint}`, options);
+                            let parsed = await response.json();
+        
+                            let total = 0.0;
+        
+                            compiled.push({
+                                'name': api[y].storeName,
+                                'results': parsed,
+                                'logo': api[y].logo,
+                                'total': Math.trunc(total*100)/100,
+                                'catalog': api[y].catalog,
+                            })
+                        }
+                    }// Send request for each id
+                })
+            );
 
             localStorage.setItem("results", JSON.stringify(compiled)); 
             return navigate('/results');
