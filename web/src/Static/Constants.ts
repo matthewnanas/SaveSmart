@@ -37,7 +37,7 @@ export const content = [
     },
     { 
         question: "Would you like to contact us?",
-        content: "Email one of our team members at mnanas@umd.edu"
+        content: "You can reach out at dmvsavesmart@gmail.com"
     }
 ];
 
