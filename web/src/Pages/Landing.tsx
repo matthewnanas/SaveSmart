@@ -39,6 +39,7 @@ export default function Landing() {
                     <DesktopHeading /> 
                     <DesktopSteps />
                     <DesktopAbout />
+                    <Footer />
                 </div>
             }
             { isMobile && 
@@ -46,8 +47,22 @@ export default function Landing() {
                     <MobileHeading />
                     <MobileSteps />
                     <MobileAbout />
+                    <Footer />
                 </div>
             }
+        </div>
+    )
+}
+
+/**
+ * @function Footer
+ * 
+ * @return footer with names
+ */
+function Footer() {
+    return (
+        <div className='Footer'>
+            <p>Created by Adam Lederer, Alioune Sambe, Matthew Nanas, Sadou Sow, and Umi Vilbig.</p>
         </div>
     )
 }
