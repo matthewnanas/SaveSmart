@@ -7,6 +7,10 @@
     font-family: Inter-Bold;
     margin: 5px 50px 0px 50px;
     border-bottom: 1px solid var(--gray);
+    -webkit-user-select: none;         
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
 }
 
 .StartButton {
