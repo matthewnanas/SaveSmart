@@ -69,8 +69,8 @@ function DesktopList() {
     // Handle adding new items to the list
     const addItem = (e: React.FormEvent<HTMLFormElement>) => {
         setSearchSuggestions([]);
-        if (search === '') {
-            alert('Please enter a valid item name!');
+        if (search === '' || !/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/.test(search)) {
+            alert('Please enter a valid item name! (No symbols)');
             setSearch("");
         } else {
             e.preventDefault()

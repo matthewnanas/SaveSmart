@@ -226,11 +226,11 @@ app.get('/', async (req, res) => {
     res.send('Cannot get "/"');
 });
 
-app.listen(7777, () => {
+/*app.listen(7777, () => {
     console.log(`${new Date().toISOString()} - Server deployed!`);
-});
+});*/
 
-/*const api = functions.https.onRequest((request, response) => {
+const api = functions.https.onRequest((request, response) => {
     if (!request.path) {
         request.url = `/${request.url}`;
     }
@@ -238,4 +238,4 @@ app.listen(7777, () => {
     return app(request, response);
 });
 
-module.exports = { api };*/
+module.exports = { api };
