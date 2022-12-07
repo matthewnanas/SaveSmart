@@ -67,7 +67,7 @@ function DesktopHeading() {
     return (
         <div>
             <div className='Heading'>
-                <h1>Saving on grocery trips<br />has never been <span style={{ color: '#1DA1F2' }}>easier</span></h1>
+                <h1>Saving on grocery trips<br />in the <span style={{ color: '#1DA1F2' }}>DMV</span> has<br />never been <span style={{ color: '#1DA1F2' }}>easier</span></h1>
                 <h4>It’s as easy as 1, 2, 3!</h4>
                 <button className='GetStarted' onClick={() => navStart()}><span>Start Saving!</span></button>
                 <img src={demo} alt="Demo" className='demo' />
@@ -113,7 +113,7 @@ function MobileHeading() {
     return (
         <div>
             <div className='Heading'>
-                <h1>Saving on grocery trips<br />has never been <span style={{ color: '#1DA1F2' }}>easier</span></h1>
+                <h1>Saving on grocery trips<br />in the <span style={{ color: '#1DA1F2' }}>DMV</span> has<br />never been <span style={{ color: '#1DA1F2' }}>easier</span></h1>
                 <h4>It’s as easy as 1, 2, 3!</h4>
                 <button className='GetStarted' onClick={() => navStart()}>Get Started</button>
                 <img src={mobileDemo} className='mobileDemo' alt='demo' />
