@@ -252,7 +252,7 @@ app.post('/grab_target', async (req, res) => {
  */
 app.post('/grab_hmart', async (req, res) => {
     try {
-        console.log(`${new Date().toISOString()} - Handling TARGET`);
+        console.log(`${new Date().toISOString()} - Handling HMART`);
 
         // Create a new HMART thread and compile item list
         const thread = new HMart({ items: req.body.list });
