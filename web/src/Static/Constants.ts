@@ -9,10 +9,12 @@ export const stores = [
     { value: 'aldi', label: 'Aldi' },
     { value: 'costco', label: 'Costco' },
     { value: 'giantfood', label: 'Giant Food' },
+    { value: 'hmart', label: 'HMart' },
     { value: 'lidl', label: 'Lidl' },
     { value: 'publix', label: 'Publix' },
     { value: 'safeway', label: 'Safeway' },
     { value: 'shoppers', label: 'Shoppers' },
+    { value: 'target', label: 'Target' },
     { value: 'wegmans', label: 'Wegmans' },
     { value: 'wholefoodsmarket', label: 'Whole Foods Market' },
 ];
@@ -96,6 +98,18 @@ export const api = [
         storeName: 'Whole Foods Market',
         logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Whole_Foods_Market_logo.svg/2560px-Whole_Foods_Market_logo.svg.png',
         catalog: 'https://www.wholefoodsmarket.com/sales-flyer'
+    },
+    {
+        endpoint: 'grab_target',
+        storeName: 'Target',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Target_logo.svg',
+        catalog: 'https://www.target.com/c/grocery-deals/-/N-k4uyq'
+    },
+    {
+        endpoint: 'grab_hmart',
+        storeName: 'HMart',
+        logo: 'https://images.squarespace-cdn.com/content/5bf5bb0b36099b293afa2918/1591385951871-K1P7UZYF5ME3G5F7OUN1/icon.jpg?content-type=image%2Fjpeg',
+        catalog: 'https://www.hmart.com/weekly-super-sale'
     },
 ];
 
