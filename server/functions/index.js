@@ -22,6 +22,8 @@ const Safeway = require('./sites/Safeway');
 const Shoppers = require('./sites/Shoppers');
 const Wegmans = require('./sites/Wegmans');
 const WholeFoodsMarket = require('./sites/WholeFoodsMarket');
+const Target = require('./sites/Target');
+const HMart = require('./sites/HMart');
 
 /**
  * Create an express app configure, and disable CORS
@@ -221,6 +223,49 @@ app.post('/grab_wholefoodsmarket', async (req, res) => {
         res.sendStatus(500);
     }
 });
+
+/**
+ * /grab_target endpoint
+ * 
+ * Will handle receiving lists created by users and compile a list from Target 
+ */
+app.post('/grab_target', async (req, res) => {
+    try {
+        console.log(`${new Date().toISOString()} - Handling TARGET`);
+
+        // Create a new TARGET thread and compile item list
+        const thread = new Target({ items: req.body.list });
+        const result = await thread.compileList();
+
+        res.send(result);
+    } catch (err) {
+        // In the case something goes totally wrong, log it to the cloud console and respond with a status code of 500
+        console.log(`${new Date().toISOString()} - FATAL ERROR - ${err}`);
+        res.sendStatus(500);
+    }
+});
+
+/**
+ * /grab_hmart endpoint
+ * 
+ * Will handle receiving lists created by users and compile a list from HMart 
+ */
+app.post('/grab_hmart', async (req, res) => {
+    try {
+        console.log(`${new Date().toISOString()} - Handling TARGET`);
+
+        // Create a new HMART thread and compile item list
+        const thread = new HMart({ items: req.body.list });
+        const result = await thread.compileList();
+
+        res.send(result);
+    } catch (err) {
+        // In the case something goes totally wrong, log it to the cloud console and respond with a status code of 500
+        console.log(`${new Date().toISOString()} - FATAL ERROR - ${err}`);
+        res.sendStatus(500);
+    }
+});
+
 
 app.get('/', async (req, res) => {
     res.send('Cannot get "/"');
